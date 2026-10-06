@@ -419,8 +419,8 @@ h2.title { font-size: clamp(48px, 7.4vw, 112px); }
   position: relative; border-radius: var(--r-xl); overflow: hidden; min-height: clamp(380px, 38vw, 560px); padding: 28px; text-decoration: none;
   display: flex; flex-direction: column; justify-content: space-between; isolation: isolate; background: var(--bg); color: var(--fg, var(--ink));
 }
-.coll .word { font-stretch: 62%; font-weight: 800; text-transform: uppercase; font-size: clamp(64px, 8vw, 132px); line-height: .82; position: relative; z-index: 1; }
-.coll .meta { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; font-weight: 600; }
+.coll .word { color: var(--fg); font-stretch: 62%; font-weight: 800; text-transform: uppercase; font-size: clamp(64px, 8vw, 132px); line-height: .82; position: relative; z-index: 1; }
+.coll .meta { color: var(--fg); display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; font-weight: 600; }
 .coll .arrow { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.2); box-shadow: inset 0 0 0 1px rgba(255,255,255,.3); transition: transform .7s var(--ease), background-color .4s var(--ease); }
 .coll .arrow svg { width: 18px; height: 18px; }
 .coll:hover .arrow { transform: rotate(-45deg); background: rgba(255,255,255,.35); }
@@ -428,6 +428,31 @@ h2.title { font-size: clamp(48px, 7.4vw, 112px); }
 .coll .shoe-wrap { position: absolute; width: 88%; right: -10%; bottom: 14%; transform: rotate(-14deg); transition: transform 1s var(--ease); }
 .coll:hover .shoe-wrap { transform: rotate(-20deg) translate(-4%, -4%); }
 @media (max-width: 900px) { .collections { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- photography ---------- */
+.coll .art { width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s var(--ease); }
+.coll:hover .art { transform: scale(1.05); }
+.coll { --fg: #fff; background: #222; }
+.coll::before { content: ""; position: absolute; inset: 0; z-index: 0; background: linear-gradient(180deg, rgba(15,12,10,.5) 0%, rgba(15,12,10,0) 38%, rgba(15,12,10,0) 62%, rgba(15,12,10,.55) 100%); pointer-events: none; }
+.story-art img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.story:hover .story-art img { transform: scale(1.06); }
+.repair-side { display: flex; align-items: center; gap: clamp(20px, 3vw, 40px); }
+.repair-photo { width: clamp(180px, 22vw, 300px); height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 22px; }
+@media (max-width: 600px) { .repair-side { flex-direction: column; align-items: flex-start; width: 100%; } .repair-photo { width: 100%; } }
+
+.photo-band { padding: 0 clamp(8px, 1.4vw, 20px) var(--section); }
+.band { position: relative; margin: 0; border-radius: clamp(28px, 4vw, 56px); overflow: hidden; height: clamp(440px, 72vh, 760px); }
+.band img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.04); transition: transform 2.4s var(--ease-out); }
+.band.in img { transform: none; }
+.band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(14,12,10,.62) 0%, rgba(14,12,10,.18) 46%, rgba(14,12,10,0) 70%); pointer-events: none; }
+.band figcaption { position: absolute; left: clamp(24px, 5vw, 72px); bottom: clamp(28px, 5vw, 72px); z-index: 1; color: #fff; display: flex; flex-direction: column; gap: 22px; }
+.band .eyebrow { background: rgba(255,255,255,.14); box-shadow: inset 0 0 0 1px rgba(255,255,255,.25); color: #fff; backdrop-filter: none; }
+.band .display { font-size: clamp(56px, 8vw, 132px); margin: 0; }
+.band .display .serif { color: var(--canvas); }
+
+.club-photo { position: absolute; right: 0; top: 0; height: 100%; width: 46%; object-fit: cover; pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 55%); mask-image: linear-gradient(90deg, transparent 0%, #000 55%); opacity: .55; }
+@media (max-width: 900px) { .club-photo { width: 100%; height: 55%; top: auto; bottom: 0; -webkit-mask-image: linear-gradient(180deg, transparent, #000 70%); mask-image: linear-gradient(180deg, transparent, #000 70%); opacity: .35; } }
 
 /* ---------- journal: editorial split ---------- */
 .journal { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.4fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
@@ -1080,6 +1105,17 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
     </div>
   </section>
 
+  <!-- ============ editorial photo band ============ -->
+  <section class="photo-band" aria-label="Campaign">
+    <figure class="band reveal">
+      <img src="img/lake-runner.webp" width="2000" height="1333" alt="A runner in bright kit striding along a lakeside path in the city" loading="lazy" decoding="async" style="object-position:50% 45%">
+      <figcaption>
+        <span class="eyebrow">Campaign · AW26</span>
+        <p class="display">Every day,<br><em class="serif">a little further</em></p>
+      </figcaption>
+    </figure>
+  </section>
+
   <!-- ============ studio: new silhouettes ============ -->
   <section class="section" id="studio" aria-labelledby="studio-title" style="padding-top:0">
     <div class="wrap">
@@ -1175,7 +1211,10 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
             <h3>Worn through? <em class="serif">We'll resole it.</em></h3>
             <p>Send your pair back to our Zürich workshop. New outsole, fresh laces, back on your feet in two weeks for CHF 49.</p>
           </div>
-          <a class="btn" href="#club">Book a repair <span class="ic"><svg><use href="#arrow"/></svg></span></a>
+          <div class="repair-side">
+            <img class="repair-photo" src="img/workshop-cobbler.webp" width="1000" height="1500" alt="A shoemaker repairing shoes in a workshop full of tools" loading="lazy" decoding="async" style="object-position:50% 30%">
+            <a class="btn" href="#club">Book a repair <span class="ic"><svg><use href="#arrow"/></svg></span></a>
+          </div>
         </div>
       </div>
     </div>
@@ -1191,23 +1230,20 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
         </div>
       </div>
       <div class="collections">
-        <a class="coll reveal" href="#shop" style="--bg:#e8501f;--fg:#fff;--s-upper:#f4efe6;--s-over:#e5ddd0;--s-lining:#cfc4b2;--s-mid:#fff;--s-sole:#151412;--s-accent:#151412;--s-lace:#151412">
-          <svg class="art" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" data-topo="7" data-stroke="rgba(255,255,255,.22)"></svg>
+        <a class="coll reveal" href="#shop">
+          <img class="art" src="img/road-marathon.webp" width="1300" height="864" alt="Runners filling a tree-lined city road during a marathon" loading="lazy" decoding="async" style="object-position:50% 40%">
           <span class="word">Road</span>
-          <div class="shoe-wrap"><svg class="shoe" viewBox="0 0 600 290" aria-hidden="true"><use href="#shoe"/></svg></div>
           <span class="meta">12 styles <span class="arrow"><svg><use href="#arrow"/></svg></span></span>
         </a>
-        <a class="coll reveal" href="#shop" style="--d:.08s;--bg:#3d4a33;--fg:#f4efe6;--s-upper:#d9cdb4;--s-over:#bfae8e;--s-lining:#8f7e5f;--s-mid:#f4efe6;--s-sole:#1c1b19;--s-accent:#e8501f;--s-lace:#3d4a33">
-          <svg class="art" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" data-topo="3" data-stroke="rgba(255,255,255,.16)"></svg>
+        <a class="coll reveal" href="#shop" style="--d:.08s">
+          <img class="art" src="img/trail-ridge.webp" width="1000" height="1333" alt="A trail runner on a narrow path along a green mountain ridge" loading="lazy" decoding="async" style="object-position:50% 60%">
           <span class="word">Trail</span>
-          <div class="shoe-wrap"><svg class="shoe" viewBox="0 0 600 290" aria-hidden="true"><use href="#shoe-trail"/></svg></div>
           <span class="meta">7 styles <span class="arrow"><svg><use href="#arrow"/></svg></span></span>
         </a>
-        <a class="coll reveal" href="#shop" style="--d:.16s;--bg:#dcd4c6;--s-upper:#3b3a38;--s-over:#2c2b29;--s-lining:#575550;--s-mid:#e8e2d6;--s-sole:#6d4a2f;--s-accent:#e8e2d6;--s-lace:#e8e2d6">
-          <svg class="art" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" data-topo="11" data-stroke="rgba(21,20,18,.1)"></svg>
+        <a class="coll reveal" href="#shop" style="--d:.16s">
+          <img class="art" src="img/knit-shoes.webp" width="1100" height="836" alt="Close-up of two black knit sneakers on a white floor" loading="lazy" decoding="async" style="object-position:22% 0%">
           <span class="word">Every<br>day</span>
-          <div class="shoe-wrap"><svg class="shoe" viewBox="0 0 600 290" aria-hidden="true"><use href="#shoe"/></svg></div>
-          <span class="meta">9 styles <span class="arrow" style="background:rgba(21,20,18,.06);box-shadow:inset 0 0 0 1px rgba(21,20,18,.12)"><svg><use href="#arrow"/></svg></span></span>
+          <span class="meta">9 styles <span class="arrow"><svg><use href="#arrow"/></svg></span></span>
         </a>
       </div>
     </div>
@@ -1224,19 +1260,19 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
       </div>
       <div class="stories">
         <a class="story reveal" href="#journal">
-          <div class="bezel"><div class="core story-art"><svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" data-topo="21" data-bg="#3d4a33" data-stroke="rgba(244,239,230,.35)"></svg><span class="stamp">Route</span></div></div>
-          <h3>Uetliberg at first light: 14 km, 600 m up</h3><p>8 min read</p>
+          <div class="bezel"><div class="core story-art"><img src="img/route-matterhorn.webp" width="900" height="1125" alt="A mountain path leading toward the Matterhorn under a blue sky" loading="lazy" decoding="async"><span class="stamp">Route</span></div></div>
+          <h3>Riffelsee loop: 14 km, 600 m up, one mountain</h3><p>8 min read</p>
         </a>
         <a class="story reveal" href="#journal" style="--d:.1s">
-          <div class="bezel"><div class="core story-art"><svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" data-topo="5" data-bg="#e8501f" data-stroke="rgba(255,255,255,.35)"></svg><span class="stamp">Workshop</span></div></div>
+          <div class="bezel"><div class="core story-art"><img src="img/workshop-leather.webp" width="848" height="1060" alt="A shoemaker's hands cutting leather at a wooden workbench" loading="lazy" decoding="async"><span class="stamp">Workshop</span></div></div>
           <h3>Inside the repair bench: 1,200 pairs and counting</h3><p>6 min read</p>
         </a>
         <a class="story reveal" href="#journal">
-          <div class="bezel"><div class="core story-art"><svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" data-topo="13" data-bg="#1f2330" data-stroke="rgba(215,242,92,.4)"></svg><span class="stamp">Training</span></div></div>
+          <div class="bezel"><div class="core story-art"><img src="img/track-above.webp" width="675" height="844" alt="Runners on a red athletics track seen from directly above" loading="lazy" decoding="async"><span class="stamp">Training</span></div></div>
           <h3>Why your easy runs should feel embarrassingly easy</h3><p>5 min read</p>
         </a>
         <a class="story reveal" href="#journal" style="--d:.1s">
-          <div class="bezel"><div class="core story-art"><svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" data-topo="34" data-bg="#dcd4c6" data-stroke="rgba(21,20,18,.22)"></svg><span class="stamp">Materials</span></div></div>
+          <div class="bezel"><div class="core story-art"><img src="img/knit-texture.webp" width="900" height="1125" alt="Close-up of grey knitted yarn" loading="lazy" decoding="async"><span class="stamp">Materials</span></div></div>
           <h3>From bottle to upper: where our knit comes from</h3><p>7 min read</p>
         </a>
       </div>
@@ -1245,7 +1281,7 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
 
   <!-- ============ club ============ -->
   <section class="club" id="club" aria-labelledby="club-title">
-    <svg class="club-rings" viewBox="0 0 400 400" aria-hidden="true" data-topo="2" data-stroke="rgba(215,242,92,.35)"></svg>
+    <img class="club-photo" src="img/waterfront-jog.webp" width="1200" height="1800" alt="" loading="lazy" decoding="async" style="object-position:50% 35%">
     <div class="wrap">
       <div class="reveal">
         <span class="eyebrow">Solum Club</span>
