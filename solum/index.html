@@ -6,6 +6,19 @@
 <title>SOLUM Footwear</title>
 <meta name="description" content="SOLUM — sneakers designed in Zürich for the long way round. Shop the Aster 2, Vela Trail and Loam.">
 <meta name="theme-color" content="#efebe4">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SOLUM Footwear: shoes for the long way round">
+<meta property="og:description" content="Sneakers designed in Zürich, built to be repaired. Shop the Aster 2, Meridian and Tide.">
+<meta property="og:image" content="img/lake-runner.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%23151412'/%3E%3Cpath d='M5 15.5c4 0 9-1.6 14-6' stroke='%23e8501f' stroke-width='2.6' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
+<script>
+  (function (d) {
+    d.classList.add("js");
+    try { if (sessionStorage.getItem("solum-intro") || matchMedia("(prefers-reduced-motion: reduce)").matches) d.classList.add("seen"); else sessionStorage.setItem("solum-intro", "1"); } catch (e) { d.classList.add("seen"); }
+    setTimeout(function () { d.classList.add("loaded"); }, 2600);
+  })(document.documentElement);
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&family=Instrument+Serif:ital@0;1&display=swap">
@@ -532,7 +545,7 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
 .toast .mini svg { width: 64px; transform: rotate(-8deg); }
 .toast b { font-weight: 600; }
 .toast span { font-size: 14px; color: #b9b2a7; }
-.toast a { margin-left: 8px; background: var(--volt); color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 700; padding: 10px 16px; border-radius: 999px; white-space: nowrap; }
+.toast a, .toast button { border: 0; cursor: pointer; font-family: inherit; margin-left: 8px; background: var(--volt); color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 700; padding: 10px 16px; border-radius: 999px; white-space: nowrap; }
 
 /* ---------- reveal ---------- */
 .js .reveal { opacity: 0; transform: translateY(48px); filter: blur(6px); transition: opacity 1s var(--ease-out), transform 1.2s var(--ease-out), filter 1s var(--ease-out); transition-delay: var(--d, 0s); }
@@ -540,6 +553,142 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
 .js .hero h1 .ln { display: block; overflow: hidden; padding: 0 .06em .22em; margin: 0 -.06em -.22em; }
 .js .hero h1 .ln > span { display: inline-block; transform: translateY(105%); transition: transform 1.3s var(--ease-out); transition-delay: var(--d, 0s); }
 .js.loaded .hero h1 .ln > span { transform: none; }
+
+/* ---------- motion layer ---------- */
+/* intro curtain: CSS-driven so it always clears, even if scripts fail */
+.loader { display: none; }
+.js .loader {
+  position: fixed; inset: 0; z-index: 200; background: var(--night); color: var(--canvas);
+  display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 22px;
+  animation: curtain .9s var(--ease) 1.05s forwards; pointer-events: none;
+}
+.js.seen .loader { display: none; }
+.loader-word { display: flex; overflow: hidden; font-stretch: 62%; font-weight: 800; font-size: clamp(72px, 16vw, 200px); line-height: .9; letter-spacing: .02em; }
+.loader-word span { display: inline-block; transform: translateY(105%); animation: rise .8s var(--ease-out) forwards; }
+.loader-word span:nth-child(2) { animation-delay: .06s; } .loader-word span:nth-child(3) { animation-delay: .12s; }
+.loader-word span:nth-child(4) { animation-delay: .18s; } .loader-word span:nth-child(5) { animation-delay: .24s; }
+.loader-line { width: min(240px, 50vw); height: 2px; background: rgba(255,255,255,.12); overflow: hidden; border-radius: 2px; }
+.loader-line i { display: block; height: 100%; background: var(--ember); transform-origin: left; transform: scaleX(0); animation: fill .9s var(--ease) .15s forwards; }
+@keyframes rise { to { transform: none; } }
+@keyframes fill { to { transform: scaleX(1); } }
+@keyframes curtain { to { transform: translateY(-100%); visibility: hidden; } }
+
+/* scroll progress */
+.progress { position: fixed; left: 0; right: 0; top: 0; height: 3px; z-index: 80; pointer-events: none; }
+.progress i { display: block; height: 100%; background: linear-gradient(90deg, var(--ember), #ff8a4c); transform-origin: left; transform: scaleX(0); }
+
+/* split headings: words rise out of a mask */
+.js .split .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 .04em .12em; margin: 0 -.04em -.12em; }
+.js .split .w > span { display: inline-block; transform: translateY(110%); transition: transform 1.1s var(--ease-out); transition-delay: calc(var(--i, 0) * 70ms + var(--d, 0s)); }
+.js .in .split .w > span, .js .split.in .w > span { transform: none; }
+
+/* photo wipes */
+.js .coll .art, .js .story-art img { clip-path: inset(100% 0 0 0); transition: clip-path 1.3s var(--ease-out), transform 1.4s var(--ease); }
+.js .coll.in .art, .js .story.in .story-art img { clip-path: inset(0 0 0 0); }
+.js .band { clip-path: inset(8% 6% 8% 6% round 56px); transition: clip-path 1.6s var(--ease-out); }
+.js .band.in { clip-path: inset(0 0 0 0 round 56px); }
+.band img { height: 118%; margin-top: -9%; transform: translate3d(0, var(--py, 0px), 0); transition: none; }
+
+/* parallax hooks */
+[data-parallax] { transform: translate3d(0, var(--py, 0px), 0); will-change: transform; }
+
+/* magnetic buttons + press */
+.btn, .round { transform: translate3d(var(--mx, 0px), var(--my, 0px), 0); }
+.btn:active { transform: translate3d(var(--mx, 0px), var(--my, 0px), 0) scale(.97); }
+.round:active { transform: translate3d(var(--mx, 0px), var(--my, 0px), 0) scale(.93); }
+
+/* product card 3D tilt */
+.card .bezel { transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .8s var(--ease); transform-style: preserve-3d; }
+.card .bezel.tilting { transition: transform .15s linear; }
+.card-stage .card-glare { position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0; transition: opacity .5s var(--ease);
+  background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 30%), rgba(255,255,255,.45), rgba(255,255,255,0) 60%); }
+.card:hover .card-glare { opacity: 1; }
+
+/* cursor chip */
+.cursor-chip { position: fixed; left: 0; top: 0; z-index: 85; pointer-events: none; transform: translate3d(var(--cx, -200px), var(--cy, -200px), 0); }
+.cursor-chip i {
+  position: absolute; width: 92px; height: 92px; left: -46px; top: -46px; border-radius: 50%; font-style: normal;
+  background: var(--volt); color: var(--ink); display: grid; place-items: center; font-size: 13px; font-weight: 700; letter-spacing: .04em;
+  transform: scale(0); transition: transform .45s var(--ease); box-shadow: 0 12px 30px -12px rgba(0,0,0,.35);
+}
+.cursor-chip.on i { transform: scale(1); }
+
+/* flying shoe into the bag */
+.flyer { position: fixed; left: 0; top: 0; z-index: 90; pointer-events: none; width: 120px; }
+.flyer svg { width: 100%; height: auto; }
+
+/* footer wordmark letters */
+.js .wordmark span { display: inline-block; transform: translateY(60%); opacity: 0; transition: transform 1.2s var(--ease-out), opacity 1s var(--ease-out); transition-delay: calc(var(--i) * 80ms); }
+.js .wordmark.in span { transform: none; opacity: 1; }
+
+/* card spotlight when reached from search */
+.card.found .bezel { box-shadow: 0 0 0 3px var(--ember), 0 30px 60px -30px rgba(232,80,31,.5); transition: box-shadow .4s var(--ease); }
+
+/* ---------- drawers: bag + search ---------- */
+.scrim { position: fixed; inset: 0; z-index: 95; background: rgba(18,17,16,.38); opacity: 0; visibility: hidden; transition: opacity .5s var(--ease), visibility 0s linear .5s; }
+.scrim.open { opacity: 1; visibility: visible; transition: opacity .5s var(--ease); }
+.drawer {
+  position: fixed; top: 10px; right: 10px; bottom: 10px; z-index: 96; width: min(440px, calc(100% - 20px));
+  background: var(--lifted); border-radius: 32px; box-shadow: 0 40px 80px -30px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.7);
+  display: flex; flex-direction: column; transform: translateX(calc(100% + 24px)); transition: transform .7s var(--ease); overscroll-behavior: contain;
+}
+.drawer.open { transform: none; }
+.drawer-head { display: flex; justify-content: space-between; align-items: center; padding: 22px 22px 16px 28px; border-bottom: 1px solid var(--hair); }
+.drawer-head h2 { margin: 0; font-stretch: 62%; font-weight: 800; text-transform: uppercase; font-size: 34px; line-height: 1; }
+.drawer-head h2 small { font-stretch: 100%; font-size: 14px; font-weight: 600; color: var(--ink-2); text-transform: none; margin-left: 6px; }
+.ship { padding: 16px 28px; font-size: 14px; color: var(--ink-2); }
+.ship b { color: var(--ink); }
+.ship-bar { height: 6px; border-radius: 6px; background: rgba(21,20,18,.08); margin-top: 10px; overflow: hidden; }
+.ship-bar i { display: block; height: 100%; background: var(--ember); border-radius: 6px; transform-origin: left; transform: scaleX(var(--p, 0)); transition: transform .8s var(--ease); }
+.bag-list { list-style: none; margin: 0; padding: 4px 16px; flex: 1; overflow-y: auto; }
+.bag-item { display: grid; grid-template-columns: 84px 1fr auto; gap: 14px; align-items: center; padding: 12px; border-radius: 20px; animation: itemIn .6s var(--ease-out); }
+.bag-item:hover { background: rgba(21,20,18,.03); }
+@keyframes itemIn { from { opacity: 0; transform: translateX(24px); } }
+.bag-item .thumb-mini { width: 84px; height: 64px; border-radius: 16px; display: grid; place-items: center; overflow: hidden; background: var(--tint, var(--stage)); }
+.bag-item .thumb-mini svg { width: 86px; transform: rotate(-8deg); }
+.bag-item b { display: block; font-size: 15px; }
+.bag-item span { font-size: 13px; color: var(--ink-2); }
+.bag-item .right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.bag-item .rm { border: 0; background: none; cursor: pointer; font-size: 13px; color: var(--ink-2); text-decoration: underline; text-underline-offset: 3px; padding: 6px 0; min-height: 32px; }
+.bag-item .rm:hover { color: var(--ember-deep); }
+.bag-empty { padding: 48px 28px; text-align: center; color: var(--ink-2); display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.bag-empty svg { width: 180px; opacity: .9; }
+.drawer-foot { padding: 18px 22px 22px; border-top: 1px solid var(--hair); display: flex; flex-direction: column; gap: 14px; }
+.sum { display: flex; justify-content: space-between; font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums; padding-inline: 6px; }
+.drawer-foot .btn { justify-content: space-between; width: 100%; }
+.drawer-foot p { margin: 0; font-size: 12px; color: var(--ink-3); text-align: center; }
+
+.search {
+  position: fixed; top: 10px; left: 50%; z-index: 96; width: min(720px, calc(100% - 20px)); max-height: calc(100% - 20px);
+  background: var(--lifted); border-radius: 32px; box-shadow: 0 40px 80px -30px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.7);
+  transform: translate(-50%, -24px) scale(.98); opacity: 0; visibility: hidden; transition: transform .6s var(--ease), opacity .4s var(--ease), visibility 0s linear .6s;
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.search.open { transform: translate(-50%, 0); opacity: 1; visibility: visible; transition: transform .6s var(--ease), opacity .4s var(--ease); }
+.search-bar { display: flex; align-items: center; gap: 12px; padding: 14px 14px 14px 26px; border-bottom: 1px solid var(--hair); }
+.search-bar svg { width: 22px; height: 22px; flex: none; }
+.search-bar input { flex: 1; min-width: 0; border: 0; background: transparent; font: inherit; font-size: 22px; font-weight: 500; outline: none; padding: 10px 0; color: var(--ink); }
+.search-bar input::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+.search-hint { padding: 16px 26px 4px; font-size: 13px; color: var(--ink-3); }
+.search-chips { display: flex; gap: 6px; flex-wrap: wrap; padding: 8px 22px 4px; }
+.results { list-style: none; margin: 0; padding: 8px 12px 14px; overflow-y: auto; }
+.results a { display: grid; grid-template-columns: 76px 1fr auto; gap: 16px; align-items: center; padding: 10px 14px; border-radius: 18px; text-decoration: none; }
+.results a:hover, .results a:focus-visible { background: rgba(21,20,18,.05); }
+.results .thumb-mini { width: 76px; height: 56px; border-radius: 14px; display: grid; place-items: center; overflow: hidden; background: var(--tint, var(--stage)); }
+.results .thumb-mini svg { width: 78px; transform: rotate(-8deg); }
+.results b { display: block; }
+.results span { font-size: 13px; color: var(--ink-2); }
+.results .pr { font-weight: 600; font-variant-numeric: tabular-nums; }
+.results .none { padding: 28px 14px; color: var(--ink-2); }
+@media (max-width: 560px) { .search-bar input { font-size: 18px; } .drawer { top: 6px; right: 6px; bottom: 6px; width: calc(100% - 12px); border-radius: 26px; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .loader { display: none; }
+  .js .split .w > span, .js .wordmark span { transform: none; opacity: 1; }
+  .js .coll .art, .js .story-art img, .js .band { clip-path: none; }
+  [data-parallax], .band img { transform: none; }
+  .cursor-chip, .progress { display: none; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
@@ -550,6 +699,45 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
+<div class="loader" aria-hidden="true">
+  <div class="loader-word"><span>S</span><span>O</span><span>L</span><span>U</span><span>M</span></div>
+  <div class="loader-line"><i></i></div>
+</div>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<div class="cursor-chip" id="cursor-chip" aria-hidden="true"><i></i></div>
+
+<div class="scrim" id="scrim"></div>
+
+<aside class="drawer" id="bag" role="dialog" aria-modal="true" aria-labelledby="bag-title" aria-hidden="true" inert>
+  <div class="drawer-head">
+    <h2 id="bag-title">Your bag <small id="bag-qty">0 items</small></h2>
+    <button class="round" type="button" data-close aria-label="Close bag"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="ship" id="ship"><span id="ship-text">Free shipping from <b>CHF 150</b>.</span><div class="ship-bar"><i id="ship-bar"></i></div></div>
+  <ul class="bag-list" id="bag-list"></ul>
+  <div class="drawer-foot">
+    <div class="sum"><span>Subtotal</span><span id="bag-sum">CHF 0</span></div>
+    <button class="btn btn-ember" type="button" id="checkout">Checkout <span class="ic"><svg><use href="#arrow"/></svg></span></button>
+    <p>Taxes included. 60-day free returns.</p>
+  </div>
+</aside>
+
+<div class="search" id="search" role="dialog" aria-modal="true" aria-label="Search products" aria-hidden="true" inert>
+  <div class="search-bar">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M16 16l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+    <label class="sr" for="q">Search products</label>
+    <input id="q" type="search" placeholder="Search shoes, e.g. trail…" autocomplete="off" spellcheck="false">
+    <button class="round" type="button" data-close aria-label="Close search"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+  </div>
+  <p class="search-hint">Popular</p>
+  <div class="search-chips">
+    <button class="chip" type="button" data-q="road">Road</button>
+    <button class="chip" type="button" data-q="trail">Trail</button>
+    <button class="chip" type="button" data-q="everyday">Everyday</button>
+    <button class="chip" type="button" data-q="new">New shapes</button>
+  </div>
+  <ul class="results" id="results" aria-live="polite"></ul>
+</div>
 
 <!-- ============ SVG library ============ -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -1320,7 +1508,7 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
       <div><h3>Help</h3><ul><li><a href="#top">Size guide</a></li><li><a href="#top">Shipping</a></li><li><a href="#top">Returns</a></li><li><a href="#tech">Repairs</a></li></ul></div>
       <div><h3>Company</h3><ul><li><a href="#journal">Journal</a></li><li><a href="#top">Stores</a></li><li><a href="#top">Careers</a></li><li><a href="#top">Contact</a></li></ul></div>
     </div>
-    <div class="foot-bottom"><span>© <span id="year">2026</span> SOLUM Footwear. A fictional brand.</span><span>Privacy · Terms · CHF / EN</span></div>
+    <div class="foot-bottom"><span>© <span id="year">2026</span> SOLUM Footwear · Concept site</span><span class="foot-legal"><a href="#top">Privacy</a> · <a href="#top">Terms</a> · <a href="#top">Imprint</a> · CHF / EN</span></div>
   </div>
   <p class="wordmark" aria-hidden="true">SOLUM</p>
 </footer>
@@ -1328,7 +1516,7 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
 <div class="toast" id="toast" role="status" aria-live="polite">
   <div class="mini" id="toast-mini"><svg viewBox="0 0 600 290" aria-hidden="true" id="toast-svg"><use id="toast-use" href="#shoe"/></svg></div>
   <div><b id="toast-title">Added to bag</b><br><span id="toast-sub">Aster 2</span></div>
-  <a href="#top">View bag</a>
+  <button type="button" id="toast-view">View bag</button>
 </div>
 
 <script>
@@ -1370,23 +1558,72 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
     document.getElementById("size-out").textContent = "EU " + size;
   }));
 
-  /* ---- bag + toast ---- */
-  let count = 0, toastTimer;
+  /* ---- bag: state, drawer, toast, fly-to-bag ---- */
+  const bag = [];
+  const chf = (n) => "CHF " + n.toLocaleString("de-CH");
+  const priceOf = (txt) => +String(txt).replace(/[^\d]/g, "");
+  const styleStr = (vars) => typeof vars === "string" ? vars : Object.entries(vars).map(([k, c]) => "--s-" + k + ":" + c).join(";");
+  const miniSvg = (it) => '<span class="thumb-mini" style="' + it.style + '"><svg viewBox="' + (it.sym ? "0 0 620 300" : "0 0 600 290") + '" aria-hidden="true"><use href="#' + (it.sym || "shoe") + '"/></svg></span>';
   const bagCount = document.getElementById("bag-count"), bagBtn = document.getElementById("bag-btn"), toast = document.getElementById("toast");
-  function addToBag(name, sub, vars, sym) {
-    document.getElementById("toast-use").setAttribute("href", "#" + (sym || "shoe"));
-    document.getElementById("toast-svg").setAttribute("viewBox", sym ? "0 0 620 300" : "0 0 600 290");
-    count++;
-    bagCount.textContent = count;
-    bagBtn.setAttribute("aria-label", "Bag, " + count + (count === 1 ? " item" : " items"));
-    bagCount.classList.remove("bump"); void bagCount.offsetWidth; bagCount.classList.add("bump");
-    document.getElementById("toast-title").textContent = "Added: " + name;
-    document.getElementById("toast-sub").textContent = sub;
-    const mini = document.getElementById("toast-mini");
-    if (typeof vars === "string") mini.style.cssText = vars; else { mini.style.cssText = ""; apply(mini, vars); }
+  let toastTimer;
+
+  function renderBag() {
+    const qty = bag.length, sum = bag.reduce((a, it) => a + it.price, 0);
+    bagCount.textContent = qty;
+    bagBtn.setAttribute("aria-label", "Open bag, " + qty + (qty === 1 ? " item" : " items"));
+    document.getElementById("bag-qty").textContent = qty + (qty === 1 ? " item" : " items");
+    document.getElementById("bag-sum").textContent = chf(sum);
+    const left = Math.max(0, 150 - sum);
+    document.getElementById("ship-text").innerHTML = left ? "You're <b>" + chf(left) + "</b> away from free shipping." : "<b>Free shipping</b> unlocked.";
+    document.getElementById("ship-bar").style.setProperty("--p", Math.min(1, sum / 150));
+    const list = document.getElementById("bag-list");
+    list.innerHTML = qty ? bag.map((it, i) =>
+      '<li class="bag-item">' + miniSvg(it) + '<div><b>' + it.name + '</b><span>' + it.sub + '</span></div><div class="right">' + chf(it.price) +
+      '<button class="rm" type="button" data-i="' + i + '" aria-label="Remove ' + it.name + '">Remove</button></div></li>').join("")
+      : '<li class="bag-empty"><svg viewBox="0 0 600 290" aria-hidden="true" style="--s-upper:#ede6da;--s-over:#ddd3c4;--s-lining:#c9bca8;--s-mid:#f8f4ee;--s-sole:#2a2724;--s-accent:#e8501f;--s-lace:#f8f4ee"><use href="#shoe"/></svg>Your bag is empty. The long way round starts with one pair.<a class="btn" href="#shop" data-close>Shop the collection <span class="ic"><svg><use href="#arrow"/></svg></span></a></li>';
+    document.getElementById("checkout").disabled = !qty;
+  }
+  document.getElementById("bag-list").addEventListener("click", (e) => {
+    const rm = e.target.closest(".rm");
+    if (rm) { bag.splice(+rm.dataset.i, 1); renderBag(); document.getElementById("checkout").focus(); }
+  });
+
+  function flyToBag(fromEl, it) {
+    if (reduce || !fromEl) return Promise.resolve();
+    const navEl = document.querySelector(".nav"), wasHidden = navEl.classList.contains("hide");
+    navEl.classList.remove("hide");
+    const a = fromEl.getBoundingClientRect(), br = bagBtn.getBoundingClientRect();
+    const b = { left: br.left, width: br.width, height: br.height, top: br.top + (wasHidden ? navEl.offsetHeight * 1.4 + 16 : 0) };
+    if (!a.width) return Promise.resolve();
+    const f = document.createElement("div");
+    f.className = "flyer"; f.setAttribute("style", it.style); f.style.width = Math.min(a.width, 360) + "px";
+    f.innerHTML = '<svg viewBox="' + (it.sym ? "0 0 620 300" : "0 0 600 290") + '"><use href="#' + (it.sym || "shoe") + '"/></svg>';
+    document.body.appendChild(f);
+    const w = Math.min(a.width, 360), x0 = a.left + a.width / 2 - w / 2, y0 = a.top + a.height / 2 - w * .24;
+    const x1 = b.left + b.width / 2 - w / 2, y1 = b.top + b.height / 2 - w * .24;
+    const anim = f.animate([
+      { transform: `translate(${x0}px, ${y0}px) scale(1) rotate(-6deg)`, opacity: 1 },
+      { transform: `translate(${(x0 + x1) / 2}px, ${Math.min(y0, y1) - 120}px) scale(.6) rotate(-18deg)`, opacity: 1, offset: .45 },
+      { transform: `translate(${x1}px, ${y1}px) scale(.08) rotate(-30deg)`, opacity: .2 }
+    ], { duration: 900, easing: "cubic-bezier(.45,0,.2,1)" });
+    return anim.finished.then(() => f.remove()).catch(() => f.remove());
+  }
+
+  function addToBag(it) {
+    document.querySelector(".nav").classList.remove("hide");
+    it.style = styleStr(it.vars) + (it.tint ? ";--tint:" + it.tint : "");
+    flyToBag(it.from, it).then(() => {
+      bag.push(it); renderBag();
+      bagCount.classList.remove("bump"); void bagCount.offsetWidth; bagCount.classList.add("bump");
+    });
+    document.getElementById("toast-use").setAttribute("href", "#" + (it.sym || "shoe"));
+    document.getElementById("toast-svg").setAttribute("viewBox", it.sym ? "0 0 620 300" : "0 0 600 290");
+    document.getElementById("toast-mini").setAttribute("style", it.style);
+    document.getElementById("toast-title").textContent = "Added: " + it.name;
+    document.getElementById("toast-sub").textContent = it.sub + " · " + chf(it.price);
     toast.classList.add("show");
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toast.classList.remove("show"), 3200);
+    toastTimer = setTimeout(() => toast.classList.remove("show"), 3600);
   }
   document.getElementById("hero-add").addEventListener("click", () => {
     if (!size) {
@@ -1394,15 +1631,81 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
       document.querySelector(".size:not(:disabled)").focus();
       return;
     }
-    addToBag("Aster 2", CW[currentCw].name + " · EU " + size, CW[currentCw].v);
+    addToBag({ name: "Aster 2", sub: CW[currentCw].name + " · EU " + size, price: 189, vars: CW[currentCw].v, tint: "#e9e1d4", from: heroShoe.querySelector("svg") });
   });
   document.querySelectorAll(".quick").forEach((b) => b.addEventListener("click", () => {
-    const stage = b.closest(".card-stage");
-    if (b.dataset.sym) { addToBag(b.dataset.name, "Size chosen at checkout", stage.style.cssText, b.dataset.sym); return; }
+    const card = b.closest(".card"), stage = b.closest(".card-stage");
+    const price = priceOf((card.querySelector(".price.now") || card.querySelector(".price")).textContent);
+    const from = stage.querySelector("svg.shoe");
+    if (b.dataset.sym) { addToBag({ name: b.dataset.name, sub: "Size chosen at checkout", price, vars: stage.style.cssText, sym: b.dataset.sym, from }); return; }
     const cs = stage.style, v = {};
-    ["upper","over","lining","mid","sole","accent","lace"].forEach((k) => v[k] = cs.getPropertyValue("--s-" + k));
-    addToBag(b.dataset.name, "Size chosen at checkout", v);
+    ["upper","over","lining","mid","sole","accent","lace"].forEach((k) => v[k] = cs.getPropertyValue("--s-" + k).trim());
+    addToBag({ name: b.dataset.name, sub: "Size chosen at checkout", price, vars: v, tint: cs.getPropertyValue("--tint").trim(), from });
   }));
+
+  /* ---- drawers (bag + search): open/close, focus, Escape ---- */
+  const scrim = document.getElementById("scrim");
+  let openPanel = null, opener = null;
+  function openDrawer(el, focusEl) {
+    if (openPanel) closeDrawer(true);
+    opener = document.activeElement; openPanel = el;
+    el.removeAttribute("inert"); el.setAttribute("aria-hidden", "false");
+    el.classList.add("open"); scrim.classList.add("open");
+    document.body.style.overflow = "hidden";
+    setTimeout(() => (focusEl || el.querySelector("[data-close]")).focus(), 60);
+  }
+  function closeDrawer(silent) {
+    if (!openPanel) return;
+    openPanel.classList.remove("open"); openPanel.setAttribute("aria-hidden", "true"); openPanel.setAttribute("inert", "");
+    scrim.classList.remove("open"); document.body.style.overflow = "";
+    openPanel = null;
+    if (!silent && opener && opener.focus) opener.focus();
+  }
+  scrim.addEventListener("click", () => closeDrawer());
+  document.querySelectorAll(".drawer, .search").forEach((d) => d.addEventListener("click", (e) => { if (e.target.closest("[data-close]")) closeDrawer(); }));
+  addEventListener("keydown", (e) => { if (e.key === "Escape") closeDrawer(); });
+  bagBtn.addEventListener("click", () => { renderBag(); openDrawer(document.getElementById("bag")); });
+  document.getElementById("toast-view").addEventListener("click", () => { toast.classList.remove("show"); renderBag(); openDrawer(document.getElementById("bag")); });
+  document.getElementById("checkout").addEventListener("click", (e) => {
+    const p = e.currentTarget.parentElement.querySelector("p");
+    p.textContent = "Checkout connects to your payment provider at launch. Your " + bag.length + (bag.length === 1 ? " item is" : " items are") + " saved.";
+  });
+  renderBag();
+
+  /* ---- search ---- */
+  const products = [...document.querySelectorAll("#grid .card")].map((c) => {
+    const stage = c.querySelector(".card-stage"), use = c.querySelector("svg.shoe use").getAttribute("href").slice(1);
+    const tag = (c.querySelector(".card-tag") || {}).textContent || "";
+    return {
+      card: c, name: c.querySelector("h3").textContent, cat: c.querySelector(".cat").textContent,
+      price: (c.querySelector(".price.now") || c.querySelector(".price")).textContent,
+      style: stage.style.cssText, sym: use === "shoe" ? null : use,
+      hay: (c.querySelector("h3").textContent + " " + c.querySelector(".cat").textContent + " " + c.dataset.cat + " " + tag + (/new/i.test(tag) ? " new shapes" : "")).toLowerCase()
+    };
+  });
+  const q = document.getElementById("q"), results = document.getElementById("results");
+  function runSearch() {
+    const term = q.value.trim().toLowerCase();
+    const hits = products.filter((p) => !term || term.split(/\s+/).every((t) => p.hay.includes(t)));
+    results.innerHTML = hits.length ? hits.map((p, i) =>
+      '<li><a href="#shop" data-i="' + products.indexOf(p) + '">' + miniSvg(p) + '<div><b>' + p.name + '</b><span>' + p.cat + '</span></div><span class="pr">' + p.price + '</span></a></li>').join("")
+      : '<li class="none">Nothing found for “' + q.value.replace(/[<>&"]/g, "") + '”. Try road, trail or everyday.</li>';
+  }
+  q.addEventListener("input", runSearch);
+  document.querySelectorAll(".search-chips .chip").forEach((c) => c.addEventListener("click", () => { q.value = c.dataset.q; runSearch(); q.focus(); }));
+  results.addEventListener("click", (e) => {
+    const a = e.target.closest("a"); if (!a) return;
+    e.preventDefault();
+    const p = products[+a.dataset.i];
+    closeDrawer(true);
+    document.querySelectorAll(".chip[data-filter]").forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.filter === "all")));
+    document.querySelectorAll("#grid .card").forEach((card) => card.classList.remove("dim"));
+    p.card.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center", inline: "center" });
+    p.card.classList.add("found");
+    setTimeout(() => p.card.classList.remove("found"), 2200);
+    p.card.querySelector(".quick").focus({ preventScroll: true });
+  });
+  document.querySelector('.icon-btn[aria-label="Search"]').addEventListener("click", () => { runSearch(); openDrawer(document.getElementById("search"), q); });
 
   /* ---- studio: model viewer ---- */
   const MODELS = {
@@ -1514,7 +1817,7 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
   });
   document.getElementById("model-add").addEventListener("click", () => {
     const m = MODELS[st.model], cw = m.cws[st.cw];
-    addToBag(m.name, cw.name + " · size at checkout", mStyle(cw), st.model + "-side");
+    addToBag({ name: m.name, sub: cw.name + " · size at checkout", price: priceOf(m.price), vars: mStyle(cw), sym: st.model + "-side", from: stageArt.querySelector("svg") });
   });
   setModel("mer", false);
   addEventListener("resize", movePill);
@@ -1620,8 +1923,102 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
     stage.addEventListener("pointerleave", () => { tilt.style.transform = ""; });
   }
 
-  /* ---- intro ---- */
-  requestAnimationFrame(() => requestAnimationFrame(() => root.classList.add("loaded")));
+  /* ---- motion: split headings ---- */
+  document.querySelectorAll(".display.title, .journal-intro h2, .club h2, .band .display").forEach((h) => {
+    h.setAttribute("aria-label", h.textContent.replace(/\s+/g, " ").trim());
+    let i = 0;
+    const wrap = (node) => { const w = document.createElement("span"); w.className = "w"; w.setAttribute("aria-hidden", "true"); const inner = document.createElement("span"); inner.style.setProperty("--i", i++); inner.appendChild(node); w.appendChild(inner); return w; };
+    [...h.childNodes].forEach((n) => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach((part) => {
+          if (!part) return;
+          frag.appendChild(/^\s+$/.test(part) ? document.createTextNode(" ") : wrap(document.createTextNode(part)));
+        });
+        h.replaceChild(frag, n);
+      } else if (n.nodeName !== "BR") {
+        h.replaceChild(wrap(n.cloneNode(true)), n);
+      }
+    });
+    h.classList.add("split");
+  });
+
+  /* ---- motion: footer wordmark letters ---- */
+  const wm = document.querySelector(".wordmark");
+  wm.innerHTML = [...wm.textContent].map((ch, i) => '<span style="--i:' + i + '">' + ch + "</span>").join("");
+  const wio = new IntersectionObserver((en) => { if (en[0].isIntersecting) { wm.classList.add("in"); wio.disconnect(); } }, { threshold: .2 });
+  wio.observe(wm);
+
+  /* ---- motion: scroll progress + parallax (one rAF loop) ---- */
+  const bar = document.getElementById("progress-bar");
+  const heroH1 = document.querySelector(".hero h1"), heroStage = document.getElementById("hero-stage");
+  const bandImg = document.querySelector(".band img"), band = document.querySelector(".band");
+  if (!reduce) { heroH1.setAttribute("data-parallax", ""); heroStage.setAttribute("data-parallax", ""); }
+  let rafPending = false;
+  function onScroll() {
+    rafPending = false;
+    const y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = "scaleX(" + (max > 0 ? y / max : 0) + ")";
+    if (reduce) return;
+    if (y < innerHeight * 1.4) {
+      heroH1.style.setProperty("--py", (y * .18).toFixed(1) + "px");
+      heroStage.style.setProperty("--py", (y * -.06).toFixed(1) + "px");
+    }
+    const r = band.getBoundingClientRect();
+    if (r.bottom > 0 && r.top < innerHeight) {
+      const off = (r.top + r.height / 2 - innerHeight / 2) / innerHeight;
+      bandImg.style.setProperty("--py", (off * -70).toFixed(1) + "px");
+    }
+  }
+  addEventListener("scroll", () => { if (!rafPending) { rafPending = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  addEventListener("resize", onScroll);
+  onScroll();
+
+  if (!reduce && matchMedia("(pointer: fine)").matches) {
+    /* ---- motion: magnetic buttons ---- */
+    document.querySelectorAll(".btn, .round").forEach((b) => {
+      b.addEventListener("pointermove", (e) => {
+        const r = b.getBoundingClientRect();
+        b.style.setProperty("--mx", ((e.clientX - r.left - r.width / 2) * .2).toFixed(1) + "px");
+        b.style.setProperty("--my", ((e.clientY - r.top - r.height / 2) * .3).toFixed(1) + "px");
+      });
+      b.addEventListener("pointerleave", () => { b.style.setProperty("--mx", "0px"); b.style.setProperty("--my", "0px"); });
+    });
+
+    /* ---- motion: product card tilt + glare ---- */
+    document.querySelectorAll(".card .bezel").forEach((bz) => {
+      const stage = bz.querySelector(".card-stage");
+      const glare = document.createElement("span"); glare.className = "card-glare"; stage.appendChild(glare);
+      bz.addEventListener("pointermove", (e) => {
+        const r = bz.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        bz.classList.add("tilting");
+        bz.style.setProperty("--rx", ((.5 - y) * 8).toFixed(2) + "deg");
+        bz.style.setProperty("--ry", ((x - .5) * 10).toFixed(2) + "deg");
+        stage.style.setProperty("--gx", (x * 100).toFixed(1) + "%");
+        stage.style.setProperty("--gy", (y * 100).toFixed(1) + "%");
+      });
+      bz.addEventListener("pointerleave", () => { bz.classList.remove("tilting"); bz.style.setProperty("--rx", "0deg"); bz.style.setProperty("--ry", "0deg"); });
+    });
+
+    /* ---- motion: cursor chip over tiles and stories ---- */
+    const chip = document.getElementById("cursor-chip");
+    let cx = -200, cy = -200, tx = -200, ty = -200, chipRaf = 0;
+    const follow = () => {
+      cx += (tx - cx) * .2; cy += (ty - cy) * .2;
+      chip.style.setProperty("--cx", cx.toFixed(1) + "px"); chip.style.setProperty("--cy", cy.toFixed(1) + "px");
+      chipRaf = Math.abs(tx - cx) + Math.abs(ty - cy) > .5 ? requestAnimationFrame(follow) : 0;
+    };
+    document.querySelectorAll(".coll, .story").forEach((el) => {
+      const label = el.classList.contains("coll") ? "Explore" : "Read";
+      el.addEventListener("pointerenter", (e) => { chip.firstChild.textContent = label; cx = tx = e.clientX; cy = ty = e.clientY; follow(); chip.classList.add("on"); });
+      el.addEventListener("pointermove", (e) => { tx = e.clientX; ty = e.clientY; if (!chipRaf) chipRaf = requestAnimationFrame(follow); });
+      el.addEventListener("pointerleave", () => chip.classList.remove("on"));
+    });
+  }
+
+  /* ---- intro: headline rises as the curtain lifts (or at once on repeat visits) ---- */
+  const introDelay = root.classList.contains("seen") || reduce ? 0 : 1100;
+  setTimeout(() => requestAnimationFrame(() => root.classList.add("loaded")), introDelay);
   [...document.querySelectorAll(".hero h1 .ln > span")].forEach((s, i) => s.style.setProperty("--d", (.08 + i * .12) + "s"));
 })();
 </script>
