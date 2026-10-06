@@ -299,6 +299,7 @@ h2.title { font-size: clamp(48px, 7.4vw, 112px); }
           margin-inline: calc(var(--gut) * -1); padding: 4px var(--gut) 12px; scroll-padding-inline: var(--gut); scrollbar-width: none; overscroll-behavior-x: contain; }
   .grid::-webkit-scrollbar { display: none; }
   .card { scroll-snap-align: start; }
+  .js .grid .reveal { opacity: 1; transform: none; filter: none; }
 }
 
 /* ---------- studio: model viewer ---------- */
@@ -346,6 +347,8 @@ h2.title { font-size: clamp(48px, 7.4vw, 112px); }
   font-size: 15px; font-weight: 600; min-height: 44px; transition: color .45s var(--ease);
 }
 .seg button[aria-pressed="true"] { color: var(--canvas); }
+.seg button[aria-pressed="true"] { background: var(--ink); }
+.js .seg button[aria-pressed="true"] { background: transparent; }
 .seg .pill { position: absolute; top: 4px; bottom: 4px; left: 4px; width: 0; border-radius: 999px; background: var(--ink); transition: transform .6s var(--ease), width .6s var(--ease); }
 .model-name { font-size: clamp(64px, 7vw, 116px); }
 .model-copy { color: var(--ink-2); margin: 14px 0 0; max-width: 32em; }
@@ -480,6 +483,7 @@ h2.title { font-size: clamp(48px, 7.4vw, 112px); }
              margin-inline: calc(var(--gut) * -1); padding: 4px var(--gut) 12px; scroll-padding-inline: var(--gut); scrollbar-width: none; overscroll-behavior-x: contain; }
   .stories::-webkit-scrollbar { display: none; }
   .story { scroll-snap-align: start; }
+  .js .stories .reveal { opacity: 1; transform: none; filter: none; }
 }
 
 /* ---------- club band ---------- */
@@ -1127,9 +1131,9 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
         <p class="lede reveal" style="--d:.1s;max-width:26em">Meridian brings back the chunky mesh runner. Tide stacks its layers like a coastline. Turn them over, pick a colour.</p>
       </div>
 
-      <div class="studio" id="studio-viewer">
+      <div class="studio" id="studio-viewer" style="--m-base:#6a6e75;--m-l1:#3a3d43;--m-l2:#d5d9de;--m-l3:#f4f5f6;--m-mid:#f6f5f2;--m-sole:#2a2b2e;--m-pop:#d9442b;--m-lace:#f4f4f2;--m-collar:#3a3d43;--tint:#e4e1db">
         <div class="viewer reveal">
-          <div class="bezel"><div class="core stage" id="stage" tabindex="0" aria-label="Shoe viewer. Use left and right arrow keys to change view.">
+          <div class="bezel"><div class="core stage" id="stage" style="--tint:#e4e1db" tabindex="0" aria-label="Shoe viewer. Use left and right arrow keys to change view.">
             <span class="stage-label" aria-live="polite"><b id="view-name">Side</b><span id="view-idx">1 / 4</span></span>
             <div class="stage-art" id="stage-art"><svg viewBox="0 0 620 300" role="img" aria-labelledby="view-alt"><title id="view-alt">Meridian, side view</title><use id="stage-use" href="#mer-side"/></svg></div>
             <div class="stage-ctrl">
@@ -1156,15 +1160,15 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
           </div>
           <div>
             <h3 class="display model-name" id="model-name">Meridian</h3>
-            <p class="model-copy" id="model-copy"></p>
+            <p class="model-copy" id="model-copy">A chunky 2000s mesh runner, rebuilt. Breathable open mesh, a layered cage that locks the midfoot, and three segmented heel pods that soften every landing.</p>
           </div>
           <div>
-            <div class="label"><span>Colourway</span><output id="m-cw-name"></output></div>
-            <ul class="cw-list" id="cw-list"></ul>
+            <div class="label"><span>Colourway</span><output id="m-cw-name">Steel / Signal</output></div>
+            <ul class="cw-list" id="cw-list"><li><button class="cw" type="button" aria-pressed="true" data-i="0"><i style="--a:#3a3d43;--b:#d5d9de;--c:#d9442b"></i>Steel / Signal</button></li><li><button class="cw" type="button" aria-pressed="false" data-i="1"><i style="--a:#2b3a44;--b:#f4f7f8;--c:#c9ef4f"></i>Glacier / Volt</button></li><li><button class="cw" type="button" aria-pressed="false" data-i="2"><i style="--a:#7a4b2e;--b:#e9dcc6;--c:#c4622d"></i>Desert / Clay</button></li><li><button class="cw" type="button" aria-pressed="false" data-i="3"><i style="--a:#1c1636;--b:#8f7fd6;--c:#ff7ab6"></i>Ultraviolet</button></li></ul>
           </div>
-          <dl class="specs" id="specs"></dl>
+          <dl class="specs" id="specs"><div><dt>Weight</dt><dd>312 g</dd></div><div><dt>Drop</dt><dd>10 mm</dd></div><div><dt>Heel</dt><dd>41 mm</dd></div></dl>
           <div class="buy-row">
-            <span class="model-price" id="model-price"></span>
+            <span class="model-price" id="model-price">CHF 179</span>
             <button class="btn btn-ember" type="button" id="model-add">Add to bag <span class="ic"><svg><use href="#plus"/></svg></span></button>
           </div>
         </div>
@@ -1212,7 +1216,7 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
             <p>Send your pair back to our Zürich workshop. New outsole, fresh laces, back on your feet in two weeks for CHF 49.</p>
           </div>
           <div class="repair-side">
-            <img class="repair-photo" src="img/workshop-cobbler.webp" width="1000" height="1500" alt="A shoemaker repairing shoes in a workshop full of tools" loading="lazy" decoding="async" style="object-position:50% 30%">
+            <img class="repair-photo" src="img/repair-sewing.webp" width="900" height="675" alt="Hands guiding material through an industrial sewing machine" loading="lazy" decoding="async">
             <a class="btn" href="#club">Book a repair <span class="ic"><svg><use href="#arrow"/></svg></span></a>
           </div>
         </div>
