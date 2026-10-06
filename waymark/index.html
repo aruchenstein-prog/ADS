@@ -1,0 +1,471 @@
+<title>Waymark Decision Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..600;1,8..60,300..500&display=swap">
+<style>
+/* Layout: calm survey-paper hero with a live decision memo, then full-bleed spruce and blaze bands every few screens. */
+:root {
+  --bg: #e7edec;          /* survey fog */
+  --surface: #f8faf9;
+  --ink: #0f2a2b;         /* spruce ink */
+  --ink-2: #445c5d;
+  --line: #c4d0cf;
+  --blaze: #f2be22;       /* trail-blaze paint */
+  --blaze-ink: #1d1804;
+  --band: #0f2a2b;
+  --band-fg: #e6efee;
+  --band-mute: #9fb6b4;
+  --contour: rgba(15, 42, 43, .11);
+
+  --f-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  --r-sm: 6px; --r-md: 12px; --r-lg: 20px; --r-pill: 999px;
+  --section: clamp(64px, 10vw, 112px);
+  --wrap: 1160px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b1718; --surface: #122224; --ink: #e2ebe9; --ink-2: #9cb0ae; --line: #253b3c;
+    --blaze: #f2be22; --blaze-ink: #1d1804; --band: #163234; --band-fg: #e6efee; --band-mute: #9fb6b4;
+    --contour: rgba(226, 235, 233, .07);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0b1718; --surface: #122224; --ink: #e2ebe9; --ink-2: #9cb0ae; --line: #253b3c;
+  --blaze: #f2be22; --blaze-ink: #1d1804; --band: #163234; --band-fg: #e6efee; --band-mute: #9fb6b4;
+  --contour: rgba(226, 235, 233, .07);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--f-body); font-size: 18px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--blaze); outline-offset: 3px; border-radius: 4px; }
+
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+
+.display {
+  font-family: var(--f-display); font-stretch: 125%; font-variation-settings: "wdth" 125;
+  font-weight: 300; letter-spacing: -0.03em; line-height: 1.02; text-wrap: balance; margin: 0;
+}
+.label {
+  font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink-2); margin: 0;
+}
+.lead { font-size: clamp(19px, 2vw, 22px); line-height: 1.55; color: var(--ink-2); max-width: 34em; margin: 0; }
+h3 { font-family: var(--f-display); font-weight: 500; font-size: 21px; line-height: 1.3; margin: 0; text-wrap: balance; }
+
+.blaze { display: inline-block; width: 10px; height: 22px; background: var(--blaze); border-radius: 2px; flex: none; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; font-family: var(--f-display); font-weight: 500;
+  font-size: 16px; text-decoration: none; padding: 13px 22px; border-radius: var(--r-pill);
+  border: 1px solid var(--ink); cursor: pointer; transition: transform .15s ease, background .15s ease;
+}
+.btn-primary { background: var(--ink); color: var(--bg); }
+.btn-ghost { background: transparent; color: var(--ink); }
+.btn:hover { transform: translateY(-1px); }
+.btn-ghost:hover { background: var(--surface); }
+
+/* Nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--f-display); font-weight: 600; font-size: 19px; letter-spacing: -.01em; }
+.nav-links { display: flex; align-items: center; gap: 28px; font-family: var(--f-display); font-size: 15px; }
+.nav-links a { text-decoration: none; color: var(--ink-2); }
+.nav-links a:hover { color: var(--ink); }
+.nav .btn { padding: 9px 16px; font-size: 14px; }
+@media (max-width: 760px) { .nav-links a:not(.btn) { display: none; } }
+
+/* Hero */
+.hero { position: relative; overflow: hidden; }
+.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.hero .wrap { position: relative; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(32px, 5vw, 72px); align-items: center; padding-block: clamp(48px, 8vw, 96px); }
+.hero-copy { display: flex; flex-direction: column; gap: 28px; min-width: 0; }
+.hero h1 { font-size: clamp(42px, 6.4vw, 84px); }
+.hero h1 em { font-family: var(--f-body); font-style: italic; font-weight: 400; font-stretch: 100%; font-variation-settings: normal; letter-spacing: -0.02em; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+@media (max-width: 900px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); } }
+
+/* Decision memo card */
+.memo { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: 0 24px 60px -30px rgba(15, 42, 43, .35); min-width: 0; overflow: hidden; }
+.memo-tabs { display: flex; gap: 4px; padding: 10px; border-bottom: 1px solid var(--line); overflow-x: auto; }
+.memo-tabs button {
+  font-family: var(--f-display); font-size: 13px; font-weight: 500; white-space: nowrap; cursor: pointer;
+  border: 0; background: transparent; color: var(--ink-2); padding: 8px 12px; border-radius: var(--r-pill);
+}
+.memo-tabs button[aria-selected="true"] { background: var(--ink); color: var(--surface); }
+.memo-body { padding: 24px; display: flex; flex-direction: column; gap: 20px; }
+.memo-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.memo-q { font-family: var(--f-display); font-weight: 400; font-stretch: 112%; font-variation-settings: "wdth" 112; font-size: 24px; line-height: 1.2; margin: 0; text-wrap: balance; }
+.memo-rec { margin: 0; font-size: 17px; }
+.memo-rec strong { font-family: var(--f-display); font-weight: 600; }
+.conf { display: flex; flex-direction: column; gap: 8px; }
+.conf-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.conf-word { font-family: var(--f-display); font-weight: 600; font-size: 16px; }
+.conf-num { font-family: var(--f-mono); font-size: 13px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.meter { position: relative; height: 14px; border-radius: var(--r-pill); background: repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 25%); border: 1px solid var(--line); }
+.meter span { position: absolute; top: 2px; bottom: 2px; background: var(--blaze); border-radius: var(--r-pill); transition: left .5s ease, width .5s ease; }
+.meter-scale { display: flex; justify-content: space-between; font-family: var(--f-mono); font-size: 11px; color: var(--ink-2); }
+.memo-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 20px; }
+.memo-cols > div { min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.memo-cols p:not(.label) { margin: 0; font-size: 15px; line-height: 1.5; }
+.memo-cols ul { margin: 0; padding-left: 18px; font-size: 15px; line-height: 1.5; }
+.memo-foot { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; border-top: 1px dashed var(--line); padding-top: 14px; }
+@media (max-width: 520px) { .memo-cols { grid-template-columns: 1fr; } .memo-body { padding: 18px; } }
+
+/* Sections */
+section.block { padding-block: var(--section); }
+.sec-head { display: flex; flex-direction: column; gap: 18px; max-width: 760px; margin-bottom: clamp(36px, 5vw, 56px); }
+.sec-head h2 { font-size: clamp(34px, 4.6vw, 58px); }
+
+/* Principles band */
+.band { background: var(--band); color: var(--band-fg); }
+.band .label { color: var(--band-mute); }
+.band .lead { color: var(--band-mute); }
+.beliefs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 0; border-top: 1px solid rgba(230, 239, 238, .18); }
+.belief { display: flex; gap: 18px; padding: 28px 24px 28px 0; border-bottom: 1px solid rgba(230, 239, 238, .18); min-width: 0; }
+.belief p { margin: 8px 0 0; color: var(--band-mute); font-size: 17px; }
+
+/* Words that mean numbers */
+.scale-wrap { overflow-x: auto; }
+.scale { min-width: 640px; display: grid; grid-template-columns: repeat(100, 1fr); gap: 0; }
+.scale-band { padding: 14px 10px; border-left: 2px solid var(--bg); display: flex; flex-direction: column; gap: 4px; min-height: 104px; justify-content: flex-end; }
+.scale-band b { font-family: var(--f-display); font-weight: 600; font-size: 15px; line-height: 1.2; }
+.scale-band small { font-family: var(--f-mono); font-size: 12px; font-variant-numeric: tabular-nums; }
+.s1 { grid-column: 1 / 8;  background: color-mix(in srgb, var(--ink) 8%, var(--surface)); }
+.s2 { grid-column: 8 / 31; background: color-mix(in srgb, var(--ink) 14%, var(--surface)); }
+.s3 { grid-column: 31 / 71; background: color-mix(in srgb, var(--blaze) 30%, var(--surface)); }
+.s4 { grid-column: 71 / 94; background: color-mix(in srgb, var(--blaze) 65%, var(--surface)); color: var(--blaze-ink); }
+.s5 { grid-column: 94 / 101; background: var(--blaze); color: var(--blaze-ink); }
+.scale-axis { min-width: 640px; display: flex; justify-content: space-between; font-family: var(--f-mono); font-size: 12px; color: var(--ink-2); padding-top: 8px; }
+.scale-note { margin-top: 28px; max-width: 40em; color: var(--ink-2); }
+
+/* Services */
+.services { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 20px; }
+.service { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); padding: 28px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.service p { margin: 0; font-size: 16px; color: var(--ink-2); }
+.service ul { margin: 0; padding-left: 18px; font-size: 16px; }
+.service-meta { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 12px; font-family: var(--f-mono); font-size: 13px; font-variant-numeric: tabular-nums; }
+.service-meta strong { font-weight: 500; color: var(--ink); }
+
+/* Process */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 28px; counter-reset: step; }
+.steps li { counter-increment: step; display: flex; flex-direction: column; gap: 10px; border-top: 2px solid var(--ink); padding-top: 18px; min-width: 0; }
+.steps li::before { content: "Step " counter(step); font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+.steps p { margin: 0; font-size: 16px; color: var(--ink-2); }
+
+/* Blaze band */
+.blaze-band { background: var(--blaze); color: var(--blaze-ink); }
+.blaze-band .label { color: var(--blaze-ink); opacity: .75; }
+.nots { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 0 32px; }
+.nots div { border-top: 1px solid rgba(29, 24, 4, .3); padding-block: 20px; min-width: 0; }
+.nots p { margin: 6px 0 0; font-size: 16px; }
+
+/* Contact */
+.contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); align-items: start; }
+@media (max-width: 860px) { .contact { grid-template-columns: minmax(0, 1fr); } }
+form { display: flex; flex-direction: column; gap: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 28px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-family: var(--f-display); font-size: 14px; font-weight: 500; }
+.field input, .field textarea {
+  font: inherit; font-size: 16px; color: var(--ink); background: var(--bg); border: 1px solid var(--line);
+  border-radius: var(--r-sm); padding: 12px 14px; width: 100%;
+}
+.field textarea { min-height: 120px; resize: vertical; }
+.form-note { font-size: 15px; color: var(--ink-2); margin: 0; }
+.form-done { font-family: var(--f-display); font-size: 15px; background: color-mix(in srgb, var(--blaze) 35%, var(--surface)); border-radius: var(--r-sm); padding: 12px 14px; margin: 0; }
+
+footer { border-top: 1px solid var(--line); padding-block: 32px; }
+footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-family: var(--f-mono); font-size: 13px; color: var(--ink-2); }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="blaze" aria-hidden="true"></span>Waymark</a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#beliefs">What we believe</a>
+      <a href="#services">Services</a>
+      <a href="#process">How it works</a>
+      <a class="btn btn-primary" href="#contact">Book a call</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <canvas id="contours" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="label">Decision studio · Independent · Est. 2026</p>
+        <h1 class="display">Hard decisions, made <em>in the open.</em></h1>
+        <p class="lead">Waymark helps teams decide well. We lay out the real options, weigh the evidence, say plainly what we don't know, and hand you the full reasoning so you can defend the call or change it later.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#contact">Book a 30-minute call</a>
+          <a class="btn btn-ghost" href="#scale">How we state confidence</a>
+        </div>
+      </div>
+
+      <article class="memo" aria-label="Sample decision memo">
+        <div class="memo-tabs" role="tablist" aria-label="Sample decisions">
+          <button role="tab" id="tab-0" aria-selected="true" data-i="0">Expansion</button>
+          <button role="tab" id="tab-1" aria-selected="false" data-i="1">Rewrite</button>
+          <button role="tab" id="tab-2" aria-selected="false" data-i="2">Hiring</button>
+        </div>
+        <div class="memo-body" role="tabpanel" aria-live="polite">
+          <div class="memo-head">
+            <p class="label" id="m-id">Sample memo · WM-0142</p>
+            <p class="label" id="m-time">Review: 2 weeks</p>
+          </div>
+          <h2 class="memo-q" id="m-q">Should we open a second office in Lisbon next year?</h2>
+          <p class="memo-rec"><strong>Recommendation:</strong> <span id="m-rec">Not yet. Hire three remote engineers there first and revisit in 9 months.</span></p>
+          <div class="conf">
+            <div class="conf-top"><span class="conf-word" id="m-word">Likely right</span><span class="conf-num" id="m-num">70–80%</span></div>
+            <div class="meter" aria-hidden="true"><span id="m-bar" style="left:70%;width:10%"></span></div>
+            <div class="meter-scale" aria-hidden="true"><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></div>
+          </div>
+          <div class="memo-cols">
+            <div><p class="label">Strongest evidence</p><ul id="m-ev"><li>Two of three past offices took 14+ months to break even.</li><li>Candidate pool is strong, but your current team has no one who has managed remotely.</li></ul></div>
+            <div><p class="label">What would change our mind</p><p id="m-change">A signed anchor client in Portugal, or a local lead who has opened an office before.</p></div>
+          </div>
+          <div class="memo-foot">
+            <p class="label" id="m-who">Also affects: current team, hiring managers</p>
+            <p class="label">Sources: 23 · Open questions: 4</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="band block" id="beliefs">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label">What we believe</p>
+        <h2 class="display">Good advice should survive being looked at closely.</h2>
+        <p class="lead">These are the rules we work by. They cost us some clients. We think they're why the rest come back.</p>
+      </div>
+      <div class="beliefs">
+        <div class="belief"><span class="blaze" aria-hidden="true"></span><div><h3>Show the work</h3><p>Every recommendation comes with the evidence, the options we rejected, and why. If you can't check our reasoning, you shouldn't trust it.</p></div></div>
+        <div class="belief"><span class="blaze" aria-hidden="true"></span><div><h3>Say what we don't know</h3><p>We put a number on our confidence and list the open questions. A confident tone is not the same as being right.</p></div></div>
+        <div class="belief"><span class="blaze" aria-hidden="true"></span><div><h3>Leave you more capable</h3><p>You get our methods, templates, and sources. The goal is that you need us less next time.</p></div></div>
+        <div class="belief"><span class="blaze" aria-hidden="true"></span><div><h3>Count everyone affected</h3><p>Decisions land on people who aren't in the room: staff, customers, neighbours. We name them and weigh what happens to them.</p></div></div>
+        <div class="belief"><span class="blaze" aria-hidden="true"></span><div><h3>Disagree out loud</h3><p>If we think you're about to make a mistake, we'll tell you directly and explain why. Then it's your call, and we'll respect it.</p></div></div>
+        <div class="belief"><span class="blaze" aria-hidden="true"></span><div><h3>Change our minds in public</h3><p>When new evidence turns up after a project, we send you an update, even if it makes our earlier advice look wrong.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="scale">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label">Words that mean numbers</p>
+        <h2 class="display">When we say “likely”, we mean 70 to 90 percent.</h2>
+        <p class="lead">Vague words hide disagreement. Every Waymark memo uses this fixed scale, so “probably” means the same thing to you, your board, and us.</p>
+      </div>
+      <div class="scale-wrap" role="img" aria-label="Confidence scale: Very unlikely 0 to 7 percent, Unlikely 7 to 30, Toss-up 30 to 70, Likely 70 to 93, Almost certain 93 to 100.">
+        <div class="scale">
+          <div class="scale-band s1"><b>Very unlikely</b><small>&lt;7%</small></div>
+          <div class="scale-band s2"><b>Unlikely</b><small>7–30%</small></div>
+          <div class="scale-band s3"><b>Toss-up</b><small>30–70%</small></div>
+          <div class="scale-band s4"><b>Likely</b><small>70–93%</small></div>
+          <div class="scale-band s5"><b>Almost certain</b><small>&gt;93%</small></div>
+        </div>
+        <div class="scale-axis"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
+      </div>
+      <p class="scale-note">We also track how often we're right. Of the calls we rate “likely”, about three in four should hold up. If far more do, we're being too cautious. If far fewer do, we're overconfident, and we'll tell you.</p>
+    </div>
+  </section>
+
+  <section class="block" id="services" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label">Services</p>
+        <h2 class="display">Three ways to work with us.</h2>
+        <p class="lead">Fixed scope, fixed price, agreed in writing before we start. No retainers.</p>
+      </div>
+      <div class="services">
+        <article class="service">
+          <h3>Decision review</h3>
+          <p>For one big choice you're about to make. We map the options, gather evidence, and write a memo with a clear recommendation.</p>
+          <ul><li>Options and trade-offs</li><li>Confidence rating and open questions</li><li>Who else is affected</li></ul>
+          <div class="service-meta"><span>2 weeks</span><strong>€9,000</strong></div>
+        </article>
+        <article class="service">
+          <h3>Evidence brief</h3>
+          <p>For a question where the research is messy or contested. We read it all and tell you what holds up, in plain language.</p>
+          <ul><li>Every source linked and rated</li><li>Where experts disagree, and why</li><li>A one-page summary for your board</li></ul>
+          <div class="service-meta"><span>1 week</span><strong>€4,500</strong></div>
+        </article>
+        <article class="service">
+          <h3>Pre-mortem workshop</h3>
+          <p>Imagine the plan failed a year from now. We run a structured session so your team finds the likely reasons while there's still time.</p>
+          <ul><li>Half-day session, up to 12 people</li><li>Ranked list of risks</li><li>Early warning signs to watch</li></ul>
+          <div class="service-meta"><span>1 day</span><strong>€2,500</strong></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="process" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label">How it works</p>
+        <h2 class="display">You see everything as we go.</h2>
+      </div>
+      <ol class="steps">
+        <li><h3>A free call</h3><p>30 minutes. You describe the decision; we tell you honestly whether we can help.</p></li>
+        <li><h3>A written scope</h3><p>One page: the exact question, what you'll get, the date, and the price. Nothing changes without your sign-off.</p></li>
+        <li><h3>Work in the open</h3><p>You get a shared folder with our notes and sources from day one, and a short check-in every week.</p></li>
+        <li><h3>Handover</h3><p>The memo, the evidence, our methods, and our doubts. Plus a follow-up in six months to see how the call held up.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="blaze-band block" id="not">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label">When not to hire us</p>
+        <h2 class="display">We'd rather lose the project than waste your money.</h2>
+      </div>
+      <div class="nots">
+        <div><h3>You've already decided</h3><p>If you need a report that agrees with you, we're the wrong people. We might not agree.</p></div>
+        <div><h3>The answer is a lookup</h3><p>Some questions have a known answer. We'll point you to it on the first call, for free.</p></div>
+        <div><h3>You need someone to blame</h3><p>The decision stays yours. We make it better informed, not someone else's fault.</p></div>
+        <div><h3>Doing beats deciding</h3><p>If trying something small is cheaper than studying it, try it. We'll say so.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <div class="wrap contact">
+      <div class="sec-head" style="margin-bottom:0">
+        <p class="label">Start here</p>
+        <h2 class="display">What are you trying to decide?</h2>
+        <p class="lead">Tell us in a few sentences. We reply within two working days, and if we're not the right fit, we'll say so and suggest who might be.</p>
+      </div>
+      <form id="contact-form" novalidate>
+        <div class="field"><label for="c-name">Your name</label><input id="c-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="c-q">The decision</label><textarea id="c-q" name="decision" placeholder="We're choosing between… The deadline is…" required></textarea></div>
+        <button class="btn btn-primary" type="submit" style="align-self:flex-start">Send</button>
+        <p class="form-note" id="form-msg">This is a concept site. Nothing you type here is sent anywhere.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Waymark · A concept decision studio imagined by Claude</span>
+    <span>The principles are real. The prices and memos are examples.</span>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const memos = [
+    { id: "WM-0142", time: "Review: 2 weeks", q: "Should we open a second office in Lisbon next year?",
+      rec: "Not yet. Hire three remote engineers there first and revisit in 9 months.",
+      word: "Likely right", lo: 70, hi: 80,
+      ev: ["Two of three past offices took 14+ months to break even.", "Candidate pool is strong, but your current team has no one who has managed remotely."],
+      change: "A signed anchor client in Portugal, or a local lead who has opened an office before.",
+      who: "Also affects: current team, hiring managers", src: "Sources: 23 · Open questions: 4" },
+    { id: "WM-0157", time: "Review: 2 weeks", q: "Rewrite the billing system, or keep fixing the old one?",
+      rec: "Keep fixing it. Replace the two modules behind 80% of incidents instead of the whole system.",
+      word: "Toss-up, leaning keep", lo: 55, hi: 65,
+      ev: ["Most outages trace back to 2 of 11 modules.", "Past full rewrites at similar companies ran 2–3× over schedule."],
+      change: "If the payment provider drops support for the old API within a year, a rewrite becomes the safer bet.",
+      who: "Also affects: support team, finance, customers on legacy plans", src: "Sources: 31 · Open questions: 6" },
+    { id: "WM-0163", time: "Review: 1 week", q: "Should we hire a head of sales before our Series A?",
+      rec: "No. The founders should close the next 10 customers themselves and write down how.",
+      word: "Likely right", lo: 75, hi: 85,
+      ev: ["Sales cycle and pitch are still changing month to month.", "Early sales leaders hired pre-playbook have short average tenure."],
+      change: "Inbound demand you can't answer within a week, two months in a row.",
+      who: "Also affects: founders' time, first sales hire, current customers", src: "Sources: 17 · Open questions: 3" }
+  ];
+  const $ = (id) => document.getElementById(id);
+  const tabs = document.querySelectorAll(".memo-tabs button");
+  function show(i) {
+    const m = memos[i];
+    tabs.forEach((t, j) => t.setAttribute("aria-selected", String(j === i)));
+    $("m-id").textContent = "Sample memo · " + m.id;
+    $("m-time").textContent = m.time;
+    $("m-q").textContent = m.q;
+    $("m-rec").textContent = m.rec;
+    $("m-word").textContent = m.word;
+    $("m-num").textContent = m.lo + "–" + m.hi + "%";
+    $("m-bar").style.left = m.lo + "%";
+    $("m-bar").style.width = (m.hi - m.lo) + "%";
+    $("m-ev").innerHTML = "";
+    m.ev.forEach((e) => { const li = document.createElement("li"); li.textContent = e; $("m-ev").appendChild(li); });
+    $("m-change").textContent = m.change;
+    $("m-who").textContent = m.who;
+    document.querySelector(".memo-foot .label:last-child").textContent = m.src;
+  }
+  tabs.forEach((t) => t.addEventListener("click", () => show(+t.dataset.i)));
+  document.querySelector(".memo-tabs").addEventListener("keydown", (e) => {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    const cur = [...tabs].findIndex((t) => t.getAttribute("aria-selected") === "true");
+    const next = (cur + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length;
+    show(next); tabs[next].focus();
+  });
+
+  // Contact form: concept only, nothing is sent.
+  $("contact-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const f = e.target;
+    const msg = $("form-msg");
+    if (!f.checkValidity()) {
+      msg.className = "form-note";
+      msg.textContent = "Please fill in your name, a valid email, and the decision you're facing.";
+      return;
+    }
+    msg.className = "form-done";
+    msg.textContent = "Thanks. This is a concept site, so nothing was sent, but that's exactly the kind of question we'd want to hear.";
+  });
+
+  // Topographic contour lines behind the hero.
+  const cv = $("contours");
+  const ctx = cv.getContext("2d");
+  function draw() {
+    const r = cv.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = r.width * dpr; cv.height = r.height * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, r.width, r.height);
+    ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue("--contour").trim();
+    ctx.lineWidth = 1;
+    const peaks = [
+      { x: r.width * 0.78, y: r.height * 0.32, n: 16, p: 0.4 },
+      { x: r.width * 0.12, y: r.height * 0.95, n: 10, p: 2.1 }
+    ];
+    peaks.forEach((pk) => {
+      for (let k = 1; k <= pk.n; k++) {
+        const base = k * 26;
+        ctx.beginPath();
+        for (let a = 0; a <= Math.PI * 2 + 0.01; a += 0.04) {
+          const rad = base + Math.sin(a * 3 + pk.p + k * 0.15) * (6 + k * 1.6) + Math.sin(a * 5 - k * 0.3) * (3 + k * 0.8);
+          const x = pk.x + Math.cos(a) * rad * 1.35;
+          const y = pk.y + Math.sin(a) * rad;
+          a === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.closePath(); ctx.stroke();
+      }
+    });
+  }
+  draw();
+  let t; window.addEventListener("resize", () => { clearTimeout(t); t = setTimeout(draw, 120); });
+  try { matchMedia("(prefers-color-scheme: dark)").addEventListener("change", draw); } catch (_) {}
+  new MutationObserver(draw).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+})();
+</script>
