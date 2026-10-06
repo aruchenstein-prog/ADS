@@ -9,7 +9,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap">
-<script>document.documentElement.classList.add("js");</script>
 <style>
 /* Layout: sober, light, text-first. White and pale-grey bands, hairline rules instead of shadows, one brand blue, green only as the logo's check mark. */
 :root {
@@ -259,12 +258,6 @@ form { border: 1px solid var(--line); border-radius: var(--radius); padding: cla
 .faq summary:hover { color: var(--brand); }
 .faq details p { padding: 0 56px 24px 0; color: var(--ink-2); font-size: 18px; }
 @media (max-width: 860px) { .faq-wrap { grid-template-columns: minmax(0, 1fr); } .faq details p { padding-right: 0; } }
-
-/* Gentle entrance on scroll: short fade and small lift, no movement for reduced-motion users */
-.js .rv { opacity: 0; transform: translateY(18px); transition: opacity .7s ease-out, transform .7s ease-out; transition-delay: var(--d, 0s); }
-.js .rv.in { opacity: 1; transform: none; }
-.hero-copy > *, .facts { animation: none; }
-@media (prefers-reduced-motion: reduce) { .js .rv { opacity: 1; transform: none; transition: none; } }
 
 /* Footer */
 footer { background: var(--footer); color: var(--footer-fg); padding-block: 48px 36px; font-size: 16px; }
@@ -655,16 +648,6 @@ footer a:hover { color: var(--white); }
   if (saved === "en" || (!saved && /^en\b/i.test(navigator.language || ""))) setLang("en");
 
   document.getElementById("year").textContent = new Date().getFullYear();
-
-  // Gentle reveal: groups of items fade in with a short stagger as they reach the viewport.
-  const groups = [".hero-copy > *", ".facts", ".sec-head", ".clients .client", ".services .service", ".steps li", ".company-copy", ".timeline li", ".orgs > div", ".locations li", ".contact-info", "#offer-form", ".faq details"];
-  groups.forEach((sel) => document.querySelectorAll(sel).forEach((el, i) => { el.classList.add("rv"); el.style.setProperty("--d", Math.min(i, 6) * 0.07 + "s"); }));
-  if ("IntersectionObserver" in window) {
-    const io = new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -6% 0px" });
-    document.querySelectorAll(".rv").forEach((el) => io.observe(el));
-  } else {
-    document.querySelectorAll(".rv").forEach((el) => el.classList.add("in"));
-  }
 
   // Static site: the form opens a pre-filled email. Replace with a form service or backend when hosting.
   document.getElementById("offer-form").addEventListener("submit", (e) => {

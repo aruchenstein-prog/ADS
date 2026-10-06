@@ -17,6 +17,8 @@
     d.classList.add("js");
     try { if (sessionStorage.getItem("solum-intro") || matchMedia("(prefers-reduced-motion: reduce)").matches) d.classList.add("seen"); else sessionStorage.setItem("solum-intro", "1"); } catch (e) { d.classList.add("seen"); }
     setTimeout(function () { d.classList.add("loaded"); }, 2600);
+    setTimeout(function () { d.classList.add("intro-over"); }, 2300);
+    setTimeout(function () { if (!d.classList.contains("ready")) d.classList.add("show-all"); }, 3000);
   })(document.documentElement);
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -572,6 +574,13 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
 @keyframes rise { to { transform: none; } }
 @keyframes fill { to { transform: scaleX(1); } }
 @keyframes curtain { to { transform: translateY(-100%); visibility: hidden; } }
+
+/* failsafes: never leave content hidden if animations are paused or scripts stop */
+.js.intro-over .loader { display: none !important; }
+.js.show-all .reveal, .js.show-all .split .w > span, .js.show-all .wordmark span, .js.show-all .hero h1 .ln > span {
+  opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important;
+}
+.js.show-all .coll .art, .js.show-all .story-art img, .js.show-all .band { clip-path: none !important; transition: none !important; }
 
 /* scroll progress */
 .progress { position: fixed; left: 0; right: 0; top: 0; height: 3px; z-index: 80; pointer-events: none; }
@@ -2019,6 +2028,13 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
   /* ---- intro: headline rises as the curtain lifts (or at once on repeat visits) ---- */
   const introDelay = root.classList.contains("seen") || reduce ? 0 : 1100;
   setTimeout(() => requestAnimationFrame(() => root.classList.add("loaded")), introDelay);
+  root.classList.add("ready");
+  setTimeout(() => {
+    const shown = [...document.querySelectorAll(".reveal.in")];
+    const frozen = shown.some((el) => parseFloat(getComputedStyle(el).opacity) < .5);
+    const loaderUp = getComputedStyle(document.querySelector(".loader")).display !== "none" && !root.classList.contains("intro-over");
+    if (!shown.length || frozen || loaderUp) root.classList.add("show-all", "intro-over");
+  }, 3200);
   [...document.querySelectorAll(".hero h1 .ln > span")].forEach((s, i) => s.style.setProperty("--d", (.08 + i * .12) + "s"));
 })();
 </script>
