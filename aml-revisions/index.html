@@ -77,7 +77,8 @@ p { margin: 0; }
   font: inherit; font-size: 15px; font-weight: 600; min-width: 44px; min-height: 36px; cursor: pointer;
   background: transparent; color: var(--ink-2); border: 1px solid transparent; border-radius: var(--radius);
 }
-@media (max-width: 640px) { .utility .hq-text { display: none; } .utility .wrap { flex-wrap: nowrap; } }
+@media (max-width: 640px) { .utility .hq-text, .utility .contact-quick a[href^="mailto"] { display: none; } .utility .wrap { flex-wrap: nowrap; } }
+a[href^="tel"] { white-space: nowrap; }
 .lang button[aria-pressed="true"] { background: var(--white); color: var(--brand); border-color: var(--line); }
 
 /* Header */
@@ -181,6 +182,8 @@ section.alt { background: var(--paper); border-block: 1px solid var(--line); }
 .contact-lines span { font-size: 15px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-2); }
 .contact-lines a, .contact-lines strong { font-size: 24px; font-weight: 600; color: var(--brand); text-decoration: none; overflow-wrap: anywhere; }
 .contact-lines a:hover { text-decoration: underline; }
+.contact-lines address { font-style: normal; font-size: 20px; line-height: 1.5; margin-top: 2px; }
+.contact-lines a.map-link { font-size: 17px; margin-top: 6px; text-decoration: underline; }
 form { border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(22px, 3vw, 34px); display: grid; grid-template-columns: 1fr 1fr; gap: 18px 20px; background: var(--white); }
 .field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .field.full { grid-column: 1 / -1; }
@@ -196,6 +199,57 @@ form { border: 1px solid var(--line); border-radius: var(--radius); padding: cla
 .form-msg.error { color: #a12a1f; font-weight: 600; }
 @media (max-width: 860px) { .contact { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 560px) { form { grid-template-columns: minmax(0, 1fr); } }
+
+/* Hero band */
+.hero { background: var(--paper); }
+.facts { background: var(--white); box-shadow: 0 1px 2px rgba(20,34,44,.06); }
+.facts dd { font-size: 44px; }
+.facts .seal { background: var(--paper); }
+.hero-call { font-size: 17px; color: var(--ink-2); }
+.hero-call a { font-weight: 600; text-decoration: none; }
+.hero-call a:hover { text-decoration: underline; }
+
+/* Recognition strip */
+.trust { border-bottom: 1px solid var(--line); background: var(--white); }
+.trust .wrap { display: flex; align-items: center; gap: 12px 40px; flex-wrap: wrap; padding-block: 26px; }
+.trust p { font-size: 15px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
+.trust ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 32px; }
+.trust li { font-family: var(--f-head); font-size: 21px; font-weight: 600; color: var(--ink); }
+.trust li small { font-family: var(--f-body); font-size: 15px; font-weight: 400; color: var(--ink-2); margin-left: 6px; }
+
+/* Why us (brand band) */
+.why { background: var(--brand); color: var(--white); }
+.why h2, .why h3 { color: var(--white); }
+.why .eyebrow { color: #bcd5e8; }
+.why .lead { color: #dbe8f2; }
+.reasons { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid rgba(255,255,255,.25); }
+.reasons li { padding: 30px 32px 6px 0; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.reasons li + li { padding-left: 32px; border-left: 1px solid rgba(255,255,255,.25); }
+.reasons p { color: #dbe8f2; font-size: 18px; }
+.reasons svg { width: 30px; height: 30px; }
+@media (max-width: 860px) {
+  .reasons { grid-template-columns: minmax(0, 1fr); }
+  .reasons li, .reasons li + li { padding: 26px 0; border-left: 0; }
+  .reasons li + li { border-top: 1px solid rgba(255,255,255,.25); }
+}
+
+/* FAQ */
+.faq-wrap { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(36px, 6vw, 80px); align-items: start; }
+.faq { border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary {
+  list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px;
+  padding: 22px 0; font-family: var(--f-head); font-size: 22px; font-weight: 600; line-height: 1.3; min-height: 44px;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+"; flex: none; width: 36px; height: 36px; border: 2px solid var(--brand); border-radius: 50%;
+  display: grid; place-items: center; font-family: var(--f-body); font-size: 24px; line-height: 1; color: var(--brand);
+}
+.faq details[open] summary::after { content: "–"; }
+.faq summary:hover { color: var(--brand); }
+.faq details p { padding: 0 56px 24px 0; color: var(--ink-2); font-size: 18px; }
+@media (max-width: 860px) { .faq-wrap { grid-template-columns: minmax(0, 1fr); } .faq details p { padding-right: 0; } }
 
 /* Footer */
 footer { background: var(--footer); color: var(--footer-fg); padding-block: 48px 36px; font-size: 16px; }
@@ -219,8 +273,8 @@ footer a:hover { color: var(--white); }
   <div class="wrap">
     <div class="contact-quick">
       <span class="hq-text" data-i18n="util.hq">Hauptsitz Zürich · 8 Standorte in der ganzen Schweiz</span>
+      <a href="tel:+41445338200">044 533 82 00</a>
       <a href="mailto:info@aml-revision.ch">info@aml-revision.ch</a>
-      <!-- TODO: Telefonnummer ergänzen, z. B. <a href="tel:+41...">+41 …</a> -->
     </div>
     <div class="lang" role="group" aria-label="Sprache / Language">
       <button type="button" data-lang="de" aria-pressed="true">DE</button>
@@ -237,6 +291,7 @@ footer a:hover { color: var(--white); }
       <a href="#ablauf" data-i18n="nav.process">Ablauf</a>
       <a href="#unternehmen" data-i18n="nav.company">Unternehmen</a>
       <a href="#standorte" data-i18n="nav.locations">Standorte</a>
+      <a href="#fragen" data-i18n="nav.faq">Fragen</a>
       <a class="btn btn-primary" href="#kontakt" data-i18n="nav.cta">Offerte anfragen</a>
     </nav>
   </div>
@@ -254,6 +309,7 @@ footer a:hover { color: var(--white); }
           <a class="btn btn-primary" href="#kontakt" data-i18n="hero.cta1">Offerte anfragen</a>
           <a class="btn btn-secondary" href="#dienstleistungen" data-i18n="hero.cta2">Unsere Dienstleistungen</a>
         </div>
+        <p class="hero-call"><span data-i18n="hero.call">Lieber persönlich? Rufen Sie uns an:</span> <a href="tel:+41445338200">044 533 82 00</a></p>
         <ul class="checks">
           <li><svg aria-hidden="true"><use href="#check"/></svg><span data-i18n="hero.c1">Staatlich beaufsichtigtes Revisionsunternehmen (RAB)</span></li>
           <li><svg aria-hidden="true"><use href="#check"/></svg><span data-i18n="hero.c2">Tätig für alle Aufsichtsorganisationen sowie die wichtigen Selbstregulierungsorganisationen</span></li>
@@ -273,6 +329,17 @@ footer a:hover { color: var(--white); }
       </aside>
     </div>
   </section>
+
+  <div class="trust">
+    <div class="wrap">
+      <p data-i18n="trust.label">Zugelassen und beaufsichtigt</p>
+      <ul>
+        <li>FINMA<small data-i18n="trust.finma">anerkannte Prüfgesellschaft</small></li>
+        <li>RAB<small data-i18n="trust.rab">staatlich beaufsichtigt</small></li>
+        <li>FINcontrol Suisse<small data-i18n="trust.fc">zugelassen</small></li>
+      </ul>
+    </div>
+  </div>
 
   <section class="block" id="kunden" aria-labelledby="kunden-title">
     <div class="wrap">
@@ -321,6 +388,23 @@ footer a:hover { color: var(--white); }
           <ul class="tags"><li data-i18n="svc.t4a">Weisungen</li><li data-i18n="svc.t4b">Risikoanalyse</li><li data-i18n="svc.t4c">Dokumentation</li></ul>
         </article>
       </div>
+    </div>
+  </section>
+
+  <section class="block why" aria-labelledby="why-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i18n="why.eyebrow">Warum AML Revisions</p>
+        <h2 id="why-title" data-i18n="why.title">Prüfung mit Augenmass, von Fachleuten aus der Praxis.</h2>
+      </div>
+      <ul class="reasons">
+        <li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="#9fd17f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h3 data-i18n="why.r1t">Nur Finanzintermediäre</h3><p data-i18n="why.r1">Wir prüfen ausschliesslich im Finanzsektor. Deshalb kennen wir die Fragen, die Ihre Aufsichtsorganisation stellt, und die Antworten, die sie erwartet.</p></li>
+        <li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="#9fd17f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h3 data-i18n="why.r2t">Eine feste Ansprechperson</h3><p data-i18n="why.r2">Sie haben Jahr für Jahr dieselbe erfahrene Ansprechperson, die Ihr Unternehmen kennt. Kein Callcenter, keine wechselnden Teams.</p></li>
+        <li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="#9fd17f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h3 data-i18n="why.r3t">Verhältnismässig und termintreu</h3><p data-i18n="why.r3">Der Prüfaufwand richtet sich nach Grösse und Risiko Ihres Geschäfts. Berichte reichen wir fristgerecht ein.</p></li>
+      </ul>
     </div>
   </section>
 
@@ -383,6 +467,23 @@ footer a:hover { color: var(--white); }
     </div>
   </section>
 
+  <section class="block" id="fragen" aria-labelledby="faq-title">
+    <div class="wrap faq-wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i18n="faq.eyebrow">Häufige Fragen</p>
+        <h2 id="faq-title" data-i18n="faq.title">Kurz beantwortet.</h2>
+        <p class="lead" data-i18n="faq.lead">Ihre Frage ist nicht dabei? Rufen Sie uns an, wir nehmen uns gerne Zeit.</p>
+      </div>
+      <div class="faq">
+        <details><summary data-i18n="faq.q1">Welche Prüfungen brauche ich als Vermögensverwalter?</summary><p data-i18n="faq.a1">Vermögensverwalter mit FINMA-Bewilligung benötigen in der Regel eine jährliche Aufsichtsprüfung nach FINIG/FIDLEG (je nach Risiko auch in grösseren Abständen) sowie eine Revision der Jahresrechnung. Wir klären mit Ihnen, was in Ihrem Fall gilt, und führen beides abgestimmt durch.</p></details>
+        <details><summary data-i18n="faq.q2">Kann ich die Prüfgesellschaft wechseln?</summary><p data-i18n="faq.a2">Ja. Ein Wechsel ist üblich und für Sie mit wenig Aufwand verbunden. Wir begleiten Sie dabei und stimmen uns, wo nötig, mit Ihrer Aufsichtsorganisation ab.</p></details>
+        <details><summary data-i18n="faq.q3">Was kostet eine Prüfung?</summary><p data-i18n="faq.a3">Das hängt von Grösse, Tätigkeit und Risikoprofil Ihres Unternehmens ab. Sie erhalten vorab eine schriftliche Offerte, damit Sie wissen, woran Sie sind.</p></details>
+        <details><summary data-i18n="faq.q4">Findet die Prüfung bei uns im Büro statt?</summary><p data-i18n="faq.a4">Wie es Ihnen lieber ist: bei Ihnen vor Ort oder aus der Ferne. Mit acht Standorten in der Schweiz sind wir in Ihrer Nähe.</p></details>
+        <details><summary data-i18n="faq.q5">In welchen Sprachen prüfen Sie?</summary><p data-i18n="faq.a5">Auf Deutsch, Französisch, Italienisch und Englisch.</p></details>
+      </div>
+    </div>
+  </section>
+
   <section class="block alt" id="kontakt" aria-labelledby="kontakt-title">
     <div class="wrap contact">
       <div class="contact-info">
@@ -391,10 +492,9 @@ footer a:hover { color: var(--white); }
         <p class="lead" data-i18n="ct.lead">Sie wechseln die Prüfgesellschaft oder benötigen erstmals eine Prüfung? Schreiben Sie uns, wir erstellen Ihnen gerne eine Offerte.</p>
         <div class="contact-lines">
           <div><span data-i18n="ct.email">E-Mail</span><a href="mailto:info@aml-revision.ch">info@aml-revision.ch</a></div>
-          <!-- TODO: Telefonnummer ergänzen
-          <div><span data-i18n="ct.phone">Telefon</span><a href="tel:+41...">+41 …</a></div>
-          -->
-          <div><span data-i18n="ct.addr">Hauptsitz</span><strong>Zürich</strong></div>
+          <div><span data-i18n="ct.phone">Telefon</span><a href="tel:+41445338200">044 533 82 00</a></div>
+          <div><span data-i18n="ct.addr">Hauptsitz</span><address>AML Revisions AG<br>Hohlstrasse 560<br>8048 Zürich</address>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Hohlstrasse+560,+8048+Z%C3%BCrich" target="_blank" rel="noopener" data-i18n="ct.map">Auf der Karte ansehen</a></div>
         </div>
       </div>
 
@@ -428,7 +528,8 @@ footer a:hover { color: var(--white); }
     <div class="foot-top">
       <div>
         <strong>AML Revisions AG</strong>
-        <p data-i18n="ft.tag">Prüfgesellschaft für Finanzintermediäre · Hauptsitz Zürich</p>
+        <p data-i18n="ft.tag">Prüfgesellschaft für Finanzintermediäre</p>
+        <p>Hohlstrasse 560 · 8048 Zürich · <a href="tel:+41445338200">044 533 82 00</a> · <a href="mailto:info@aml-revision.ch">info@aml-revision.ch</a></p>
       </div>
       <ul class="foot-links">
         <li><a href="#dienstleistungen" data-i18n="nav.services">Dienstleistungen</a></li>
@@ -501,7 +602,19 @@ footer a:hover { color: var(--white); }
     "f.company": "Company", "f.name": "Name", "f.email": "Email", "f.phone": "Phone", "f.optional": "(optional)",
     "f.org": "Your supervisory organisation or SRO", "f.orgNone": "Please choose", "f.orgFinma": "Directly supervised by FINMA", "f.orgUnknown": "Don't know / none yet",
     "f.msg": "Your message", "f.send": "Send request", "f.note": "Your request will open in your email program.",
-    "ft.tag": "Audit firm for financial intermediaries · Head office Zurich", "ft.imprint": "Legal notice", "ft.privacy": "Privacy"
+    "ft.tag": "Audit firm for financial intermediaries",
+    "nav.faq": "FAQ", "hero.call": "Prefer to talk? Call us:", "ct.map": "View on map",
+    "trust.label": "Licensed and supervised", "trust.finma": "recognised audit firm", "trust.rab": "state-supervised", "trust.fc": "approved",
+    "why.eyebrow": "Why AML Revisions", "why.title": "Proportionate audits by practitioners who know the sector.",
+    "why.r1t": "Financial intermediaries only", "why.r1": "We audit exclusively in the financial sector. So we know the questions your supervisory organisation asks, and the answers it expects.",
+    "why.r2t": "One dedicated contact", "why.r2": "Year after year, the same experienced contact person who knows your company. No call centre, no changing teams.",
+    "why.r3t": "Proportionate and on time", "why.r3": "The audit effort reflects the size and risk of your business. We submit reports by the deadline.",
+    "faq.eyebrow": "Frequently asked questions", "faq.title": "Briefly answered.", "faq.lead": "Your question is not listed? Give us a call, we are happy to take the time.",
+    "faq.q1": "Which audits do I need as an asset manager?", "faq.a1": "Asset managers licensed by FINMA generally need a regulatory audit under FinIA/FinSA (annually, or at longer intervals depending on risk) and an audit of the annual financial statements. We clarify what applies in your case and carry out both in a coordinated way.",
+    "faq.q2": "Can I change audit firm?", "faq.a2": "Yes. Changing is common and involves little effort for you. We guide you through it and coordinate with your supervisory organisation where needed.",
+    "faq.q3": "What does an audit cost?", "faq.a3": "That depends on the size, activities and risk profile of your company. You receive a written quote in advance, so you know where you stand.",
+    "faq.q4": "Does the audit take place at our office?", "faq.a4": "Whichever you prefer: on site or remotely. With eight offices across Switzerland, we are close to you.",
+    "faq.q5": "In which languages do you audit?", "faq.a5": "In German, French, Italian and English.", "ft.imprint": "Legal notice", "ft.privacy": "Privacy"
   };
   const msgs = {
     de: { err: "Bitte füllen Sie Firma, Name, eine gültige E-Mail-Adresse und Ihre Nachricht aus.", ok: "Ihr E-Mail-Programm wurde geöffnet. Falls nicht, schreiben Sie uns direkt an info@aml-revision.ch.", subj: "Offertanfrage" },
