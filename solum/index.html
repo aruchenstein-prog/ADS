@@ -276,7 +276,7 @@ h2.title { font-size: clamp(48px, 7.4vw, 112px); }
 .chip[aria-pressed="true"] { background: var(--ink); color: var(--canvas); }
 
 /* product grid */
-.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 24px); }
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 24px); }
 .card { display: flex; flex-direction: column; gap: 16px; min-width: 0; transition: opacity .5s var(--ease), transform .7s var(--ease); }
 .card.dim { opacity: .18; transform: scale(.98); pointer-events: none; }
 .card .bezel { --r-xl: 30px; }
@@ -556,6 +556,16 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
 .js .hero h1 .ln > span { display: inline-block; transform: translateY(105%); transition: transform 1.3s var(--ease-out); transition-delay: var(--d, 0s); }
 .js.loaded .hero h1 .ln > span { transform: none; }
 
+/* ---------- real product photos ---------- */
+.card-stage.photo::before { display: none; }
+.prod-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.card:hover .prod-img { transform: scale(1.05); }
+.card-stage.photo .card-tag, .card-stage.photo .quick { z-index: 2; }
+.thumb-mini img { width: 100%; height: 100%; object-fit: cover; }
+.flyer.photo { border-radius: 18px; overflow: hidden; box-shadow: 0 20px 40px -18px rgba(0,0,0,.45); }
+.flyer.photo img { display: block; width: 100%; height: auto; }
+#toast-mini img { width: 64px; height: 44px; object-fit: cover; }
+
 /* ---------- motion layer ---------- */
 /* intro curtain: CSS-driven so it always clears, even if scripts fail */
 .loader { display: none; }
@@ -735,15 +745,15 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
   <div class="search-bar">
     <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M16 16l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
     <label class="sr" for="q">Search products</label>
-    <input id="q" type="search" placeholder="Search shoes, e.g. trail…" autocomplete="off" spellcheck="false">
+    <input id="q" type="search" placeholder="Search shoes, e.g. leather…" autocomplete="off" spellcheck="false">
     <button class="round" type="button" data-close aria-label="Close search"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
   </div>
   <p class="search-hint">Popular</p>
   <div class="search-chips">
-    <button class="chip" type="button" data-q="road">Road</button>
-    <button class="chip" type="button" data-q="trail">Trail</button>
-    <button class="chip" type="button" data-q="everyday">Everyday</button>
-    <button class="chip" type="button" data-q="new">New shapes</button>
+    <button class="chip" type="button" data-q="running">Running</button>
+    <button class="chip" type="button" data-q="lifestyle">Lifestyle</button>
+    <button class="chip" type="button" data-q="leather">Leather</button>
+    <button class="chip" type="button" data-q="suede">Suede</button>
   </div>
   <ul class="results" id="results" aria-live="polite"></ul>
 </div>
@@ -1236,71 +1246,48 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
         </div>
         <div class="chips reveal" role="group" aria-label="Filter products" style="--d:.1s">
           <button class="chip" type="button" aria-pressed="true" data-filter="all">All</button>
-          <button class="chip" type="button" aria-pressed="false" data-filter="road">Road</button>
-          <button class="chip" type="button" aria-pressed="false" data-filter="trail">Trail</button>
-          <button class="chip" type="button" aria-pressed="false" data-filter="everyday">Everyday</button>
+          <button class="chip" type="button" aria-pressed="false" data-filter="running">Running</button>
+          <button class="chip" type="button" aria-pressed="false" data-filter="lifestyle">Lifestyle</button>
+          <button class="chip" type="button" aria-pressed="false" data-filter="leather">Leather &amp; suede</button>
         </div>
       </div>
 
       <div class="grid" id="grid">
-        <article class="card reveal" data-cat="road">
-          <div class="bezel"><div class="core card-stage" style="--tint:#e9e1d4;--s-upper:#ede6da;--s-over:#ddd3c4;--s-lining:#c9bca8;--s-mid:#f8f4ee;--s-sole:#2a2724;--s-accent:#e8501f;--s-lace:#f8f4ee">
+        <article class="card reveal" data-cat="lifestyle" style="--d:0s">
+          <div class="bezel"><div class="core card-stage photo">
             <span class="card-tag">New</span>
-            <div class="shoe-wrap"><div class="shoe-shadow"></div><svg class="shoe" viewBox="0 0 600 290" aria-hidden="true"><use href="#shoe"/></svg></div>
-            <button class="quick" type="button" data-name="Aster 2" data-cw="bone">Quick add <svg><use href="#plus"/></svg></button>
+            <img class="prod-img" src="img/prod-prism.webp" width="900" height="1125" alt="Two multicolour chunky sneakers with red laces, one standing on a white cube" loading="lazy" decoding="async">
+            <button class="quick" type="button" data-name="Prism" data-img="img/prod-prism.webp">Quick add <svg><use href="#plus"/></svg></button>
           </div></div>
-          <div class="card-info"><h3>Aster 2</h3><span class="price">CHF 189</span><p class="cat">Road running</p>
-            <div class="dots"><i style="--c:#ede6da"></i><i style="--c:#1f2330"></i><i style="--c:#a3b39a"></i><i style="--c:#2c4fd8"></i></div></div>
+          <div class="card-info"><h3>Prism</h3><span class="price">CHF 189</span><p class="cat">Lifestyle · Layered chunky sole</p>
+            <div class="dots"><i style="--c:#e9e3d6"></i><i style="--c:#e85a3c"></i><i style="--c:#6ccfb5"></i><i style="--c:#5b3a8c"></i></div></div>
         </article>
-
-        <article class="card reveal" data-cat="trail" style="--d:.08s">
-          <div class="bezel"><div class="core card-stage" style="--tint:#d9dccd;--s-upper:#4c5a3f;--s-over:#38452e;--s-lining:#2b3423;--s-mid:#d9cdb4;--s-sole:#1c1b19;--s-accent:#f08a3c;--s-lace:#e5d9c2">
-            <span class="card-tag">Trail</span>
-            <div class="shoe-wrap"><div class="shoe-shadow"></div><svg class="shoe" viewBox="0 0 600 290" aria-hidden="true"><use href="#shoe-trail"/></svg></div>
-            <button class="quick" type="button" data-name="Vela Trail" data-cw="moss">Quick add <svg><use href="#plus"/></svg></button>
+        <article class="card reveal" data-cat="leather" style="--d:.08s">
+          <div class="bezel"><div class="core card-stage photo">
+            <span class="card-tag">Leather</span>
+            <img class="prod-img" src="img/prod-atelier.webp" width="900" height="1125" alt="A beige and white leather sneaker, a second one standing sole-up, on an orange backdrop" loading="lazy" decoding="async">
+            <button class="quick" type="button" data-name="Atelier" data-img="img/prod-atelier.webp">Quick add <svg><use href="#plus"/></svg></button>
           </div></div>
-          <div class="card-info"><h3>Vela Trail</h3><span class="price">CHF 209</span><p class="cat">Trail running · Vibram outsole</p>
-            <div class="dots"><i style="--c:#4c5a3f"></i><i style="--c:#7b4a2e"></i><i style="--c:#1c1b19"></i></div></div>
+          <div class="card-info"><h3>Atelier</h3><span class="price">CHF 179</span><p class="cat">Leather · Nubuck & smooth leather</p>
+            <div class="dots"><i style="--c:#d4b896"></i><i style="--c:#f4f1ea"></i><i style="--c:#e8701f"></i></div></div>
         </article>
-
-        <article class="card reveal" data-cat="everyday" style="--d:.16s">
-          <div class="bezel"><div class="core card-stage" style="--tint:#ead7c6;--s-upper:#c69a6d;--s-over:#a87c52;--s-lining:#7f5c3b;--s-mid:#f3ead9;--s-sole:#6d4a2f;--s-accent:#f3ead9;--s-lace:#f3ead9">
+        <article class="card reveal" data-cat="running" style="--d:.16s">
+          <div class="bezel"><div class="core card-stage photo">
+            <span class="card-tag sale">−20%</span>
+            <img class="prod-img" src="img/prod-knit.webp" width="900" height="1125" alt="Close-up of the heel of a black knit running shoe with a white textured sole" loading="lazy" decoding="async">
+            <button class="quick" type="button" data-name="Knit Runner" data-img="img/prod-knit.webp">Quick add <svg><use href="#plus"/></svg></button>
+          </div></div>
+          <div class="card-info"><h3>Knit Runner</h3><span class="price now">CHF 159</span><p class="cat">Running · Recycled knit upper</p><span class="was" aria-label="Was CHF 199">CHF 199</span>
+            <div class="dots"><i style="--c:#151412"></i><i style="--c:#f4f1ea"></i></div></div>
+        </article>
+        <article class="card reveal" data-cat="leather" style="--d:.24s">
+          <div class="bezel"><div class="core card-stage photo">
             <span class="card-tag">Suede</span>
-            <div class="shoe-wrap"><div class="shoe-shadow"></div><svg class="shoe" viewBox="0 0 600 290" aria-hidden="true"><use href="#shoe"/></svg></div>
-            <button class="quick" type="button" data-name="Loam" data-cw="tan">Quick add <svg><use href="#plus"/></svg></button>
+            <img class="prod-img" src="img/prod-marine.webp" width="900" height="1125" alt="A navy suede lace-up shoe with a white sole, worn on a wooden deck" loading="lazy" decoding="async">
+            <button class="quick" type="button" data-name="Marine" data-img="img/prod-marine.webp">Quick add <svg><use href="#plus"/></svg></button>
           </div></div>
-          <div class="card-info"><h3>Loam</h3><span class="price">CHF 159</span><p class="cat">Everyday · Suede & wool</p>
-            <div class="dots"><i style="--c:#c69a6d"></i><i style="--c:#3b3a38"></i><i style="--c:#e8e2d6"></i></div></div>
-        </article>
-
-        <article class="card reveal" data-cat="road" style="--d:.24s">
-          <div class="bezel"><div class="core card-stage" style="--tint:#dfe2ee;--s-upper:#f4f3ef;--s-over:#e2e1dc;--s-lining:#c9c8c2;--s-mid:#d7f25c;--s-sole:#151412;--s-accent:#151412;--s-lace:#151412">
-            <span class="card-tag sale">−25%</span>
-            <div class="shoe-wrap"><div class="shoe-shadow"></div><svg class="shoe" viewBox="0 0 600 290" aria-hidden="true"><use href="#shoe"/></svg></div>
-            <button class="quick" type="button" data-name="Sola Racer" data-cw="volt">Quick add <svg><use href="#plus"/></svg></button>
-          </div></div>
-          <div class="card-info"><h3>Sola Racer</h3><span class="price now">CHF 179</span><p class="cat">Race day · Carbon plate</p><span class="was" aria-label="Was CHF 239">CHF 239</span>
-            <div class="dots"><i style="--c:#d7f25c"></i><i style="--c:#151412"></i></div></div>
-        </article>
-
-        <article class="card reveal" data-cat="road" style="--d:.08s">
-          <div class="bezel"><div class="core card-stage" style="--tint:#e4e1db;--m-base:#6a6e75;--m-l1:#3a3d43;--m-l2:#d5d9de;--m-l3:#f4f5f6;--m-mid:#f6f5f2;--m-sole:#2a2b2e;--m-pop:#d9442b;--m-lace:#f4f4f2;--m-collar:#3a3d43">
-            <span class="card-tag">New shape</span>
-            <div class="shoe-wrap"><div class="shoe-shadow"></div><svg class="shoe" viewBox="0 0 620 300" aria-hidden="true"><use href="#mer-side"/></svg></div>
-            <button class="quick" type="button" data-name="Meridian" data-sym="mer-side">Quick add <svg><use href="#plus"/></svg></button>
-          </div></div>
-          <div class="card-info"><h3>Meridian</h3><span class="price">CHF 179</span><p class="cat">Road running · Heel pods</p>
-            <div class="dots"><i style="--c:#6a6e75"></i><i style="--c:#cfd8dc"></i><i style="--c:#c8b59a"></i><i style="--c:#3b2f66"></i></div></div>
-        </article>
-
-        <article class="card reveal" data-cat="everyday" style="--d:.16s">
-          <div class="bezel"><div class="core card-stage" style="--tint:#e1e7ea;--m-base:#f2f2ee;--m-l1:#2f4d63;--m-l2:#6f93a8;--m-l3:#d3e1e8;--m-mid:#f7f6f2;--m-sole:#1f2a33;--m-pop:#e8501f;--m-lace:#2f4d63;--m-collar:#2f4d63">
-            <span class="card-tag">New shape</span>
-            <div class="shoe-wrap"><div class="shoe-shadow"></div><svg class="shoe" viewBox="0 0 620 300" aria-hidden="true"><use href="#tide-side"/></svg></div>
-            <button class="quick" type="button" data-name="Tide" data-sym="tide-side">Quick add <svg><use href="#plus"/></svg></button>
-          </div></div>
-          <div class="card-info"><h3>Tide</h3><span class="price">CHF 199</span><p class="cat">Everyday · Cushion windows</p>
-            <div class="dots"><i style="--c:#2f4d63"></i><i style="--c:#2f4a3a"></i><i style="--c:#e8501f"></i><i style="--c:#2a2c31"></i></div></div>
+          <div class="card-info"><h3>Marine</h3><span class="price">CHF 149</span><p class="cat">Lifestyle · Suede lace-up</p>
+            <div class="dots"><i style="--c:#1d2433"></i><i style="--c:#6b4a2e"></i><i style="--c:#d9d2c5"></i></div></div>
         </article>
       </div>
     </div>
@@ -1523,7 +1510,7 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite">
-  <div class="mini" id="toast-mini"><svg viewBox="0 0 600 290" aria-hidden="true" id="toast-svg"><use id="toast-use" href="#shoe"/></svg></div>
+  <div class="mini" id="toast-mini"><svg viewBox="0 0 600 290" aria-hidden="true" id="toast-svg"><use id="toast-use" href="#shoe"/></svg><img id="toast-img" alt="" hidden></div>
   <div><b id="toast-title">Added to bag</b><br><span id="toast-sub">Aster 2</span></div>
   <button type="button" id="toast-view">View bag</button>
 </div>
@@ -1571,8 +1558,10 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
   const bag = [];
   const chf = (n) => "CHF " + n.toLocaleString("de-CH");
   const priceOf = (txt) => +String(txt).replace(/[^\d]/g, "");
-  const styleStr = (vars) => typeof vars === "string" ? vars : Object.entries(vars).map(([k, c]) => "--s-" + k + ":" + c).join(";");
-  const miniSvg = (it) => '<span class="thumb-mini" style="' + it.style + '"><svg viewBox="' + (it.sym ? "0 0 620 300" : "0 0 600 290") + '" aria-hidden="true"><use href="#' + (it.sym || "shoe") + '"/></svg></span>';
+  const styleStr = (vars) => !vars ? "" : typeof vars === "string" ? vars : Object.entries(vars).map(([k, c]) => "--s-" + k + ":" + c).join(";");
+  const miniSvg = (it) => it.img
+    ? '<span class="thumb-mini"><img src="' + it.img + '" alt=""></span>'
+    : '<span class="thumb-mini" style="' + it.style + '"><svg viewBox="' + (it.sym ? "0 0 620 300" : "0 0 600 290") + '" aria-hidden="true"><use href="#' + (it.sym || "shoe") + '"/></svg></span>';
   const bagCount = document.getElementById("bag-count"), bagBtn = document.getElementById("bag-btn"), toast = document.getElementById("toast");
   let toastTimer;
 
@@ -1605,11 +1594,13 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
     const b = { left: br.left, width: br.width, height: br.height, top: br.top + (wasHidden ? navEl.offsetHeight * 1.4 + 16 : 0) };
     if (!a.width) return Promise.resolve();
     const f = document.createElement("div");
-    f.className = "flyer"; f.setAttribute("style", it.style); f.style.width = Math.min(a.width, 360) + "px";
-    f.innerHTML = '<svg viewBox="' + (it.sym ? "0 0 620 300" : "0 0 600 290") + '"><use href="#' + (it.sym || "shoe") + '"/></svg>';
+    f.className = it.img ? "flyer photo" : "flyer"; f.setAttribute("style", it.style || "");
+    const w = Math.min(a.width, it.img ? 220 : 360), ratio = it.img ? 1.25 : .48;
+    f.style.width = w + "px";
+    f.innerHTML = it.img ? '<img src="' + it.img + '" alt="">' : '<svg viewBox="' + (it.sym ? "0 0 620 300" : "0 0 600 290") + '"><use href="#' + (it.sym || "shoe") + '"/></svg>';
     document.body.appendChild(f);
-    const w = Math.min(a.width, 360), x0 = a.left + a.width / 2 - w / 2, y0 = a.top + a.height / 2 - w * .24;
-    const x1 = b.left + b.width / 2 - w / 2, y1 = b.top + b.height / 2 - w * .24;
+    const h = w * ratio, x0 = a.left + a.width / 2 - w / 2, y0 = a.top + a.height / 2 - h / 2;
+    const x1 = b.left + b.width / 2 - w / 2, y1 = b.top + b.height / 2 - h / 2;
     const anim = f.animate([
       { transform: `translate(${x0}px, ${y0}px) scale(1) rotate(-6deg)`, opacity: 1 },
       { transform: `translate(${(x0 + x1) / 2}px, ${Math.min(y0, y1) - 120}px) scale(.6) rotate(-18deg)`, opacity: 1, offset: .45 },
@@ -1625,9 +1616,12 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
       bag.push(it); renderBag();
       bagCount.classList.remove("bump"); void bagCount.offsetWidth; bagCount.classList.add("bump");
     });
+    const tImg = document.getElementById("toast-img"), tSvg = document.getElementById("toast-svg");
+    tImg.hidden = !it.img; tSvg.style.display = it.img ? "none" : "";
+    if (it.img) tImg.src = it.img;
     document.getElementById("toast-use").setAttribute("href", "#" + (it.sym || "shoe"));
-    document.getElementById("toast-svg").setAttribute("viewBox", it.sym ? "0 0 620 300" : "0 0 600 290");
-    document.getElementById("toast-mini").setAttribute("style", it.style);
+    tSvg.setAttribute("viewBox", it.sym ? "0 0 620 300" : "0 0 600 290");
+    document.getElementById("toast-mini").setAttribute("style", it.style || "");
     document.getElementById("toast-title").textContent = "Added: " + it.name;
     document.getElementById("toast-sub").textContent = it.sub + " · " + chf(it.price);
     toast.classList.add("show");
@@ -1645,6 +1639,7 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
   document.querySelectorAll(".quick").forEach((b) => b.addEventListener("click", () => {
     const card = b.closest(".card"), stage = b.closest(".card-stage");
     const price = priceOf((card.querySelector(".price.now") || card.querySelector(".price")).textContent);
+    if (b.dataset.img) { addToBag({ name: b.dataset.name, sub: "Size chosen at checkout", price, img: b.dataset.img, from: stage.querySelector(".prod-img") }); return; }
     const from = stage.querySelector("svg.shoe");
     if (b.dataset.sym) { addToBag({ name: b.dataset.name, sub: "Size chosen at checkout", price, vars: stage.style.cssText, sym: b.dataset.sym, from }); return; }
     const cs = stage.style, v = {};
@@ -1683,12 +1678,13 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
 
   /* ---- search ---- */
   const products = [...document.querySelectorAll("#grid .card")].map((c) => {
-    const stage = c.querySelector(".card-stage"), use = c.querySelector("svg.shoe use").getAttribute("href").slice(1);
+    const stage = c.querySelector(".card-stage"), photo = c.querySelector(".prod-img"), useEl = c.querySelector("svg.shoe use");
+    const use = useEl ? useEl.getAttribute("href").slice(1) : "shoe";
     const tag = (c.querySelector(".card-tag") || {}).textContent || "";
     return {
       card: c, name: c.querySelector("h3").textContent, cat: c.querySelector(".cat").textContent,
       price: (c.querySelector(".price.now") || c.querySelector(".price")).textContent,
-      style: stage.style.cssText, sym: use === "shoe" ? null : use,
+      style: stage.style.cssText, sym: use === "shoe" ? null : use, img: photo ? photo.getAttribute("src") : null,
       hay: (c.querySelector("h3").textContent + " " + c.querySelector(".cat").textContent + " " + c.dataset.cat + " " + tag + (/new/i.test(tag) ? " new shapes" : "")).toLowerCase()
     };
   });
@@ -1698,7 +1694,7 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
     const hits = products.filter((p) => !term || term.split(/\s+/).every((t) => p.hay.includes(t)));
     results.innerHTML = hits.length ? hits.map((p, i) =>
       '<li><a href="#shop" data-i="' + products.indexOf(p) + '">' + miniSvg(p) + '<div><b>' + p.name + '</b><span>' + p.cat + '</span></div><span class="pr">' + p.price + '</span></a></li>').join("")
-      : '<li class="none">Nothing found for “' + q.value.replace(/[<>&"]/g, "") + '”. Try road, trail or everyday.</li>';
+      : '<li class="none">Nothing found for “' + q.value.replace(/[<>&"]/g, "") + '”. Try running, lifestyle or leather.</li>';
   }
   q.addEventListener("input", runSearch);
   document.querySelectorAll(".search-chips .chip").forEach((c) => c.addEventListener("click", () => { q.value = c.dataset.q; runSearch(); q.focus(); }));

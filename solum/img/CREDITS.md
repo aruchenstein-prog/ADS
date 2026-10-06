@@ -8,6 +8,10 @@ They are credited here anyway. Files are resized and converted to WebP.
 
 | File | Used for | Source |
 |---|---|---|
+| `prod-prism.webp` | Product: Prism | [Unsplash photo-1560769629-975ec94e6a86](https://images.unsplash.com/photo-1560769629-975ec94e6a86) |
+| `prod-atelier.webp` | Product: Atelier | [Unsplash photo-1603808033192-082d6919d3e1](https://images.unsplash.com/photo-1603808033192-082d6919d3e1) |
+| `prod-knit.webp` | Product: Knit Runner | [Pexels 256649: Close Up of Shoes Against White Background](https://www.pexels.com/photo/close-up-of-shoes-against-white-background-256649/) |
+| `prod-marine.webp` | Product: Marine | [Pexels 8159359: A Person Wearing Black Suede Shoes](https://www.pexels.com/photo/a-person-wearing-black-suede-shoes-8159359/) |
 | `lake-runner.webp` | Campaign photo band | [Pexels 21856843: Woman Running by Lake at Park](https://www.pexels.com/photo/woman-running-by-lake-at-park-21856843/) |
 | `road-marathon.webp` | Collections: Road | [Unsplash photo-1452626038306-9aae5e071dd3](https://images.unsplash.com/photo-1452626038306-9aae5e071dd3) |
 | `trail-ridge.webp` | Collections: Trail | [Pexels 30932860: Trail Runner in Green Mountain Landscape](https://www.pexels.com/photo/trail-runner-in-green-mountain-landscape-30932860/) |
