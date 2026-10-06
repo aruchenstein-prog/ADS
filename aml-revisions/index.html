@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AML Revisions AG</title>
+<meta name="description" content="AML Revisions AG – Aufsichtsprüfung nach FINIG/FIDLEG, GwG-Prüfung und Revision für Vermögensverwalter und Finanzintermediäre in der ganzen Schweiz.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap">
+<style>
+/* Layout: sober, light, text-first. White and pale-grey bands, hairline rules instead of shadows, one brand blue, green only as the logo's check mark. */
+:root {
+  color-scheme: light;
+  --white: #ffffff;
+  --paper: #f3f6f8;      /* pale grey band, slightly blue */
+  --ink: #18262f;
+  --ink-2: #47555f;
+  --line: #d3dbe1;
+  --brand: #28628e;      /* logo blue */
+  --brand-dark: #1d4a6c;
+  --check: #4e9a31;      /* logo green, darkened for contrast */
+  --footer: #14222c;
+  --footer-fg: #dfe7ec;
+  --footer-mute: #9fb0bc;
+
+  --f-head: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-body: "Source Sans 3", "Segoe UI", Arial, sans-serif;
+
+  --radius: 4px;
+  --section: clamp(64px, 9vw, 104px);
+  --wrap: 1180px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0; background: var(--white); color: var(--ink);
+  font-family: var(--f-body); font-size: 19px; line-height: 1.6; letter-spacing: .005em;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; }
+a { color: var(--brand); text-underline-offset: 3px; }
+a:hover { color: var(--brand-dark); }
+:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; }
+
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+
+h1, h2, h3 { font-family: var(--f-head); font-weight: 500; color: var(--ink); margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(36px, 4.8vw, 56px); line-height: 1.12; letter-spacing: -.01em; }
+h2 { font-size: clamp(30px, 3.4vw, 42px); line-height: 1.18; }
+h3 { font-size: 23px; line-height: 1.3; font-weight: 600; }
+p { margin: 0; }
+.eyebrow { font-size: 15px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--brand); }
+.lead { font-size: clamp(20px, 1.9vw, 22px); color: var(--ink-2); max-width: 36em; }
+.muted { color: var(--ink-2); }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font-family: var(--f-body); font-size: 18px; font-weight: 600; text-decoration: none;
+  min-height: 52px; padding: 12px 26px; border-radius: var(--radius); border: 2px solid var(--brand); cursor: pointer;
+}
+.btn-primary { background: var(--brand); color: var(--white); }
+.btn-primary:hover { background: var(--brand-dark); border-color: var(--brand-dark); color: var(--white); }
+.btn-secondary { background: var(--white); color: var(--brand); }
+.btn-secondary:hover { background: var(--paper); color: var(--brand-dark); }
+
+/* Utility bar */
+.utility { background: var(--paper); border-bottom: 1px solid var(--line); font-size: 16px; }
+.utility .wrap { display: flex; justify-content: space-between; align-items: center; gap: 12px 24px; flex-wrap: wrap; padding-block: 8px; }
+.utility .contact-quick { display: flex; gap: 24px; flex-wrap: wrap; }
+.utility a { color: var(--ink); text-decoration: none; }
+.utility a:hover { text-decoration: underline; }
+.lang { display: flex; gap: 4px; }
+.lang button {
+  font: inherit; font-size: 15px; font-weight: 600; min-width: 44px; min-height: 36px; cursor: pointer;
+  background: transparent; color: var(--ink-2); border: 1px solid transparent; border-radius: var(--radius);
+}
+@media (max-width: 640px) { .utility .hq-text { display: none; } .utility .wrap { flex-wrap: nowrap; } }
+.lang button[aria-pressed="true"] { background: var(--white); color: var(--brand); border-color: var(--line); }
+
+/* Header */
+.site-header { position: sticky; top: 0; z-index: 20; background: var(--white); border-bottom: 1px solid var(--line); }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 16px; }
+.logo { display: block; flex: none; }
+.logo img { display: block; width: clamp(200px, 22vw, 270px); }
+.main-nav { display: flex; align-items: center; gap: 28px; }
+.main-nav a:not(.btn) { color: var(--ink); text-decoration: none; font-weight: 600; font-size: 17px; }
+.main-nav a:not(.btn):hover { color: var(--brand); text-decoration: underline; }
+.main-nav .btn { min-height: 46px; padding: 8px 20px; font-size: 17px; }
+@media (max-width: 1000px) { .main-nav a:not(.btn) { display: none; } }
+@media (max-width: 520px) { .main-nav .btn { display: none; } }
+
+/* Hero */
+.hero { padding-block: clamp(48px, 7vw, 88px); border-bottom: 1px solid var(--line); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: clamp(36px, 6vw, 80px); align-items: start; }
+.hero-copy { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 14px; }
+.checks { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.checks li { display: flex; gap: 14px; align-items: flex-start; }
+.checks svg { flex: none; width: 24px; height: 24px; margin-top: 3px; }
+.facts { border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); min-width: 0; }
+.facts h2 { font-family: var(--f-body); font-size: 15px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); padding: 20px 24px 0; }
+.facts dl { margin: 0; display: grid; grid-template-columns: 1fr 1fr; }
+.facts dl > div { padding: 20px 24px 22px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px; }
+.facts dd { order: -1; }
+.facts dl > div:nth-child(odd) { border-right: 1px solid var(--line); }
+.facts dl > div:nth-child(-n+2) { border-top: 0; }
+.facts dd { margin: 0; font-family: var(--f-head); font-size: 40px; line-height: 1.1; color: var(--brand); font-variant-numeric: tabular-nums lining-nums; }
+.facts dt { font-size: 16px; color: var(--ink-2); line-height: 1.35; }
+.facts .seal { padding: 18px 24px; border-top: 1px solid var(--line); font-size: 16px; color: var(--ink-2); background: var(--white); }
+.facts .seal strong { color: var(--ink); }
+@media (max-width: 900px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); } }
+
+/* Sections */
+section.block { padding-block: var(--section); }
+section.alt { background: var(--paper); border-block: 1px solid var(--line); }
+.sec-head { display: flex; flex-direction: column; gap: 16px; max-width: 780px; margin-bottom: clamp(32px, 4vw, 52px); }
+
+/* Clients */
+.clients { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+.client { padding: 28px 28px 30px 0; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.client + .client { padding-left: 28px; border-left: 1px solid var(--line); }
+.client:nth-child(3n+1) { padding-left: 0; border-left: 0; }
+.client p { color: var(--ink-2); font-size: 18px; }
+.client.featured h3 { color: var(--brand); }
+@media (max-width: 900px) {
+  .clients { grid-template-columns: minmax(0, 1fr); }
+  .client, .client + .client { padding-left: 0; padding-right: 0; border-left: 0; }
+}
+
+/* Services */
+.services { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.service { background: var(--white); border: 1px solid var(--line); border-top: 4px solid var(--brand); border-radius: var(--radius); padding: 30px 30px 32px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.service p { color: var(--ink-2); font-size: 18px; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 8px; list-style: none; margin-bottom: 0; padding-left: 0; }
+.tags li { font-size: 15px; font-weight: 600; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 4px 10px; }
+@media (max-width: 800px) { .services { grid-template-columns: minmax(0, 1fr); } }
+
+/* Process */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; counter-reset: step; }
+.steps li { counter-increment: step; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.steps li::before {
+  content: counter(step); font-family: var(--f-head); font-size: 22px; font-weight: 600; color: var(--brand);
+  width: 48px; height: 48px; border: 2px solid var(--brand); border-radius: 50%; display: grid; place-items: center; margin-bottom: 6px;
+}
+.steps p { color: var(--ink-2); font-size: 18px; }
+@media (max-width: 960px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .steps { grid-template-columns: minmax(0, 1fr); } }
+
+/* Company */
+.company { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(36px, 6vw, 80px); align-items: start; }
+.company-copy { display: flex; flex-direction: column; gap: 18px; }
+.timeline { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--line); }
+.timeline li { position: relative; padding: 0 0 26px 28px; display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 16px; }
+.timeline li:last-child { padding-bottom: 0; }
+.timeline li::before { content: ""; position: absolute; left: -7px; top: 9px; width: 12px; height: 12px; border-radius: 50%; background: var(--white); border: 2px solid var(--brand); }
+.timeline time { font-family: var(--f-head); font-weight: 600; font-size: 21px; color: var(--brand); font-variant-numeric: tabular-nums lining-nums; }
+.timeline p { font-size: 18px; }
+@media (max-width: 860px) { .company { grid-template-columns: minmax(0, 1fr); } }
+
+.orgs { margin-top: clamp(40px, 5vw, 64px); padding-top: 32px; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 48px; }
+.orgs h3 { font-family: var(--f-body); font-size: 17px; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 10px; }
+.orgs p { font-size: 18px; }
+@media (max-width: 760px) { .orgs { grid-template-columns: minmax(0, 1fr); } }
+
+/* Locations */
+.locations { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.locations li { padding: 22px 24px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--white); font-size: 21px; font-family: var(--f-head); font-weight: 500; display: flex; flex-direction: column; gap: 2px; }
+.locations small { font-family: var(--f-body); font-size: 15px; color: var(--ink-2); }
+.locations .hq { background: var(--brand); color: var(--white); }
+.locations .hq small { color: #d9e6f0; }
+@media (max-width: 860px) { .locations { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Contact */
+.contact { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(36px, 6vw, 80px); align-items: start; }
+.contact-info { display: flex; flex-direction: column; gap: 22px; }
+.contact-lines { display: flex; flex-direction: column; gap: 14px; margin-top: 8px; }
+.contact-lines div { display: flex; flex-direction: column; }
+.contact-lines span { font-size: 15px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-2); }
+.contact-lines a, .contact-lines strong { font-size: 24px; font-weight: 600; color: var(--brand); text-decoration: none; overflow-wrap: anywhere; }
+.contact-lines a:hover { text-decoration: underline; }
+form { border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(22px, 3vw, 34px); display: grid; grid-template-columns: 1fr 1fr; gap: 18px 20px; background: var(--white); }
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.field.full { grid-column: 1 / -1; }
+.field label { font-size: 17px; font-weight: 600; }
+.field label .opt { font-weight: 400; color: var(--ink-2); }
+.field input, .field select, .field textarea {
+  font: inherit; font-size: 18px; color: var(--ink); background: var(--white);
+  border: 1px solid #9eacb7; border-radius: var(--radius); padding: 12px 14px; min-height: 52px; width: 100%;
+}
+.field textarea { min-height: 140px; resize: vertical; }
+.form-actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+.form-msg { font-size: 16px; color: var(--ink-2); }
+.form-msg.error { color: #a12a1f; font-weight: 600; }
+@media (max-width: 860px) { .contact { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 560px) { form { grid-template-columns: minmax(0, 1fr); } }
+
+/* Footer */
+footer { background: var(--footer); color: var(--footer-fg); padding-block: 48px 36px; font-size: 16px; }
+footer .wrap { display: flex; flex-direction: column; gap: 32px; }
+.foot-top { display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+.foot-top strong { font-size: 19px; display: block; margin-bottom: 6px; }
+.foot-top p { color: var(--footer-mute); }
+footer a { color: var(--footer-fg); }
+footer a:hover { color: var(--white); }
+.foot-links { display: flex; gap: 24px; flex-wrap: wrap; list-style: none; margin: 0; padding: 0; }
+.foot-bottom { border-top: 1px solid #2b3c48; padding-top: 20px; color: var(--footer-mute); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="none" stroke="#4e9a31" stroke-width="2"/><path d="M7 12.5l3.2 3.2L17.5 8" fill="none" stroke="#4e9a31" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<div class="utility">
+  <div class="wrap">
+    <div class="contact-quick">
+      <span class="hq-text" data-i18n="util.hq">Hauptsitz Zürich · 8 Standorte in der ganzen Schweiz</span>
+      <a href="mailto:info@aml-revision.ch">info@aml-revision.ch</a>
+      <!-- TODO: Telefonnummer ergänzen, z. B. <a href="tel:+41...">+41 …</a> -->
+    </div>
+    <div class="lang" role="group" aria-label="Sprache / Language">
+      <button type="button" data-lang="de" aria-pressed="true">DE</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="AML Revisions AG – Startseite"><img src="data:image/png;base64,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" width="725" height="101" alt="AML Revisions AG"></a>
+    <nav class="main-nav" aria-label="Hauptnavigation">
+      <a href="#dienstleistungen" data-i18n="nav.services">Dienstleistungen</a>
+      <a href="#ablauf" data-i18n="nav.process">Ablauf</a>
+      <a href="#unternehmen" data-i18n="nav.company">Unternehmen</a>
+      <a href="#standorte" data-i18n="nav.locations">Standorte</a>
+      <a class="btn btn-primary" href="#kontakt" data-i18n="nav.cta">Offerte anfragen</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="eyebrow" data-i18n="hero.eyebrow">Prüfgesellschaft für Finanzintermediäre</p>
+        <h1 data-i18n="hero.title">Aufsichtsprüfung und GwG-Prüfung für Vermögensverwalter.</h1>
+        <p class="lead" data-i18n="hero.lead">Seit 2013 konzentrieren wir uns auf die Prüfung von Finanzintermediären. Unsere Fachleute kennen Ihr Geschäft, Ihre Aufsichtsorganisation und die Anforderungen von FINIG, FIDLEG und Geldwäschereigesetz.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#kontakt" data-i18n="hero.cta1">Offerte anfragen</a>
+          <a class="btn btn-secondary" href="#dienstleistungen" data-i18n="hero.cta2">Unsere Dienstleistungen</a>
+        </div>
+        <ul class="checks">
+          <li><svg aria-hidden="true"><use href="#check"/></svg><span data-i18n="hero.c1">Staatlich beaufsichtigtes Revisionsunternehmen (RAB)</span></li>
+          <li><svg aria-hidden="true"><use href="#check"/></svg><span data-i18n="hero.c2">Tätig für alle Aufsichtsorganisationen sowie die wichtigen Selbstregulierungsorganisationen</span></li>
+          <li><svg aria-hidden="true"><use href="#check"/></svg><span data-i18n="hero.c3">Eine feste Ansprechperson in Ihrer Region</span></li>
+        </ul>
+      </div>
+
+      <aside class="facts" aria-labelledby="facts-title">
+        <h2 id="facts-title" data-i18n="facts.title">Auf einen Blick</h2>
+        <dl>
+          <div><dt data-i18n="facts.f1">gegründet</dt><dd>2013</dd></div>
+          <div><dt data-i18n="facts.f2">Standorte in der Schweiz</dt><dd>8</dd></div>
+          <div><dt data-i18n="facts.f3">Fachleute</dt><dd>30+</dd></div>
+          <div><dt data-i18n="facts.f4">GwG-Prüfmandate</dt><dd>420+</dd></div>
+        </dl>
+        <p class="seal" data-i18n="facts.seal"><strong>Gegründet von fünf Revisionsgesellschaften</strong>, um ihre Mandate im Finanzsektor in einer spezialisierten Gesellschaft zu bündeln.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="block" id="kunden" aria-labelledby="kunden-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i18n="clients.eyebrow">Unsere Kunden</p>
+        <h2 id="kunden-title" data-i18n="clients.title">Vom unabhängigen Vermögensverwalter bis zur kotierten Gesellschaft.</h2>
+        <p class="lead" data-i18n="clients.lead">Massgebend ist nicht Ihre Grösse, sondern Ihre Tätigkeit und welche Finanzmarktgesetze für Sie gelten.</p>
+      </div>
+      <div class="clients">
+        <div class="client featured"><h3 data-i18n="clients.c1t">Vermögensverwalter und Trustees</h3><p data-i18n="clients.c1">Aufsichtsprüfung nach FINIG und FIDLEG, GwG-Prüfung und Revision, aufeinander abgestimmt.</p></div>
+        <div class="client"><h3 data-i18n="clients.c2t">Verwalter von Kollektivvermögen und Fondsleitungen</h3><p data-i18n="clients.c2">Prüfungen für Institute unter direkter Aufsicht der FINMA.</p></div>
+        <div class="client"><h3 data-i18n="clients.c3t">Treuhand- und Trust-Gesellschaften</h3><p data-i18n="clients.c3">GwG-Prüfung für Mitglieder einer Selbstregulierungsorganisation.</p></div>
+        <div class="client"><h3 data-i18n="clients.c4t">FinTech-Unternehmen</h3><p data-i18n="clients.c4">Prüfung neuer Geschäftsmodelle mit Blick auf die geltenden Bewilligungen und Pflichten.</p></div>
+        <div class="client"><h3 data-i18n="clients.c5t">Leasing und Zahlungsverkehr</h3><p data-i18n="clients.c5">Leasinggesellschaften, Money Transmitter und weitere Finanzintermediäre.</p></div>
+        <div class="client"><h3 data-i18n="clients.c6t">Weitere Unternehmen mit Finanztätigkeit</h3><p data-i18n="clients.c6">Wir klären mit Ihnen, welche Prüfungen für Sie gesetzlich vorgeschrieben sind.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="dienstleistungen" aria-labelledby="dl-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i18n="svc.eyebrow">Dienstleistungen</p>
+        <h2 id="dl-title" data-i18n="svc.title">Alle vorgeschriebenen Prüfungen aus einer Hand.</h2>
+        <p class="lead" data-i18n="svc.lead">Wir kombinieren Aufsichts-, GwG- und Jahresrechnungsprüfung, damit Sie nur einen Ansprechpartner und einen abgestimmten Zeitplan haben.</p>
+      </div>
+      <div class="services">
+        <article class="service">
+          <h3 data-i18n="svc.s1t">Aufsichtsprüfung nach FINIG und FIDLEG</h3>
+          <p data-i18n="svc.s1">Für Vermögensverwalter und Trustees, die einer Aufsichtsorganisation unterstellt sind. Wir prüfen Organisation, Verhaltenspflichten und die Einhaltung des Geldwäschereigesetzes und erstellen den Bericht zuhanden Ihrer Aufsichtsorganisation.</p>
+          <ul class="tags" aria-label="Aufsichtsorganisationen"><li>AOOS</li><li>FINcontrol Suisse</li><li>OSFIN</li><li>OSIF</li><li>SO-FIT</li></ul>
+        </article>
+        <article class="service">
+          <h3 data-i18n="svc.s2t">GwG-Prüfung für SRO-Mitglieder</h3>
+          <p data-i18n="svc.s2">Prüfung der Einhaltung des Geldwäschereigesetzes für Finanzintermediäre, die einer Selbstregulierungsorganisation angeschlossen sind.</p>
+          <ul class="tags" aria-label="Selbstregulierungsorganisationen"><li>VQF</li><li>PolyReg</li><li>ARIF</li><li>SRO-Treuhand|Suisse</li><li>SRO SLV</li></ul>
+        </article>
+        <article class="service">
+          <h3 data-i18n="svc.s3t">Revision</h3>
+          <p data-i18n="svc.s3">Eingeschränkte und ordentliche Revision der Jahresrechnung nach Obligationenrecht. Auf Wunsch zusammen mit der Aufsichts- oder GwG-Prüfung durchgeführt.</p>
+          <ul class="tags"><li data-i18n="svc.t3a">Eingeschränkte Revision</li><li data-i18n="svc.t3b">Ordentliche Revision</li></ul>
+        </article>
+        <article class="service">
+          <h3 data-i18n="svc.s4t">Compliance-Unterstützung</h3>
+          <p data-i18n="svc.s4">Fragen zu Weisungen, Risikoanalyse oder Dokumentation? Wir erklären Ihnen, was die Aufsicht erwartet, im Rahmen der geltenden Unabhängigkeitsvorschriften.</p>
+          <ul class="tags"><li data-i18n="svc.t4a">Weisungen</li><li data-i18n="svc.t4b">Risikoanalyse</li><li data-i18n="svc.t4c">Dokumentation</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="ablauf" aria-labelledby="ablauf-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i18n="proc.eyebrow">Ablauf</p>
+        <h2 id="ablauf-title" data-i18n="proc.title">So läuft Ihre Prüfung ab.</h2>
+        <p class="lead" data-i18n="proc.lead">Klar geplant und ohne Überraschungen. Sie wissen jederzeit, was als Nächstes kommt.</p>
+      </div>
+      <ol class="steps">
+        <li><h3 data-i18n="proc.s1t">Offerte</h3><p data-i18n="proc.s1">Sie erhalten eine schriftliche Offerte, abgestimmt auf Grösse und Tätigkeit Ihres Unternehmens.</p></li>
+        <li><h3 data-i18n="proc.s2t">Vorbereitung</h3><p data-i18n="proc.s2">Wir senden Ihnen eine Liste der benötigten Unterlagen und vereinbaren den Prüftermin.</p></li>
+        <li><h3 data-i18n="proc.s3t">Prüfung</h3><p data-i18n="proc.s3">Bei Ihnen vor Ort oder aus der Ferne. Ihre Ansprechperson begleitet Sie durch die ganze Prüfung.</p></li>
+        <li><h3 data-i18n="proc.s4t">Bericht</h3><p data-i18n="proc.s4">Wir besprechen die Ergebnisse mit Ihnen und reichen den Bericht fristgerecht bei Ihrer Aufsichtsorganisation oder SRO ein.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block alt" id="unternehmen" aria-labelledby="unt-title">
+    <div class="wrap">
+      <div class="company">
+        <div class="company-copy">
+          <p class="eyebrow" data-i18n="co.eyebrow">Unternehmen</p>
+          <h2 id="unt-title" data-i18n="co.title">Spezialisiert auf den Finanzsektor. Seit über zehn Jahren.</h2>
+          <p class="lead" data-i18n="co.lead">AML Revisions AG wurde 2013 von fünf Revisionsgesellschaften gegründet. Ihr Ziel: die Prüfmandate im Finanzsektor in einer spezialisierten Gesellschaft zu bündeln.</p>
+          <p class="muted" data-i18n="co.p">So stellen wir sicher, dass Fachwissen gezielt eingesetzt wird, die Qualität hoch bleibt und die Zulassungsvoraussetzungen jederzeit erfüllt sind.</p>
+        </div>
+        <ol class="timeline" aria-label="Meilensteine">
+          <li><time>2013</time><p data-i18n="co.t1">Gründung durch fünf Revisionsgesellschaften</p></li>
+          <li><time>2014</time><p data-i18n="co.t2">Anerkennung durch die FINMA als Prüfgesellschaft für direkt unterstellte Finanzintermediäre (DUFI); Start der GwG-Prüfungen</p></li>
+          <li><time>2015</time><p data-i18n="co.t3">Zulassung als staatlich beaufsichtigtes Revisionsunternehmen durch die Eidgenössische Revisionsaufsichtsbehörde (RAB)</p></li>
+          <li><time>2021</time><p data-i18n="co.t4">Zulassung als Prüfgesellschaft für Mitglieder der FINcontrol Suisse AG</p></li>
+          <li><time data-i18n="co.t5y">Heute</time><p data-i18n="co.t5">Über 30 Fachleute an 8 Standorten, mehr als 420 GwG-Prüfmandate</p></li>
+        </ol>
+      </div>
+      <div class="orgs">
+        <div><h3 data-i18n="co.ao">Aufsichtsorganisationen</h3><p>AOOS · FINcontrol Suisse AG · OSFIN · OSIF · SO-FIT</p></div>
+        <div><h3 data-i18n="co.sro">Selbstregulierungsorganisationen</h3><p>ARIF · PolyReg · SRO Schweizerischer Leasingverband · SRO-Treuhand|Suisse · VQF</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="standorte" aria-labelledby="sto-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i18n="loc.eyebrow">Standorte</p>
+        <h2 id="sto-title" data-i18n="loc.title">In Ihrer Nähe, in der ganzen Schweiz.</h2>
+      </div>
+      <ul class="locations">
+        <li class="hq">Zürich<small data-i18n="loc.hq">Hauptsitz</small></li>
+        <li>Basel<small>BS</small></li>
+        <li>Bern<small>BE</small></li>
+        <li>Buchs<small>SG</small></li>
+        <li data-i18n="loc.geneva">Genf<small>GE</small></li>
+        <li>Lugano<small>TI</small></li>
+        <li data-i18n="loc.lucerne">Luzern<small>LU</small></li>
+        <li>Zug<small>ZG</small></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block alt" id="kontakt" aria-labelledby="kontakt-title">
+    <div class="wrap contact">
+      <div class="contact-info">
+        <p class="eyebrow" data-i18n="ct.eyebrow">Kontakt</p>
+        <h2 id="kontakt-title" data-i18n="ct.title">Sprechen wir über Ihre Prüfung.</h2>
+        <p class="lead" data-i18n="ct.lead">Sie wechseln die Prüfgesellschaft oder benötigen erstmals eine Prüfung? Schreiben Sie uns, wir erstellen Ihnen gerne eine Offerte.</p>
+        <div class="contact-lines">
+          <div><span data-i18n="ct.email">E-Mail</span><a href="mailto:info@aml-revision.ch">info@aml-revision.ch</a></div>
+          <!-- TODO: Telefonnummer ergänzen
+          <div><span data-i18n="ct.phone">Telefon</span><a href="tel:+41...">+41 …</a></div>
+          -->
+          <div><span data-i18n="ct.addr">Hauptsitz</span><strong>Zürich</strong></div>
+        </div>
+      </div>
+
+      <form id="offer-form" novalidate>
+        <div class="field"><label for="f-company" data-i18n="f.company">Firma</label><input id="f-company" name="company" autocomplete="organization" required></div>
+        <div class="field"><label for="f-name" data-i18n="f.name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="f-email" data-i18n="f.email">E-Mail</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="f-phone"><span data-i18n="f.phone">Telefon</span> <span class="opt" data-i18n="f.optional">(optional)</span></label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
+        <div class="field full">
+          <label for="f-org" data-i18n="f.org">Ihre Aufsichtsorganisation oder SRO</label>
+          <select id="f-org" name="org">
+            <option value="" data-i18n="f.orgNone">Bitte wählen</option>
+            <option>AOOS</option><option>FINcontrol Suisse</option><option>OSFIN</option><option>OSIF</option><option>SO-FIT</option>
+            <option>VQF</option><option>PolyReg</option><option>ARIF</option><option>SRO-Treuhand|Suisse</option><option>SRO SLV</option>
+            <option value="FINMA" data-i18n="f.orgFinma">Direkt FINMA-unterstellt</option>
+            <option value="?" data-i18n="f.orgUnknown">Weiss ich nicht / noch keine</option>
+          </select>
+        </div>
+        <div class="field full"><label for="f-msg" data-i18n="f.msg">Ihre Nachricht</label><textarea id="f-msg" name="message" required></textarea></div>
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit" data-i18n="f.send">Anfrage senden</button>
+          <p class="form-msg" id="form-msg" role="status" data-i18n="f.note">Ihre Anfrage wird in Ihrem E-Mail-Programm geöffnet.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <strong>AML Revisions AG</strong>
+        <p data-i18n="ft.tag">Prüfgesellschaft für Finanzintermediäre · Hauptsitz Zürich</p>
+      </div>
+      <ul class="foot-links">
+        <li><a href="#dienstleistungen" data-i18n="nav.services">Dienstleistungen</a></li>
+        <li><a href="#unternehmen" data-i18n="nav.company">Unternehmen</a></li>
+        <li><a href="#standorte" data-i18n="nav.locations">Standorte</a></li>
+        <li><a href="#kontakt" data-i18n="ct.eyebrow">Kontakt</a></li>
+      </ul>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> AML Revisions AG</span>
+      <span><a href="#" data-i18n="ft.imprint">Impressum</a> · <a href="#" data-i18n="ft.privacy">Datenschutz</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const en = {
+    "util.hq": "Head office Zurich · 8 offices across Switzerland",
+    "nav.services": "Services", "nav.process": "Process", "nav.company": "Company", "nav.locations": "Offices", "nav.cta": "Request a quote",
+    "hero.eyebrow": "Audit firm for financial intermediaries",
+    "hero.title": "Regulatory and AML audits for asset managers.",
+    "hero.lead": "Since 2013 we have focused on auditing financial intermediaries. Our specialists know your business, your supervisory organisation and the requirements of FinIA, FinSA and the Anti-Money Laundering Act.",
+    "hero.cta1": "Request a quote", "hero.cta2": "Our services",
+    "hero.c1": "State-supervised audit firm (FAOA)",
+    "hero.c2": "Active for all supervisory organisations and the major self-regulatory organisations",
+    "hero.c3": "One dedicated contact person in your region",
+    "facts.title": "At a glance", "facts.f1": "founded", "facts.f2": "offices in Switzerland", "facts.f3": "specialists", "facts.f4": "AML audit mandates",
+    "facts.seal": "<strong>Founded by five audit firms</strong> to combine their financial-sector mandates in one specialised company.",
+    "clients.eyebrow": "Our clients",
+    "clients.title": "From independent asset managers to listed companies.",
+    "clients.lead": "What matters is not your size, but your activities and which financial market laws apply to you.",
+    "clients.c1t": "Asset managers and trustees", "clients.c1": "Regulatory audit under FinIA and FinSA, AML audit and statutory audit, coordinated with each other.",
+    "clients.c2t": "Managers of collective assets and fund management companies", "clients.c2": "Audits for institutions directly supervised by FINMA.",
+    "clients.c3t": "Fiduciary and trust companies", "clients.c3": "AML audits for members of a self-regulatory organisation.",
+    "clients.c4t": "FinTech companies", "clients.c4": "Audits of new business models with a view to the licences and duties that apply.",
+    "clients.c5t": "Leasing and payments", "clients.c5": "Leasing companies, money transmitters and other financial intermediaries.",
+    "clients.c6t": "Other companies with financial activities", "clients.c6": "We work out with you which audits the law requires.",
+    "svc.eyebrow": "Services", "svc.title": "Every required audit from a single firm.",
+    "svc.lead": "We combine regulatory, AML and financial statement audits, so you have one contact and one coordinated schedule.",
+    "svc.s1t": "Regulatory audit under FinIA and FinSA",
+    "svc.s1": "For asset managers and trustees supervised by a supervisory organisation. We review organisation, rules of conduct and compliance with the Anti-Money Laundering Act, and prepare the report for your supervisory organisation.",
+    "svc.s2t": "AML audit for SRO members",
+    "svc.s2": "Audit of compliance with the Anti-Money Laundering Act for financial intermediaries affiliated with a self-regulatory organisation.",
+    "svc.s3t": "Statutory audit",
+    "svc.s3": "Limited and ordinary audits of the annual financial statements under the Swiss Code of Obligations. Can be carried out together with the regulatory or AML audit.",
+    "svc.t3a": "Limited audit", "svc.t3b": "Ordinary audit",
+    "svc.s4t": "Compliance support",
+    "svc.s4": "Questions about internal directives, risk analysis or documentation? We explain what the supervisor expects, within the applicable independence rules.",
+    "svc.t4a": "Directives", "svc.t4b": "Risk analysis", "svc.t4c": "Documentation",
+    "proc.eyebrow": "Process", "proc.title": "How your audit works.", "proc.lead": "Clearly planned, no surprises. You always know what comes next.",
+    "proc.s1t": "Quote", "proc.s1": "You receive a written quote tailored to the size and activities of your company.",
+    "proc.s2t": "Preparation", "proc.s2": "We send you a list of the documents we need and agree on an audit date.",
+    "proc.s3t": "Audit", "proc.s3": "On site or remotely. Your contact person guides you through the entire audit.",
+    "proc.s4t": "Report", "proc.s4": "We discuss the results with you and submit the report to your supervisory organisation or SRO on time.",
+    "co.eyebrow": "Company", "co.title": "Specialised in the financial sector. For more than ten years.",
+    "co.lead": "AML Revisions AG was founded in 2013 by five audit firms. Their aim: to combine their financial-sector audit mandates in one specialised company.",
+    "co.p": "This ensures that expert knowledge is used where it matters, quality stays high and accreditation requirements are met at all times.",
+    "co.t1": "Founded by five audit firms",
+    "co.t2": "Recognised by FINMA as audit firm for directly supervised financial intermediaries (DSFI); start of AML audits",
+    "co.t3": "Licensed as a state-supervised audit firm by the Federal Audit Oversight Authority (FAOA)",
+    "co.t4": "Approved as audit firm for members of FINcontrol Suisse AG",
+    "co.t5y": "Today", "co.t5": "More than 30 specialists at 8 offices, over 420 AML audit mandates",
+    "co.ao": "Supervisory organisations", "co.sro": "Self-regulatory organisations",
+    "loc.eyebrow": "Offices", "loc.title": "Close to you, all across Switzerland.", "loc.hq": "Head office",
+    "loc.geneva": "Geneva<small>GE</small>", "loc.lucerne": "Lucerne<small>LU</small>",
+    "ct.eyebrow": "Contact", "ct.title": "Let's talk about your audit.",
+    "ct.lead": "Changing audit firm, or need an audit for the first time? Write to us and we will gladly prepare a quote.",
+    "ct.email": "Email", "ct.phone": "Phone", "ct.addr": "Head office",
+    "f.company": "Company", "f.name": "Name", "f.email": "Email", "f.phone": "Phone", "f.optional": "(optional)",
+    "f.org": "Your supervisory organisation or SRO", "f.orgNone": "Please choose", "f.orgFinma": "Directly supervised by FINMA", "f.orgUnknown": "Don't know / none yet",
+    "f.msg": "Your message", "f.send": "Send request", "f.note": "Your request will open in your email program.",
+    "ft.tag": "Audit firm for financial intermediaries · Head office Zurich", "ft.imprint": "Legal notice", "ft.privacy": "Privacy"
+  };
+  const msgs = {
+    de: { err: "Bitte füllen Sie Firma, Name, eine gültige E-Mail-Adresse und Ihre Nachricht aus.", ok: "Ihr E-Mail-Programm wurde geöffnet. Falls nicht, schreiben Sie uns direkt an info@aml-revision.ch.", subj: "Offertanfrage" },
+    en: { err: "Please fill in company, name, a valid email address and your message.", ok: "Your email program has been opened. If not, please write to us directly at info@aml-revision.ch.", subj: "Quote request" }
+  };
+
+  const nodes = document.querySelectorAll("[data-i18n]");
+  const de = {};
+  nodes.forEach((n) => { de[n.dataset.i18n] = n.innerHTML; });
+  let lang = "de";
+
+  function setLang(l) {
+    lang = l;
+    nodes.forEach((n) => { const k = n.dataset.i18n; const v = l === "en" ? en[k] : de[k]; if (v != null) n.innerHTML = v; });
+    document.documentElement.lang = l === "en" ? "en" : "de-CH";
+    document.querySelectorAll(".lang button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === l)));
+    try { localStorage.setItem("aml-lang", l); } catch (_) {}
+  }
+  document.querySelectorAll(".lang button").forEach((b) => b.addEventListener("click", () => setLang(b.dataset.lang)));
+  try { const saved = localStorage.getItem("aml-lang"); if (saved === "en") setLang("en"); } catch (_) {}
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Static site: the form opens a pre-filled email. Replace with a form service or backend when hosting.
+  document.getElementById("offer-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const f = e.target, out = document.getElementById("form-msg"), m = msgs[lang];
+    if (!f.checkValidity()) { out.className = "form-msg error"; out.textContent = m.err; return; }
+    const d = new FormData(f);
+    const body = [
+      "Firma / Company: " + d.get("company"),
+      "Name: " + d.get("name"),
+      "E-Mail: " + d.get("email"),
+      "Telefon / Phone: " + (d.get("phone") || "-"),
+      "AO / SRO: " + (d.get("org") || "-"),
+      "",
+      d.get("message")
+    ].join("\n");
+    window.location.href = "mailto:info@aml-revision.ch?subject=" + encodeURIComponent(m.subj + ": " + d.get("company")) + "&body=" + encodeURIComponent(body);
+    out.className = "form-msg"; out.textContent = m.ok;
+  });
+})();
+</script>
+</body>
+</html>
