@@ -1,0 +1,1029 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SOLUM Footwear</title>
+<meta name="description" content="SOLUM — sneakers designed in Zürich for the long way round. Shop the Aster 2, Vela Trail and Loam.">
+<meta name="theme-color" content="#efebe4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+/* SOLUM — warm bone canvas, ink, one signal colour (ember). Condensed display over a quiet catalogue. */
+:root {
+  color-scheme: light;
+  --canvas: #efebe4;
+  --lifted: #f7f4ef;
+  --stage: #e6e0d6;
+  --ink: #151412;
+  --ink-2: #57524b;
+  --ink-3: #8b847a;
+  --hair: rgba(21,20,18,.09);
+  --ember: #e8501f;
+  --ember-deep: #b73a12;
+  --volt: #d7f25c;
+  --sale: #c4200e;
+  --night: #121110;
+
+  --f-sans: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --f-serif: "Instrument Serif", "Times New Roman", serif;
+
+  --ease: cubic-bezier(.32,.72,0,1);
+  --ease-out: cubic-bezier(.16,1,.3,1);
+  --wrap: 1380px;
+  --gut: clamp(16px, 4vw, 56px);
+  --r-xl: 36px;
+  --r-lg: 28px;
+  --section: clamp(96px, 12vw, 168px);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0; background: var(--canvas); color: var(--ink);
+  font-family: var(--f-sans); font-size: 17px; line-height: 1.55; font-weight: 400;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+/* paper grain: fixed, non-interactive */
+body::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 90; opacity: .05; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+img, svg { display: block; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; border-radius: 8px; }
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: var(--gut); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: absolute; left: 16px; top: -80px; z-index: 100; background: var(--ink); color: var(--canvas); padding: 10px 16px; border-radius: 999px; text-decoration: none; }
+.skip:focus { top: 16px; }
+
+/* ---------- type ---------- */
+.display {
+  font-family: var(--f-sans); font-stretch: 62%; font-weight: 800; text-transform: uppercase;
+  line-height: .84; letter-spacing: -.01em; margin: 0;
+}
+.serif { font-family: var(--f-serif); font-style: italic; font-weight: 400; text-transform: none; letter-spacing: -.01em; }
+h2.title { font-size: clamp(48px, 7.4vw, 112px); }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px; width: max-content;
+  font-size: 12px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+  padding: 7px 14px 7px 10px; border-radius: 999px; background: rgba(21,20,18,.05); box-shadow: inset 0 0 0 1px var(--hair);
+}
+.eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--ember); }
+.lede { font-size: clamp(18px, 1.5vw, 21px); color: var(--ink-2); max-width: 34em; margin: 0; text-wrap: pretty; }
+
+/* ---------- buttons: pill + nested icon ---------- */
+.btn {
+  --bg: var(--ink); --fg: var(--canvas); --chip: rgba(255,255,255,.14);
+  display: inline-flex; align-items: center; gap: 14px; min-height: 56px; padding: 8px 8px 8px 26px;
+  border: 0; border-radius: 999px; background: var(--bg); color: var(--fg); cursor: pointer;
+  font-size: 16px; font-weight: 600; text-decoration: none; white-space: nowrap;
+  transition: transform .5s var(--ease), background-color .4s var(--ease);
+}
+.btn:active { transform: scale(.97); }
+.btn .ic {
+  width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--chip);
+  transition: transform .6s var(--ease);
+}
+.btn:hover .ic { transform: translate(3px, -1px) scale(1.06); }
+.btn .ic svg { width: 16px; height: 16px; }
+.btn-ghost { --bg: transparent; --fg: var(--ink); --chip: rgba(21,20,18,.07); box-shadow: inset 0 0 0 1px rgba(21,20,18,.18); }
+.btn-ghost:hover { --bg: rgba(21,20,18,.04); }
+.btn-ember { --bg: var(--ember); --fg: #fff; --chip: rgba(255,255,255,.2); }
+.btn-ember:hover { --bg: var(--ember-deep); }
+.btn-light { --bg: var(--canvas); --fg: var(--ink); --chip: rgba(21,20,18,.08); }
+
+/* ---------- floating island nav ---------- */
+.nav-shell { position: fixed; top: 16px; left: 0; right: 0; z-index: 60; display: flex; justify-content: center; padding-inline: 12px; pointer-events: none; }
+.nav {
+  pointer-events: auto; display: flex; align-items: center; gap: clamp(12px, 3vw, 40px);
+  padding: 8px 8px 8px 22px; border-radius: 999px; width: min(100%, 980px); justify-content: space-between;
+  background: rgba(247,244,239,.72); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.6), 0 10px 40px -12px rgba(40,30,20,.18);
+  transition: transform .7s var(--ease), background-color .4s var(--ease);
+}
+.nav.hide { transform: translateY(-140%); }
+.brand { font-stretch: 62%; font-weight: 800; font-size: 26px; letter-spacing: .04em; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+.brand svg { width: 22px; height: 22px; }
+.nav-links { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.nav-links a { display: block; padding: 10px 14px; border-radius: 999px; font-size: 15px; font-weight: 500; text-decoration: none; transition: background-color .35s var(--ease); }
+.nav-links a:hover { background: rgba(21,20,18,.06); }
+.nav-tools { display: flex; align-items: center; gap: 6px; }
+.icon-btn {
+  width: 44px; height: 44px; border-radius: 50%; border: 0; background: transparent; cursor: pointer; display: grid; place-items: center; position: relative;
+  transition: background-color .35s var(--ease), transform .4s var(--ease);
+}
+.icon-btn:hover { background: rgba(21,20,18,.06); }
+.icon-btn:active { transform: scale(.94); }
+.icon-btn svg { width: 20px; height: 20px; }
+.bag { background: var(--ink); color: var(--canvas); width: auto; padding: 0 16px 0 14px; border-radius: 999px; display: flex; gap: 8px; font-size: 14px; font-weight: 600; }
+.bag:hover { background: #2a2825; }
+.bag-count { min-width: 22px; height: 22px; border-radius: 999px; background: var(--volt); color: var(--ink); display: grid; place-items: center; font-size: 12px; font-weight: 700; padding: 0 6px; font-variant-numeric: tabular-nums; }
+.bag-count.bump { animation: bump .6s var(--ease-out); }
+@keyframes bump { 0% { transform: scale(1); } 35% { transform: scale(1.45); } 100% { transform: scale(1); } }
+.burger { display: none; }
+.burger span { position: absolute; left: 13px; right: 13px; height: 1.5px; background: var(--ink); border-radius: 2px; transition: transform .6s var(--ease), top .6s var(--ease); }
+.burger span:nth-child(1) { top: 17px; } .burger span:nth-child(2) { top: 25px; }
+.menu-open .burger span:nth-child(1) { top: 21px; transform: rotate(45deg); }
+.menu-open .burger span:nth-child(2) { top: 21px; transform: rotate(-45deg); }
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  .burger { display: grid; }
+}
+
+/* fullscreen menu */
+.menu {
+  position: fixed; inset: 0; z-index: 55; background: rgba(239,235,228,.86);
+  backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+  display: flex; flex-direction: column; justify-content: center; padding: 110px var(--gut) 40px;
+  opacity: 0; visibility: hidden; transition: opacity .6s var(--ease), visibility 0s linear .6s; overscroll-behavior: contain;
+}
+.menu-open .menu { opacity: 1; visibility: visible; transition: opacity .6s var(--ease); }
+.menu ul { list-style: none; margin: 0; padding: 0; }
+.menu li { overflow: hidden; }
+.menu a {
+  display: block; text-decoration: none; font-stretch: 62%; font-weight: 800; text-transform: uppercase; font-size: clamp(56px, 16vw, 96px); line-height: .95;
+  transform: translateY(110%); transition: transform .9s var(--ease);
+}
+.menu-open .menu a { transform: none; }
+.menu li:nth-child(2) a { transition-delay: .05s; } .menu li:nth-child(3) a { transition-delay: .1s; }
+.menu li:nth-child(4) a { transition-delay: .15s; } .menu li:nth-child(5) a { transition-delay: .2s; }
+.menu p { margin-top: 32px; color: var(--ink-2); }
+
+/* ---------- shoe ---------- */
+.shoe { width: 100%; height: auto; overflow: visible; }
+.shoe-wrap { position: relative; }
+.shoe-shadow {
+  position: absolute; left: 12%; right: 10%; bottom: 4%; height: 12%; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(40,28,16,.32), rgba(40,28,16,0));
+  filter: blur(6px); transform: scaleY(.6);
+}
+
+/* ---------- hero ---------- */
+.hero { position: relative; padding-top: clamp(120px, 14vw, 170px); padding-bottom: clamp(48px, 6vw, 80px); overflow: clip; }
+.hero h1 { font-size: clamp(72px, 17.2vw, 268px); position: relative; z-index: 1; }
+.hero h1 .l2 { display: block; padding-left: clamp(0px, 9vw, 150px); }
+.hero h1 .serif { color: var(--ember); font-size: .9em; letter-spacing: -.03em; padding-right: .04em; }
+.hero-meta { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: clamp(20px, 3vw, 36px); flex-wrap: wrap; }
+.hero-meta .tag { font-size: 14px; color: var(--ink-2); display: flex; gap: 18px; flex-wrap: wrap; }
+.hero-meta .tag b { color: var(--ink); font-weight: 600; }
+.hero-stage {
+  position: relative; z-index: 2; min-width: 0;
+}
+.hero-row { display: grid; grid-template-columns: minmax(0, .52fr) minmax(0, 1fr); gap: clamp(24px, 3vw, 48px); align-items: end; margin-top: clamp(-150px, -9vw, -32px); }
+.hero-row .hero-copy { padding-bottom: clamp(16px, 2vw, 32px); position: relative; z-index: 3; }
+.hero-row .lede { font-size: clamp(17px, 1.3vw, 19px); }
+.hero-stage .float { animation: float 7s var(--ease) infinite alternate; }
+@keyframes float { from { transform: translateY(0) rotate(-7deg); } to { transform: translateY(-14px) rotate(-5.5deg); } }
+.hero-stage .tilt { transition: transform .9s var(--ease-out); }
+.hero-stage .swap { transition: opacity .45s var(--ease), transform .7s var(--ease); }
+.hero-stage .swap.out { opacity: 0; transform: translateX(-40px) scale(.97); }
+.hero-badge {
+  position: absolute; left: -2%; top: 14%; z-index: 3; width: clamp(92px, 9vw, 128px); aspect-ratio: 1; border-radius: 50%;
+  background: var(--volt); display: grid; place-items: center; text-align: center;
+  font-stretch: 62%; font-weight: 800; text-transform: uppercase; font-size: clamp(14px, 1.3vw, 18px); line-height: 1; letter-spacing: .02em;
+  transform: rotate(-12deg);
+}
+.hero-badge small { display: block; font-stretch: 100%; font-weight: 600; font-size: 10px; letter-spacing: .14em; margin-top: 6px; }
+
+.hero-copy { display: flex; flex-direction: column; gap: 28px; }
+.buybar { margin-top: clamp(16px, 2vw, 28px); position: relative; z-index: 3; }
+.cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* double-bezel card */
+.bezel { padding: 6px; border-radius: var(--r-xl); background: rgba(21,20,18,.04); box-shadow: inset 0 0 0 1px var(--hair); }
+.bezel > .core {
+  border-radius: calc(var(--r-xl) - 6px); background: var(--lifted);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 24px 48px -28px rgba(50,35,20,.28);
+}
+.buy { padding: 22px 22px 22px 30px; display: grid; grid-template-columns: auto auto auto minmax(240px, 300px); gap: 20px clamp(24px, 3.4vw, 56px); align-items: center; }
+.buy > * { min-width: 0; }
+.buy-head { flex-direction: column; align-items: flex-start !important; gap: 2px !important; }
+.buy .sizes { grid-template-columns: repeat(6, 48px); }
+.buy-note { grid-column: 1 / -1; }
+@media (max-width: 1180px) { .buy { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .buy .sizes { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .buy { grid-template-columns: minmax(0, 1fr); padding: 22px; } }
+.buy-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.buy-head h2 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -.01em; }
+.buy-head p { margin: 2px 0 0; color: var(--ink-2); font-size: 14px; }
+.price { font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.label { font-size: 13px; font-weight: 600; color: var(--ink-2); display: flex; justify-content: space-between; margin-bottom: 10px; }
+.label output { color: var(--ink); }
+.swatches { display: flex; gap: 10px; }
+.swatch {
+  width: 40px; height: 40px; border-radius: 50%; border: 0; cursor: pointer; position: relative; background: var(--c);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); transition: transform .5s var(--ease);
+}
+.swatch::after { content: ""; position: absolute; inset: -5px; border-radius: 50%; box-shadow: 0 0 0 1.5px var(--ink); opacity: 0; transform: scale(.85); transition: opacity .4s var(--ease), transform .5s var(--ease); }
+.swatch[aria-pressed="true"]::after { opacity: 1; transform: none; }
+.swatch:hover { transform: scale(1.08); }
+.sizes { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; }
+.size {
+  min-height: 44px; border: 0; border-radius: 14px; background: rgba(21,20,18,.05); cursor: pointer; font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums;
+  transition: background-color .35s var(--ease), color .35s var(--ease), transform .4s var(--ease);
+}
+.size:hover { background: rgba(21,20,18,.1); }
+.size[aria-pressed="true"] { background: var(--ink); color: var(--canvas); }
+.size:disabled { color: var(--ink-3); text-decoration: line-through; cursor: not-allowed; background: transparent; box-shadow: inset 0 0 0 1px var(--hair); }
+.buy .btn { justify-content: space-between; width: 100%; }
+.buy-note { font-size: 13px; color: var(--ink-2); display: flex; gap: 8px; align-items: center; margin: -4px 0 0; }
+.buy-note::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #2f9e4f; box-shadow: 0 0 0 4px rgba(47,158,79,.15); }
+
+@media (max-width: 900px) {
+  .hero-row { grid-template-columns: minmax(0, 1fr); margin-top: 0; }
+  .hero-row .hero-copy { order: 2; padding-bottom: 0; }
+  .hero h1 .l2 { padding-left: 0; }
+}
+
+/* ---------- marquee ---------- */
+.marquee { border-block: 1px solid var(--hair); overflow: hidden; padding-block: 22px; background: var(--lifted); }
+.marquee-track { display: flex; width: max-content; animation: marquee 38s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee ul { display: flex; align-items: center; gap: 48px; list-style: none; margin: 0; padding: 0 24px; }
+.marquee li { display: flex; align-items: center; gap: 48px; font-stretch: 62%; font-weight: 700; text-transform: uppercase; font-size: clamp(22px, 2.4vw, 32px); white-space: nowrap; }
+.marquee li::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--ember); }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ---------- sections ---------- */
+.section { padding-block: var(--section); }
+.sec-head { display: flex; justify-content: space-between; align-items: end; gap: 32px; flex-wrap: wrap; margin-bottom: clamp(40px, 5vw, 72px); }
+.sec-head .left { display: flex; flex-direction: column; gap: 22px; }
+
+/* filter chips */
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip {
+  border: 0; cursor: pointer; padding: 11px 18px; border-radius: 999px; background: rgba(21,20,18,.05); font-size: 14px; font-weight: 600;
+  transition: background-color .35s var(--ease), color .35s var(--ease);
+}
+.chip:hover { background: rgba(21,20,18,.1); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--canvas); }
+
+/* product grid */
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 24px); }
+.card { display: flex; flex-direction: column; gap: 16px; min-width: 0; transition: opacity .5s var(--ease), transform .7s var(--ease); }
+.card.dim { opacity: .18; transform: scale(.98); pointer-events: none; }
+.card .bezel { --r-xl: 30px; }
+.card-stage {
+  position: relative; aspect-ratio: 4 / 5; border-radius: 24px; background: var(--tint); overflow: hidden; display: grid; place-items: center;
+}
+.card-stage::before { content: ""; position: absolute; inset: 0; background: radial-gradient(70% 55% at 50% 58%, rgba(255,255,255,.55), rgba(255,255,255,0)); }
+.bezel > .core.card-stage { background: var(--tint); }
+.card-stage .shoe-wrap { width: 94%; transform: rotate(-9deg) translateY(2%); transition: transform .9s var(--ease); }
+.card:hover .card-stage .shoe-wrap { transform: rotate(-15deg) translateY(-2%) scale(1.05); }
+.card-tag {
+  position: absolute; top: 14px; left: 14px; z-index: 2; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  background: rgba(255,255,255,.75); padding: 6px 11px; border-radius: 999px;
+}
+.card-tag.sale { background: var(--sale); color: #fff; }
+.quick {
+  position: absolute; left: 12px; right: 12px; bottom: 12px; z-index: 2; min-height: 48px; border: 0; border-radius: 999px; cursor: pointer;
+  background: rgba(21,20,18,.9); color: var(--canvas); font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px;
+  transform: translateY(calc(100% + 16px)); transition: transform .7s var(--ease), background-color .3s var(--ease);
+}
+.quick svg { width: 16px; height: 16px; }
+.card:hover .quick, .card:focus-within .quick { transform: none; }
+@media (hover: none) { .quick { transform: none; } }
+.card-info { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding-inline: 4px; }
+.card-info h3 { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
+.card-info .cat { color: var(--ink-2); font-size: 14px; margin: 0; }
+.card-info .price { font-size: 17px; text-align: right; }
+.card-info .was { color: var(--ink-3); text-decoration: line-through; font-size: 14px; text-align: right; font-variant-numeric: tabular-nums; }
+.card-info .now { color: var(--sale); }
+.dots { display: flex; gap: 6px; grid-column: 1 / -1; margin-top: 8px; }
+.dots i { width: 14px; height: 14px; border-radius: 50%; background: var(--c); box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); }
+@media (max-width: 1080px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) {
+  .grid { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 80%; overflow-x: auto; scroll-snap-type: x mandatory;
+          margin-inline: calc(var(--gut) * -1); padding: 4px var(--gut) 12px; scroll-padding-inline: var(--gut); scrollbar-width: none; overscroll-behavior-x: contain; }
+  .grid::-webkit-scrollbar { display: none; }
+  .card { scroll-snap-align: start; }
+}
+
+/* ---------- bento: built in layers ---------- */
+.bento { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: minmax(220px, auto); gap: clamp(14px, 1.6vw, 22px); }
+.tile { border-radius: var(--r-xl); padding: clamp(24px, 3vw, 40px); position: relative; overflow: hidden; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; }
+.tile h3 { margin: 0; font-size: clamp(22px, 2vw, 28px); font-weight: 600; letter-spacing: -.015em; line-height: 1.15; }
+.tile p { margin: 0; color: var(--ink-2); }
+.tile .big { font-stretch: 62%; font-weight: 800; font-size: clamp(88px, 10vw, 160px); line-height: .8; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
+.tile .big small { font-size: .32em; font-weight: 700; margin-left: 6px; letter-spacing: 0; }
+.t-anatomy { grid-column: span 7; grid-row: span 2; background: var(--night); color: var(--canvas); }
+.t-anatomy p { color: #b9b2a7; }
+.t-anatomy .shoe-zone { position: relative; margin: auto 0; padding-block: 40px 20px; }
+.t-anatomy .shoe-zone .shoe-wrap { width: 92%; margin-inline: auto; transform: rotate(-4deg); }
+.t-anatomy .shoe-shadow { background: radial-gradient(closest-side, rgba(0,0,0,.7), rgba(0,0,0,0)); }
+.callout { position: absolute; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+.callout i { width: 9px; height: 9px; border-radius: 50%; background: var(--volt); box-shadow: 0 0 0 6px rgba(215,242,92,.18); flex: none; animation: pulse 2.6s var(--ease) infinite; }
+@keyframes pulse { 50% { box-shadow: 0 0 0 11px rgba(215,242,92,0); } }
+.callout span { padding: 7px 12px; border-radius: 999px; background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); }
+.c1 { left: 52%; top: 16%; } .c2 { left: 14%; top: 66%; } .c3 { left: 60%; top: 82%; }
+.t-weight { grid-column: span 5; background: var(--lifted); box-shadow: inset 0 0 0 1px var(--hair); }
+.t-drop { grid-column: span 2; background: var(--stage); }
+.t-drop .big { font-size: clamp(64px, 6vw, 96px); }
+.t-recycled { grid-column: span 3; background: var(--ember); color: #fff; }
+.t-recycled p { color: rgba(255,255,255,.85); }
+.t-repair { grid-column: span 12; background: var(--lifted); box-shadow: inset 0 0 0 1px var(--hair); flex-direction: row; align-items: center; }
+.t-repair .txt { display: flex; flex-direction: column; gap: 12px; max-width: 560px; }
+.t-repair h3 { font-size: clamp(28px, 3vw, 44px); }
+.t-repair h3 .serif { font-size: 1.1em; }
+@media (max-width: 1000px) {
+  .t-anatomy, .t-weight, .t-repair { grid-column: span 12; }
+  .t-drop { grid-column: span 5; } .t-recycled { grid-column: span 7; }
+}
+@media (max-width: 600px) {
+  .bento > * { grid-column: span 12 !important; grid-row: auto !important; }
+  .t-repair { flex-direction: column; align-items: flex-start; }
+  .bento { grid-auto-rows: auto; }
+  .t-anatomy .shoe-zone { padding-block: 24px 0; display: flex; flex-direction: column; gap: 10px; }
+  .t-anatomy .shoe-zone .shoe-wrap { margin-bottom: 18px; }
+  .callout { position: static; font-size: 13px; }
+}
+
+/* ---------- collections ---------- */
+.collections { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: clamp(14px, 1.6vw, 22px); }
+.coll {
+  position: relative; border-radius: var(--r-xl); overflow: hidden; min-height: clamp(380px, 38vw, 560px); padding: 28px; text-decoration: none;
+  display: flex; flex-direction: column; justify-content: space-between; isolation: isolate; background: var(--bg); color: var(--fg, var(--ink));
+}
+.coll .word { font-stretch: 62%; font-weight: 800; text-transform: uppercase; font-size: clamp(64px, 8vw, 132px); line-height: .82; position: relative; z-index: 1; }
+.coll .meta { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; font-weight: 600; }
+.coll .arrow { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.2); box-shadow: inset 0 0 0 1px rgba(255,255,255,.3); transition: transform .7s var(--ease), background-color .4s var(--ease); }
+.coll .arrow svg { width: 18px; height: 18px; }
+.coll:hover .arrow { transform: rotate(-45deg); background: rgba(255,255,255,.35); }
+.coll .art { position: absolute; inset: 0; z-index: -1; }
+.coll .shoe-wrap { position: absolute; width: 88%; right: -10%; bottom: 14%; transform: rotate(-14deg); transition: transform 1s var(--ease); }
+.coll:hover .shoe-wrap { transform: rotate(-20deg) translate(-4%, -4%); }
+@media (max-width: 900px) { .collections { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- journal: editorial split ---------- */
+.journal { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.4fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
+.journal-intro { position: sticky; top: 120px; display: flex; flex-direction: column; gap: 26px; }
+.journal-intro h2 { font-family: var(--f-serif); font-weight: 400; font-size: clamp(56px, 6.4vw, 104px); line-height: .92; letter-spacing: -.025em; margin: 0; }
+.journal-intro h2 em { color: var(--ember); }
+.stories { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 22px); }
+.story { text-decoration: none; display: flex; flex-direction: column; gap: 16px; }
+.story:nth-child(2) { margin-top: 96px; }
+.story:nth-child(3) { margin-top: -48px; }
+.story .bezel { --r-xl: 30px; }
+.story-art { aspect-ratio: 4 / 5; border-radius: 24px; overflow: hidden; position: relative; }
+.story-art svg { width: 100%; height: 100%; transition: transform 1.2s var(--ease); }
+.story:hover .story-art svg { transform: scale(1.06); }
+.story-art .stamp { position: absolute; left: 16px; bottom: 16px; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; background: rgba(255,255,255,.85); padding: 6px 11px; border-radius: 999px; }
+.story h3 { margin: 0; font-size: clamp(20px, 1.8vw, 26px); font-weight: 600; letter-spacing: -.015em; line-height: 1.2; padding-inline: 4px; }
+.story p { margin: 0; color: var(--ink-2); font-size: 15px; padding-inline: 4px; }
+@media (max-width: 900px) {
+  .journal { grid-template-columns: minmax(0, 1fr); }
+  .journal-intro { position: static; }
+  .story:nth-child(n) { margin-top: 0; }
+}
+@media (max-width: 600px) {
+  .stories { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%; overflow-x: auto; scroll-snap-type: x mandatory;
+             margin-inline: calc(var(--gut) * -1); padding: 4px var(--gut) 12px; scroll-padding-inline: var(--gut); scrollbar-width: none; overscroll-behavior-x: contain; }
+  .stories::-webkit-scrollbar { display: none; }
+  .story { scroll-snap-align: start; }
+}
+
+/* ---------- club band ---------- */
+.club { background: var(--night); color: var(--canvas); border-radius: clamp(28px, 4vw, 56px); margin-inline: clamp(8px, 1.4vw, 20px); padding: clamp(64px, 9vw, 140px) 0; position: relative; overflow: hidden; }
+.club .wrap { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 96px); align-items: end; position: relative; z-index: 1; }
+.club h2 { font-size: clamp(64px, 9vw, 150px); }
+.club h2 .serif { color: var(--volt); }
+.club .eyebrow { background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); color: var(--canvas); }
+.club .eyebrow::before { background: var(--volt); }
+.perks { list-style: none; margin: 0 0 32px; padding: 0; display: grid; gap: 14px; }
+.perks li { display: flex; gap: 14px; align-items: center; color: #d6d0c6; }
+.perks li svg { width: 22px; height: 22px; flex: none; color: var(--volt); }
+.signup { display: flex; padding: 6px; border-radius: 999px; background: rgba(255,255,255,.07); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); transition: box-shadow .4s var(--ease); }
+.signup:focus-within { box-shadow: inset 0 0 0 1.5px var(--volt); }
+.signup input { flex: 1; min-width: 0; background: transparent; border: 0; color: var(--canvas); font: inherit; font-size: 16px; padding: 0 18px; outline: none; }
+.signup input::placeholder { color: #8f887e; }
+.signup .btn { --bg: var(--volt); --fg: var(--ink); --chip: rgba(21,20,18,.1); }
+.signup-msg { font-size: 14px; color: #b9b2a7; margin: 14px 0 0 18px; min-height: 1.5em; }
+.signup-msg.err { color: #ff9f80; }
+.signup-msg.ok { color: var(--volt); }
+.club-rings { position: absolute; right: -14%; top: -40%; width: 76%; aspect-ratio: 1; opacity: .55; pointer-events: none; overflow: visible;
+  -webkit-mask-image: radial-gradient(closest-side, #000 45%, transparent); mask-image: radial-gradient(closest-side, #000 45%, transparent); }
+@media (max-width: 900px) { .club .wrap { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 480px) { .signup { flex-direction: column; border-radius: 28px; gap: 6px; } .signup input { min-height: 52px; } .signup .btn { justify-content: space-between; } }
+
+/* ---------- footer ---------- */
+footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
+.foot { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 40px; padding-bottom: 56px; border-bottom: 1px solid var(--hair); }
+.foot h3 { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 18px; font-weight: 600; }
+.foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.foot a { text-decoration: none; color: var(--ink-2); transition: color .3s var(--ease); }
+.foot a:hover { color: var(--ink); }
+.foot .about p { color: var(--ink-2); max-width: 30ch; margin: 0 0 22px; }
+.foot-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-block: 24px; font-size: 14px; color: var(--ink-3); }
+.wordmark { font-stretch: 62%; font-weight: 800; font-size: clamp(120px, 31vw, 500px); line-height: .74; letter-spacing: -.01em; text-align: center; margin: 0 0 -0.08em; color: var(--ink); user-select: none; }
+@media (max-width: 800px) { .foot { grid-template-columns: 1fr 1fr; } .foot .about { grid-column: 1 / -1; } }
+
+/* ---------- toast ---------- */
+.toast {
+  position: fixed; left: 50%; bottom: 24px; z-index: 70; display: flex; align-items: center; gap: 14px;
+  background: var(--ink); color: var(--canvas); padding: 10px 10px 10px 12px; border-radius: 999px; box-shadow: 0 20px 50px -18px rgba(0,0,0,.5);
+  transform: translate(-50%, 140%); opacity: 0; transition: transform .7s var(--ease), opacity .5s var(--ease); max-width: calc(100% - 32px);
+}
+.toast.show { transform: translate(-50%, 0); opacity: 1; }
+.toast .mini { width: 64px; height: 44px; border-radius: 999px; background: var(--stage); display: grid; place-items: center; overflow: hidden; flex: none; }
+.toast .mini svg { width: 64px; transform: rotate(-8deg); }
+.toast b { font-weight: 600; }
+.toast span { font-size: 14px; color: #b9b2a7; }
+.toast a { margin-left: 8px; background: var(--volt); color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 700; padding: 10px 16px; border-radius: 999px; white-space: nowrap; }
+
+/* ---------- reveal ---------- */
+.js .reveal { opacity: 0; transform: translateY(48px); filter: blur(6px); transition: opacity 1s var(--ease-out), transform 1.2s var(--ease-out), filter 1s var(--ease-out); transition-delay: var(--d, 0s); }
+.js .reveal.in { opacity: 1; transform: none; filter: none; }
+.js .hero h1 .ln { display: block; overflow: hidden; padding: 0 .06em .22em; margin: 0 -.06em -.22em; }
+.js .hero h1 .ln > span { display: inline-block; transform: translateY(105%); transition: transform 1.3s var(--ease-out); transition-delay: var(--d, 0s); }
+.js.loaded .hero h1 .ln > span { transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
+  .js .reveal { opacity: 1; transform: none; filter: none; }
+  .js .hero h1 .ln > span { transform: none; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ============ SVG library ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="g-mid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".12"/>
+    </linearGradient>
+    <linearGradient id="g-up" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".16"/>
+    </linearGradient>
+    <pattern id="p-knit" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(-20)">
+      <path d="M0 3h6" stroke="#000" stroke-opacity=".07" stroke-width="1.2"/>
+    </pattern>
+  </defs>
+
+  <!-- Road shoe, side profile, toe to the right. Colours come from CSS custom properties. -->
+  <symbol id="shoe" viewBox="0 0 600 290">
+    <!-- heel pull tab -->
+    <path d="M70 100 C58 82 60 62 74 60 C82 59 86 66 88 76 L92 98 Z" fill="var(--s-accent)"/>
+    <!-- tongue -->
+    <path d="M186 104 C188 76 198 46 222 36 C238 30 252 38 250 54 C246 70 230 84 214 106 Z" fill="var(--s-over)"/>
+    <path d="M186 104 C188 76 198 46 222 36 C238 30 252 38 250 54 C246 70 230 84 214 106 Z" fill="url(#g-up)"/>
+    <!-- upper -->
+    <path d="M46 204 C38 160 42 118 60 94 C72 80 96 84 112 100 C130 116 156 116 176 104 C190 94 200 78 214 68 C226 60 240 62 246 72 C260 92 290 112 332 130 C392 154 462 164 516 172 C552 178 574 190 578 206 L46 210 Z" fill="var(--s-upper)"/>
+    <path d="M46 204 C38 160 42 118 60 94 C72 80 96 84 112 100 C130 116 156 116 176 104 C190 94 200 78 214 68 C226 60 240 62 246 72 C260 92 290 112 332 130 C392 154 462 164 516 172 C552 178 574 190 578 206 L46 210 Z" fill="url(#p-knit)"/>
+    <path d="M46 204 C38 160 42 118 60 94 C72 80 96 84 112 100 C130 116 156 116 176 104 C190 94 200 78 214 68 C226 60 240 62 246 72 C260 92 290 112 332 130 C392 154 462 164 516 172 C552 178 574 190 578 206 L46 210 Z" fill="url(#g-up)"/>
+    <!-- collar lining -->
+    <path d="M62 96 C74 84 94 88 110 102 C128 118 156 120 178 106 C168 120 150 126 130 124 C108 122 92 106 76 104 C70 103 64 100 62 96 Z" fill="var(--s-lining)"/>
+    <!-- heel counter -->
+    <path d="M46 206 C38 168 40 128 54 104 C72 112 92 136 100 166 C104 182 104 196 102 208 Z" fill="var(--s-over)"/>
+    <!-- toe cap -->
+    <path d="M452 162 C492 166 540 172 566 188 C578 196 580 204 574 208 L446 208 C432 194 434 174 452 162 Z" fill="var(--s-over)"/>
+    <!-- eyestay overlay -->
+    <path d="M214 70 C228 62 240 64 246 74 C262 96 292 116 334 134 C356 143 378 150 398 155 C392 166 380 172 366 170 C330 162 290 146 258 126 C236 112 218 96 214 70 Z" fill="var(--s-over)"/>
+    <!-- brand mark: sweep -->
+    <path d="M120 186 C190 186 262 170 330 140" fill="none" stroke="var(--s-accent)" stroke-width="13" stroke-linecap="round"/>
+    <path d="M150 198 C220 198 300 184 372 156" fill="none" stroke="var(--s-accent)" stroke-opacity=".55" stroke-width="4" stroke-linecap="round"/>
+    <!-- eyelets + laces -->
+    <g fill="var(--s-lining)">
+      <circle cx="230" cy="84" r="4.2"/><circle cx="250" cy="99" r="4.2"/><circle cx="272" cy="113" r="4.2"/>
+      <circle cx="296" cy="126" r="4.2"/><circle cx="320" cy="137" r="4.2"/><circle cx="346" cy="147" r="4.2"/>
+    </g>
+    <g stroke="var(--s-lace)" stroke-width="6.5" stroke-linecap="round" fill="none">
+      <path d="M230 84 L244 66"/><path d="M250 99 L266 82"/><path d="M272 113 L290 96"/>
+      <path d="M296 126 L314 110"/><path d="M320 137 L338 122"/><path d="M346 147 L362 134"/>
+    </g>
+    <path d="M232 70 C222 52 230 40 240 44" fill="none" stroke="var(--s-lace)" stroke-width="5" stroke-linecap="round"/>
+    <path d="M242 68 C258 56 268 62 262 74" fill="none" stroke="var(--s-lace)" stroke-width="5" stroke-linecap="round"/>
+    <!-- stitch line -->
+    <path d="M62 194 C200 197 380 197 548 198" fill="none" stroke="#000" stroke-opacity=".18" stroke-width="1.6" stroke-dasharray="5 6"/>
+    <!-- midsole -->
+    <path d="M40 200 C34 228 40 252 66 258 L478 258 C528 258 562 248 582 228 C590 218 588 206 576 204 L452 206 C380 210 300 212 220 210 C150 208 92 198 40 200 Z" fill="var(--s-mid)"/>
+    <path d="M40 200 C34 228 40 252 66 258 L478 258 C528 258 562 248 582 228 C590 218 588 206 576 204 L452 206 C380 210 300 212 220 210 C150 208 92 198 40 200 Z" fill="url(#g-mid)"/>
+    <path d="M70 236 C160 238 300 236 420 230 C470 228 520 222 560 214" fill="none" stroke="#000" stroke-opacity=".08" stroke-width="3" stroke-linecap="round"/>
+    <!-- outsole -->
+    <path d="M50 252 C52 262 60 268 76 268 L482 268 C532 268 566 256 584 234 L582 228 C562 248 528 258 478 258 L66 258 C58 258 52 256 50 252 Z" fill="var(--s-sole)"/>
+  </symbol>
+
+  <!-- Trail variant: lugged outsole and toe bumper -->
+  <symbol id="shoe-trail" viewBox="0 0 600 290">
+    <use href="#shoe"/>
+    <path d="M446 208 L574 208 C584 214 584 226 576 232 C556 246 520 252 470 252 C452 236 444 222 446 208 Z" fill="var(--s-sole)" fill-opacity=".9"/>
+    <g fill="var(--s-sole)">
+      <path d="M78 268 h22 l-4 10 h-14 z"/><path d="M128 268 h22 l-4 10 h-14 z"/><path d="M178 268 h22 l-4 10 h-14 z"/>
+      <path d="M228 268 h22 l-4 10 h-14 z"/><path d="M278 268 h22 l-4 10 h-14 z"/><path d="M328 268 h22 l-4 10 h-14 z"/>
+      <path d="M378 268 h22 l-4 10 h-14 z"/><path d="M428 268 h22 l-4 10 h-14 z"/><path d="M478 266 h22 l-3 10 h-14 z"/>
+      <path d="M528 258 l20 -8 l1 10 l-13 6 z"/>
+    </g>
+  </symbol>
+
+  <symbol id="arrow" viewBox="0 0 16 16"><path d="M3 13L13 3M5 3h8v8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="plus" viewBox="0 0 16 16"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M7.5 12.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<!-- ============ nav ============ -->
+<div class="nav-shell">
+  <nav class="nav" aria-label="Main">
+    <a class="brand" href="#top" aria-label="SOLUM home">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="var(--ink)"/><path d="M5 15.5c4 0 9-1.6 14-6" stroke="var(--ember)" stroke-width="2.6" stroke-linecap="round" fill="none"/></svg>
+      SOLUM
+    </a>
+    <ul class="nav-links">
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#tech">Technology</a></li>
+      <li><a href="#collections">Collections</a></li>
+      <li><a href="#journal">Journal</a></li>
+    </ul>
+    <div class="nav-tools">
+      <button class="icon-btn" type="button" aria-label="Search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M16 16l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </button>
+      <button class="icon-btn bag" type="button" aria-label="Bag, 0 items" id="bag-btn">
+        Bag <span class="bag-count" id="bag-count">0</span>
+      </button>
+      <button class="icon-btn burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu" id="burger"><span></span><span></span></button>
+    </div>
+  </nav>
+</div>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <ul>
+    <li><a href="#shop">Shop</a></li>
+    <li><a href="#tech">Technology</a></li>
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="#journal">Journal</a></li>
+    <li><a href="#club">Club</a></li>
+  </ul>
+  <p>Free returns for 60 days · Designed in Zürich</p>
+</div>
+
+<main id="main">
+  <!-- ============ hero ============ -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div class="hero-meta">
+        <span class="eyebrow">New · Aster 2</span>
+        <div class="tag"><span><b>248 g</b> men's 42</span><span><b>6 mm</b> drop</span><span><b>CHF 189</b></span></div>
+      </div>
+      <h1 class="display" id="hero-title">
+        <span class="ln"><span>The long</span></span>
+        <span class="ln l2"><span><em class="serif">way</em> round</span></span>
+      </h1>
+    </div>
+
+    <div class="wrap">
+      <div class="hero-row">
+        <div class="hero-copy reveal">
+          <p class="lede">A daily trainer built for the ten-thousandth kilometre, not the first. Soft where it should be, tough where it counts, and made so we can resole it when you wear it through.</p>
+          <div class="cta-row">
+            <a class="btn" href="#shop">Shop the Aster 2 <span class="ic"><svg><use href="#arrow"/></svg></span></a>
+            <a class="btn btn-ghost" href="#tech">How it's made <span class="ic"><svg><use href="#arrow"/></svg></span></a>
+          </div>
+        </div>
+
+        <div class="hero-stage" id="hero-stage">
+        <div class="hero-badge" aria-hidden="true"><div>Built for<br>10,000 km<small>Repairable</small></div></div>
+        <div class="tilt" id="tilt">
+          <div class="float">
+            <div class="swap shoe-wrap" id="hero-shoe">
+              <div class="shoe-shadow"></div>
+              <svg class="shoe" viewBox="0 0 600 290" role="img" aria-label="SOLUM Aster 2 running shoe"><use href="#shoe"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      </div>
+        <div class="bezel buybar reveal" style="--d:.15s">
+          <div class="core buy">
+            <div class="buy-head">
+              <div><h2>Aster 2</h2><p>Road running · Unisex</p></div>
+              <span class="price">CHF 189</span>
+            </div>
+            <div>
+              <div class="label"><span>Colour</span><output id="cw-name">Bone / Ember</output></div>
+              <div class="swatches" role="group" aria-label="Colour">
+                <button class="swatch" type="button" aria-pressed="true" aria-label="Bone / Ember" data-cw="bone" style="--c:linear-gradient(135deg,#ede6da 50%,#e8501f 50%)"></button>
+                <button class="swatch" type="button" aria-pressed="false" aria-label="Midnight / Volt" data-cw="midnight" style="--c:linear-gradient(135deg,#1f2330 50%,#d7f25c 50%)"></button>
+                <button class="swatch" type="button" aria-pressed="false" aria-label="Sage / Cream" data-cw="sage" style="--c:linear-gradient(135deg,#a3b39a 50%,#f4efe6 50%)"></button>
+                <button class="swatch" type="button" aria-pressed="false" aria-label="Cobalt / Coral" data-cw="cobalt" style="--c:linear-gradient(135deg,#2c4fd8 50%,#ffb19c 50%)"></button>
+              </div>
+            </div>
+            <div>
+              <div class="label"><span>Size (EU)</span><output id="size-out">Select a size</output></div>
+              <div class="sizes" role="group" aria-label="Size">
+                <button class="size" type="button" aria-pressed="false">39</button>
+                <button class="size" type="button" aria-pressed="false">40</button>
+                <button class="size" type="button" aria-pressed="false">41</button>
+                <button class="size" type="button" aria-pressed="false">42</button>
+                <button class="size" type="button" aria-pressed="false" disabled>43</button>
+                <button class="size" type="button" aria-pressed="false">44</button>
+              </div>
+            </div>
+            <button class="btn btn-ember" type="button" id="hero-add">Add to bag <span class="ic"><svg><use href="#plus"/></svg></span></button>
+            <p class="buy-note">In stock · ships tomorrow, carbon-neutral</p>
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- ============ marquee ============ -->
+  <div class="marquee" aria-label="Store promises">
+    <div class="marquee-track">
+      <ul><li>Free returns for 60 days</li><li>Resoled, not replaced</li><li>Carbon-neutral shipping</li><li>2-year warranty</li><li>Designed in Zürich</li></ul>
+      <ul aria-hidden="true"><li>Free returns for 60 days</li><li>Resoled, not replaced</li><li>Carbon-neutral shipping</li><li>2-year warranty</li><li>Designed in Zürich</li></ul>
+    </div>
+  </div>
+
+  <!-- ============ shop ============ -->
+  <section class="section" id="shop" aria-labelledby="shop-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="left reveal">
+          <span class="eyebrow">Autumn / Winter 26</span>
+          <h2 class="display title" id="shop-title">This season</h2>
+        </div>
+        <div class="chips reveal" role="group" aria-label="Filter products" style="--d:.1s">
+          <button class="chip" type="button" aria-pressed="true" data-filter="all">All</button>
+          <button class="chip" type="button" aria-pressed="false" data-filter="road">Road</button>
+          <button class="chip" type="button" aria-pressed="false" data-filter="trail">Trail</button>
+          <button class="chip" type="button" aria-pressed="false" data-filter="everyday">Everyday</button>
+        </div>
+      </div>
+
+      <div class="grid" id="grid">
+        <article class="card reveal" data-cat="road">
+          <div class="bezel"><div class="core card-stage" style="--tint:#e9e1d4;--s-upper:#ede6da;--s-over:#ddd3c4;--s-lining:#c9bca8;--s-mid:#f8f4ee;--s-sole:#2a2724;--s-accent:#e8501f;--s-lace:#f8f4ee">
+            <span class="card-tag">New</span>
+            <div class="shoe-wrap"><div class="shoe-shadow"></div><svg class="shoe" viewBox="0 0 600 290" aria-hidden="true"><use href="#shoe"/></svg></div>
+            <button class="quick" type="button" data-name="Aster 2" data-cw="bone">Quick add <svg><use href="#plus"/></svg></button>
+          </div></div>
+          <div class="card-info"><h3>Aster 2</h3><span class="price">CHF 189</span><p class="cat">Road running</p>
+            <div class="dots"><i style="--c:#ede6da"></i><i style="--c:#1f2330"></i><i style="--c:#a3b39a"></i><i style="--c:#2c4fd8"></i></div></div>
+        </article>
+
+        <article class="card reveal" data-cat="trail" style="--d:.08s">
+          <div class="bezel"><div class="core card-stage" style="--tint:#d9dccd;--s-upper:#4c5a3f;--s-over:#38452e;--s-lining:#2b3423;--s-mid:#d9cdb4;--s-sole:#1c1b19;--s-accent:#f08a3c;--s-lace:#e5d9c2">
+            <span class="card-tag">Trail</span>
+            <div class="shoe-wrap"><div class="shoe-shadow"></div><svg class="shoe" viewBox="0 0 600 290" aria-hidden="true"><use href="#shoe-trail"/></svg></div>
+            <button class="quick" type="button" data-name="Vela Trail" data-cw="moss">Quick add <svg><use href="#plus"/></svg></button>
+          </div></div>
+          <div class="card-info"><h3>Vela Trail</h3><span class="price">CHF 209</span><p class="cat">Trail running · Vibram outsole</p>
+            <div class="dots"><i style="--c:#4c5a3f"></i><i style="--c:#7b4a2e"></i><i style="--c:#1c1b19"></i></div></div>
+        </article>
+
+        <article class="card reveal" data-cat="everyday" style="--d:.16s">
+          <div class="bezel"><div class="core card-stage" style="--tint:#ead7c6;--s-upper:#c69a6d;--s-over:#a87c52;--s-lining:#7f5c3b;--s-mid:#f3ead9;--s-sole:#6d4a2f;--s-accent:#f3ead9;--s-lace:#f3ead9">
+            <span class="card-tag">Suede</span>
+            <div class="shoe-wrap"><div class="shoe-shadow"></div><svg class="shoe" viewBox="0 0 600 290" aria-hidden="true"><use href="#shoe"/></svg></div>
+            <button class="quick" type="button" data-name="Loam" data-cw="tan">Quick add <svg><use href="#plus"/></svg></button>
+          </div></div>
+          <div class="card-info"><h3>Loam</h3><span class="price">CHF 159</span><p class="cat">Everyday · Suede & wool</p>
+            <div class="dots"><i style="--c:#c69a6d"></i><i style="--c:#3b3a38"></i><i style="--c:#e8e2d6"></i></div></div>
+        </article>
+
+        <article class="card reveal" data-cat="road" style="--d:.24s">
+          <div class="bezel"><div class="core card-stage" style="--tint:#dfe2ee;--s-upper:#f4f3ef;--s-over:#e2e1dc;--s-lining:#c9c8c2;--s-mid:#d7f25c;--s-sole:#151412;--s-accent:#151412;--s-lace:#151412">
+            <span class="card-tag sale">−25%</span>
+            <div class="shoe-wrap"><div class="shoe-shadow"></div><svg class="shoe" viewBox="0 0 600 290" aria-hidden="true"><use href="#shoe"/></svg></div>
+            <button class="quick" type="button" data-name="Sola Racer" data-cw="volt">Quick add <svg><use href="#plus"/></svg></button>
+          </div></div>
+          <div class="card-info"><h3>Sola Racer</h3><span class="price now">CHF 179</span><p class="cat">Race day · Carbon plate</p><span class="was" aria-label="Was CHF 239">CHF 239</span>
+            <div class="dots"><i style="--c:#d7f25c"></i><i style="--c:#151412"></i></div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ tech bento ============ -->
+  <section class="section" id="tech" aria-labelledby="tech-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="left reveal">
+          <span class="eyebrow">Technology</span>
+          <h2 class="display title" id="tech-title">Built in <em class="serif">layers</em></h2>
+        </div>
+        <p class="lede reveal" style="--d:.1s;max-width:26em">Three parts, stitched not glued, so each one can be replaced. That's the whole idea.</p>
+      </div>
+
+      <div class="bento">
+        <div class="tile t-anatomy reveal" style="--s-upper:#1f2330;--s-over:#2b3142;--s-lining:#3a4157;--s-mid:#eeeae2;--s-sole:#0e0e0d;--s-accent:#d7f25c;--s-lace:#2b3142">
+          <div><h3>Anatomy of the Aster 2</h3><p>Three layers. Every one of them replaceable.</p></div>
+          <div class="shoe-zone">
+            <div class="shoe-wrap"><div class="shoe-shadow"></div><svg class="shoe" viewBox="0 0 600 290" aria-hidden="true"><use href="#shoe"/></svg></div>
+            <div class="callout c1"><i></i><span>Recycled engineered knit</span></div>
+            <div class="callout c2"><i></i><span>Bio-based foam, 38 mm heel</span></div>
+            <div class="callout c3"><i></i><span>Stitched, resoleable outsole</span></div>
+          </div>
+        </div>
+        <div class="tile t-weight reveal" style="--d:.08s">
+          <span class="big" data-count="248">248<small>g</small></span>
+          <div><h3>Light enough to forget</h3><p>Men's EU 42. About the weight of a paperback.</p></div>
+        </div>
+        <div class="tile t-drop reveal" style="--d:.12s">
+          <span class="big" data-count="6">6<small>mm</small></span>
+          <h3>Drop</h3>
+        </div>
+        <div class="tile t-recycled reveal" style="--d:.16s">
+          <span class="big" data-count="64">64<small>%</small></span>
+          <div><h3>Recycled content</h3><p>By weight, across upper, laces and lining.</p></div>
+        </div>
+        <div class="tile t-repair reveal">
+          <div class="txt">
+            <span class="eyebrow">Solum Repair</span>
+            <h3>Worn through? <em class="serif">We'll resole it.</em></h3>
+            <p>Send your pair back to our Zürich workshop. New outsole, fresh laces, back on your feet in two weeks for CHF 49.</p>
+          </div>
+          <a class="btn" href="#club">Book a repair <span class="ic"><svg><use href="#arrow"/></svg></span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ collections ============ -->
+  <section class="section" id="collections" aria-labelledby="coll-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="left reveal">
+          <span class="eyebrow">Collections</span>
+          <h2 class="display title" id="coll-title">Find your ground</h2>
+        </div>
+      </div>
+      <div class="collections">
+        <a class="coll reveal" href="#shop" style="--bg:#e8501f;--fg:#fff;--s-upper:#f4efe6;--s-over:#e5ddd0;--s-lining:#cfc4b2;--s-mid:#fff;--s-sole:#151412;--s-accent:#151412;--s-lace:#151412">
+          <svg class="art" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" data-topo="7" data-stroke="rgba(255,255,255,.22)"></svg>
+          <span class="word">Road</span>
+          <div class="shoe-wrap"><svg class="shoe" viewBox="0 0 600 290" aria-hidden="true"><use href="#shoe"/></svg></div>
+          <span class="meta">12 styles <span class="arrow"><svg><use href="#arrow"/></svg></span></span>
+        </a>
+        <a class="coll reveal" href="#shop" style="--d:.08s;--bg:#3d4a33;--fg:#f4efe6;--s-upper:#d9cdb4;--s-over:#bfae8e;--s-lining:#8f7e5f;--s-mid:#f4efe6;--s-sole:#1c1b19;--s-accent:#e8501f;--s-lace:#3d4a33">
+          <svg class="art" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" data-topo="3" data-stroke="rgba(255,255,255,.16)"></svg>
+          <span class="word">Trail</span>
+          <div class="shoe-wrap"><svg class="shoe" viewBox="0 0 600 290" aria-hidden="true"><use href="#shoe-trail"/></svg></div>
+          <span class="meta">7 styles <span class="arrow"><svg><use href="#arrow"/></svg></span></span>
+        </a>
+        <a class="coll reveal" href="#shop" style="--d:.16s;--bg:#dcd4c6;--s-upper:#3b3a38;--s-over:#2c2b29;--s-lining:#575550;--s-mid:#e8e2d6;--s-sole:#6d4a2f;--s-accent:#e8e2d6;--s-lace:#e8e2d6">
+          <svg class="art" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" data-topo="11" data-stroke="rgba(21,20,18,.1)"></svg>
+          <span class="word">Every<br>day</span>
+          <div class="shoe-wrap"><svg class="shoe" viewBox="0 0 600 290" aria-hidden="true"><use href="#shoe"/></svg></div>
+          <span class="meta">9 styles <span class="arrow" style="background:rgba(21,20,18,.06);box-shadow:inset 0 0 0 1px rgba(21,20,18,.12)"><svg><use href="#arrow"/></svg></span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ journal ============ -->
+  <section class="section" id="journal" aria-labelledby="journal-title" style="padding-top:0">
+    <div class="wrap journal">
+      <div class="journal-intro reveal">
+        <span class="eyebrow">Journal</span>
+        <h2 id="journal-title">Field notes from the <em>long way round</em></h2>
+        <p class="lede">Routes, repairs and the people who wear our shoes into the ground. New stories every other Sunday.</p>
+        <a class="btn btn-ghost" href="#journal">Read the journal <span class="ic"><svg><use href="#arrow"/></svg></span></a>
+      </div>
+      <div class="stories">
+        <a class="story reveal" href="#journal">
+          <div class="bezel"><div class="core story-art"><svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" data-topo="21" data-bg="#3d4a33" data-stroke="rgba(244,239,230,.35)"></svg><span class="stamp">Route</span></div></div>
+          <h3>Uetliberg at first light: 14 km, 600 m up</h3><p>8 min read</p>
+        </a>
+        <a class="story reveal" href="#journal" style="--d:.1s">
+          <div class="bezel"><div class="core story-art"><svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" data-topo="5" data-bg="#e8501f" data-stroke="rgba(255,255,255,.35)"></svg><span class="stamp">Workshop</span></div></div>
+          <h3>Inside the repair bench: 1,200 pairs and counting</h3><p>6 min read</p>
+        </a>
+        <a class="story reveal" href="#journal">
+          <div class="bezel"><div class="core story-art"><svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" data-topo="13" data-bg="#1f2330" data-stroke="rgba(215,242,92,.4)"></svg><span class="stamp">Training</span></div></div>
+          <h3>Why your easy runs should feel embarrassingly easy</h3><p>5 min read</p>
+        </a>
+        <a class="story reveal" href="#journal" style="--d:.1s">
+          <div class="bezel"><div class="core story-art"><svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" data-topo="34" data-bg="#dcd4c6" data-stroke="rgba(21,20,18,.22)"></svg><span class="stamp">Materials</span></div></div>
+          <h3>From bottle to upper: where our knit comes from</h3><p>7 min read</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ club ============ -->
+  <section class="club" id="club" aria-labelledby="club-title">
+    <svg class="club-rings" viewBox="0 0 400 400" aria-hidden="true" data-topo="2" data-stroke="rgba(215,242,92,.35)"></svg>
+    <div class="wrap">
+      <div class="reveal">
+        <span class="eyebrow">Solum Club</span>
+        <h2 class="display" id="club-title" style="margin-top:28px">Run with <em class="serif">us</em></h2>
+      </div>
+      <div class="reveal" style="--d:.1s">
+        <ul class="perks">
+          <li><svg><use href="#check"/></svg>10% off your first pair</li>
+          <li><svg><use href="#check"/></svg>Early access to limited colourways</li>
+          <li><svg><use href="#check"/></svg>Free resoling on your first repair</li>
+        </ul>
+        <form class="signup" id="signup" novalidate>
+          <label class="sr" for="email">Email address</label>
+          <input id="email" name="email" type="email" autocomplete="email" spellcheck="false" placeholder="you@example.com" required>
+          <button class="btn" type="submit">Join <span class="ic"><svg><use href="#arrow"/></svg></span></button>
+        </form>
+        <p class="signup-msg" id="signup-msg" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ footer ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="about">
+        <a class="brand" href="#top" aria-label="SOLUM home"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="var(--ink)"/><path d="M5 15.5c4 0 9-1.6 14-6" stroke="var(--ember)" stroke-width="2.6" stroke-linecap="round" fill="none"/></svg>SOLUM</a>
+        <p style="margin-top:18px">Shoes for the long way round. Designed in Zürich, built to be repaired.</p>
+      </div>
+      <div><h3>Shop</h3><ul><li><a href="#shop">Road</a></li><li><a href="#shop">Trail</a></li><li><a href="#shop">Everyday</a></li><li><a href="#shop">Gift cards</a></li></ul></div>
+      <div><h3>Help</h3><ul><li><a href="#top">Size guide</a></li><li><a href="#top">Shipping</a></li><li><a href="#top">Returns</a></li><li><a href="#tech">Repairs</a></li></ul></div>
+      <div><h3>Company</h3><ul><li><a href="#journal">Journal</a></li><li><a href="#top">Stores</a></li><li><a href="#top">Careers</a></li><li><a href="#top">Contact</a></li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>© <span id="year">2026</span> SOLUM Footwear. A fictional brand.</span><span>Privacy · Terms · CHF / EN</span></div>
+  </div>
+  <p class="wordmark" aria-hidden="true">SOLUM</p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <div class="mini" id="toast-mini"><svg viewBox="0 0 600 290" aria-hidden="true"><use href="#shoe"/></svg></div>
+  <div><b id="toast-title">Added to bag</b><br><span id="toast-sub">Aster 2</span></div>
+  <a href="#top">View bag</a>
+</div>
+
+<script>
+(() => {
+  const root = document.documentElement;
+  root.classList.add("js");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  /* ---- colourways (CSS custom properties consumed by the shoe symbol) ---- */
+  const CW = {
+    bone:     { name: "Bone / Ember",    v: { upper:"#ede6da", over:"#ddd3c4", lining:"#c9bca8", mid:"#f8f4ee", sole:"#2a2724", accent:"#e8501f", lace:"#f8f4ee" } },
+    midnight: { name: "Midnight / Volt", v: { upper:"#1f2330", over:"#2b3142", lining:"#3a4157", mid:"#eeeae2", sole:"#0e0e0d", accent:"#d7f25c", lace:"#2b3142" } },
+    sage:     { name: "Sage / Cream",    v: { upper:"#a3b39a", over:"#8a9c80", lining:"#6f8166", mid:"#f4efe6", sole:"#3b3a36", accent:"#f4efe6", lace:"#f4efe6" } },
+    cobalt:   { name: "Cobalt / Coral",  v: { upper:"#2c4fd8", over:"#1f3cae", lining:"#172e86", mid:"#f4f1ea", sole:"#151412", accent:"#ffb19c", lace:"#f4f1ea" } }
+  };
+  const apply = (el, v) => Object.entries(v).forEach(([k, c]) => el.style.setProperty("--s-" + k, c));
+  const heroShoe = document.getElementById("hero-shoe");
+  apply(heroShoe, CW.bone.v);
+  apply(document.getElementById("toast-mini"), CW.bone.v);
+  let currentCw = "bone";
+
+  document.querySelectorAll(".swatch").forEach((b) => b.addEventListener("click", () => {
+    const key = b.dataset.cw;
+    if (key === currentCw) return;
+    currentCw = key;
+    document.querySelectorAll(".swatch").forEach((s) => s.setAttribute("aria-pressed", String(s === b)));
+    document.getElementById("cw-name").textContent = CW[key].name;
+    if (reduce) { apply(heroShoe, CW[key].v); return; }
+    heroShoe.classList.add("out");
+    setTimeout(() => { apply(heroShoe, CW[key].v); heroShoe.classList.remove("out"); }, 380);
+  }));
+
+  /* ---- sizes ---- */
+  let size = null;
+  document.querySelectorAll(".size").forEach((b) => b.addEventListener("click", () => {
+    size = b.textContent;
+    document.querySelectorAll(".size").forEach((s) => s.setAttribute("aria-pressed", String(s === b)));
+    document.getElementById("size-out").textContent = "EU " + size;
+  }));
+
+  /* ---- bag + toast ---- */
+  let count = 0, toastTimer;
+  const bagCount = document.getElementById("bag-count"), bagBtn = document.getElementById("bag-btn"), toast = document.getElementById("toast");
+  function addToBag(name, sub, vars) {
+    count++;
+    bagCount.textContent = count;
+    bagBtn.setAttribute("aria-label", "Bag, " + count + (count === 1 ? " item" : " items"));
+    bagCount.classList.remove("bump"); void bagCount.offsetWidth; bagCount.classList.add("bump");
+    document.getElementById("toast-title").textContent = "Added: " + name;
+    document.getElementById("toast-sub").textContent = sub;
+    apply(document.getElementById("toast-mini"), vars);
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("show"), 3200);
+  }
+  document.getElementById("hero-add").addEventListener("click", () => {
+    if (!size) {
+      document.getElementById("size-out").textContent = "Please pick a size";
+      document.querySelector(".size:not(:disabled)").focus();
+      return;
+    }
+    addToBag("Aster 2", CW[currentCw].name + " · EU " + size, CW[currentCw].v);
+  });
+  document.querySelectorAll(".quick").forEach((b) => b.addEventListener("click", () => {
+    const stage = b.closest(".card-stage"), cs = stage.style, v = {};
+    ["upper","over","lining","mid","sole","accent","lace"].forEach((k) => v[k] = cs.getPropertyValue("--s-" + k));
+    addToBag(b.dataset.name, "Size chosen at checkout", v);
+  }));
+
+  /* ---- filters ---- */
+  document.querySelectorAll(".chip").forEach((c) => c.addEventListener("click", () => {
+    document.querySelectorAll(".chip").forEach((x) => x.setAttribute("aria-pressed", String(x === c)));
+    const f = c.dataset.filter;
+    document.querySelectorAll("#grid .card").forEach((card) => card.classList.toggle("dim", f !== "all" && card.dataset.cat !== f));
+  }));
+
+  /* ---- menu ---- */
+  const burger = document.getElementById("burger"), menu = document.getElementById("menu");
+  const setMenu = (open) => {
+    document.body.classList.toggle("menu-open", open);
+    burger.setAttribute("aria-expanded", String(open));
+    burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    menu.setAttribute("aria-hidden", String(!open));
+    document.body.style.overflow = open ? "hidden" : "";
+  };
+  burger.addEventListener("click", () => setMenu(!document.body.classList.contains("menu-open")));
+  menu.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setMenu(false)));
+  addEventListener("keydown", (e) => { if (e.key === "Escape") setMenu(false); });
+
+  /* ---- nav hides on scroll down, returns on scroll up (rAF-throttled) ---- */
+  const nav = document.querySelector(".nav");
+  let lastY = scrollY, ticking = false;
+  addEventListener("scroll", () => {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(() => {
+      const y = scrollY;
+      nav.classList.toggle("hide", y > lastY && y > 400 && !document.body.classList.contains("menu-open"));
+      lastY = y; ticking = false;
+    });
+  }, { passive: true });
+
+  /* ---- newsletter ---- */
+  document.getElementById("signup").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const input = document.getElementById("email"), msg = document.getElementById("signup-msg");
+    if (!input.checkValidity()) { msg.className = "signup-msg err"; msg.textContent = "Enter a valid email address, like you@example.com."; input.focus(); return; }
+    msg.className = "signup-msg ok"; msg.textContent = "You're in. Check your inbox for your 10% code.";
+    input.value = "";
+  });
+
+  /* ---- topographic line art (seeded, deterministic) ---- */
+  function rng(seed) { return () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }; }
+  document.querySelectorAll("svg[data-topo]").forEach((svg) => {
+    const r = rng(+svg.dataset.topo * 7919 + 13);
+    const [, , W, H] = svg.getAttribute("viewBox").split(" ").map(Number);
+    const ns = "http://www.w3.org/2000/svg";
+    if (svg.dataset.bg) { const bg = document.createElementNS(ns, "rect"); bg.setAttribute("width", W); bg.setAttribute("height", H); bg.setAttribute("fill", svg.dataset.bg); svg.appendChild(bg); }
+    const peaks = Array.from({ length: 2 }, () => ({ x: W * (.2 + r() * .6), y: H * (.2 + r() * .6) }));
+    const phases = Array.from({ length: 4 }, () => r() * Math.PI * 2);
+    peaks.forEach((p, pi) => {
+      for (let i = 1; i <= 16; i++) {
+        const base = i * Math.max(W, H) / 22, pts = [];
+        for (let a = 0; a <= 64; a++) {
+          const t = a / 64 * Math.PI * 2;
+          const wob = 1 + .16 * Math.sin(3 * t + phases[0] + i * .2) + .09 * Math.sin(5 * t + phases[1 + pi]) + .05 * Math.sin(9 * t + phases[3]);
+          pts.push([p.x + Math.cos(t) * base * wob * 1.1, p.y + Math.sin(t) * base * wob * .85]);
+        }
+        const d = pts.map((q, k) => (k ? "L" : "M") + q[0].toFixed(1) + " " + q[1].toFixed(1)).join(" ") + "Z";
+        const path = document.createElementNS(ns, "path");
+        path.setAttribute("d", d); path.setAttribute("fill", "none");
+        path.setAttribute("stroke", svg.dataset.stroke || "rgba(0,0,0,.15)"); path.setAttribute("stroke-width", i % 4 === 0 ? "1.6" : ".9");
+        svg.appendChild(path);
+      }
+    });
+  });
+
+  /* ---- reveal on scroll ---- */
+  const io = new IntersectionObserver((entries) => entries.forEach((en) => {
+    if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+  }), { rootMargin: "0px 0px -8% 0px", threshold: .08 });
+  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+  /* ---- count-up numbers ---- */
+  const cio = new IntersectionObserver((entries) => entries.forEach((en) => {
+    if (!en.isIntersecting) return;
+    cio.unobserve(en.target);
+    const el = en.target, end = +el.dataset.count, unit = el.querySelector("small").outerHTML;
+    if (reduce) return;
+    const t0 = performance.now(), dur = 1400;
+    const step = (now) => {
+      const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 4);
+      el.innerHTML = Math.round(end * e) + unit;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }), { threshold: .5 });
+  document.querySelectorAll("[data-count]").forEach((el) => cio.observe(el));
+
+  /* ---- gentle pointer tilt on the hero shoe (fine pointers only) ---- */
+  if (!reduce && matchMedia("(pointer: fine)").matches) {
+    const stage = document.getElementById("hero-stage"), tilt = document.getElementById("tilt");
+    stage.addEventListener("pointermove", (e) => {
+      const r = stage.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      tilt.style.transform = `translate(${x * 18}px, ${y * 12}px) rotate(${x * 3}deg)`;
+    });
+    stage.addEventListener("pointerleave", () => { tilt.style.transform = ""; });
+  }
+
+  /* ---- intro ---- */
+  requestAnimationFrame(() => requestAnimationFrame(() => root.classList.add("loaded")));
+  [...document.querySelectorAll(".hero h1 .ln > span")].forEach((s, i) => s.style.setProperty("--d", (.08 + i * .12) + "s"));
+})();
+</script>
+</body>
+</html>
