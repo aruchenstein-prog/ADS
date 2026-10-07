@@ -1,7 +1,7 @@
 # schwung: Brand-Paket
 
 **Name:** schwung (immer klein geschrieben)
-**Claim:** Websites that move.
+**Claim:** Brands in motion.
 **Was wir sind:** Design-Studio aus Zürich für Websites, Markenauftritte und Launch-Pakete. Mit KI schnell, mit Geschmack gut.
 
 ## Warum "schwung"
@@ -48,7 +48,7 @@ Regeln: Logo nie verzerren, nicht umfärben (ausser Schwarz/Weiss), immer Abstan
 ## Schrift (gratis, Google Fonts)
 
 - **Archivo**, Condensed (font-stretch 62 %), Stärke 900, GROSSBUCHSTABEN → Headlines
-- **Instrument Serif Italic** → genau ein Akzentwort pro Headline ("Websites that *move*")
+- **Instrument Serif Italic** → genau ein Akzentwort pro Headline ("Brands in *motion*")
 - **Archivo** normal → Fliesstext
 
 ## Social-Media-Paket (`brand/social/`)
@@ -70,18 +70,18 @@ Regeln: Logo nie verzerren, nicht umfärben (ausser Schwarz/Weiss), immer Abstan
 ## Texte für die Profile (zum Kopieren)
 
 **LinkedIn: Headline**
-> Founder @ schwung · Websites that move · Design studio, Zürich
+> Founder @ schwung · Brands in motion · Design studio, Zürich
 
 **LinkedIn: Info / Unternehmensseite**
 > schwung is a design studio in Zürich. We build premium websites, brand looks and launch kits for ambitious small brands. AI helps us move fast; people with taste make it right. From idea to live in about ten days.
 
 **Instagram / TikTok: Bio** (max. 150 Zeichen)
-> Websites that move ⚪︎
+> Brands in motion ⚪︎
 > Design studio · Zürich
 > Brand + website in 10 days ↓
 
 **Behance: Über mich**
-> schwung: a Zürich design studio for websites that move. Web design, brand looks, motion and AI product imagery.
+> schwung: a Zürich design studio that puts brands in motion. Web design, brand looks, motion and AI product imagery.
 
 **Name überall gleich:** `schwung` · Handle `@schwung.studio`
 
@@ -90,7 +90,7 @@ Regeln: Logo nie verzerren, nicht umfärben (ausser Schwarz/Weiss), immer Abstan
 ```html
 <table cellpadding="0" cellspacing="0" style="font-family:Arial,sans-serif;font-size:13px;color:#0d0d0c">
   <tr><td style="padding-bottom:6px"><strong>Your Name</strong> · Founder</td></tr>
-  <tr><td style="padding-bottom:10px;color:#6f6a62">schwung · Websites that move · Zürich</td></tr>
+  <tr><td style="padding-bottom:10px;color:#6f6a62">schwung · Brands in motion · Zürich</td></tr>
   <tr><td><a href="https://yourdomain.ch" style="color:#3d2bff;text-decoration:none">yourdomain.ch</a></td></tr>
 </table>
 ```
