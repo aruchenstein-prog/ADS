@@ -4,6 +4,7 @@ This repo holds website projects built for the owner. Read this before starting 
 
 ## The owner and how to talk to them
 
+- The owner is **André**, founder of the studio schwung. The folder `Unterlagen für André/` holds his own copies (currently the schwung brand kit).
 - Writes mostly in **German** (casual, sometimes English). **Reply in the language of their last message**, in short, plain language without jargon. Explain what was done and what they need to do, step by step.
 - Texts that go **on websites or social posts** are in **English** unless asked otherwise.
 - Wants work that is **client-ready**: polished, tested, nothing broken, nothing half-finished. "Make it very nice" means premium agency quality, not a template.
