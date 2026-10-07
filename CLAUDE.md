@@ -16,7 +16,7 @@ This repo holds website projects built for the owner. Read this before starting 
 - `solum/`: **SOLUM**, a fictional premium sneaker brand ("designed in Zürich"). Single-page storefront and the owner's **portfolio / demo ad**. The quality reference for all new work. See `solum/README.md`.
   - `solum/promo/`: LinkedIn kit (4:5 video, carousel PDF, post texts in `LINKEDIN.md`, reach plan in `REICHWEITE.md`).
   - `solum/img/neu/PROMPTS.md`: image prompts the owner runs in Perchance.
-- `schwung/`: **schwung**, the owner's own design studio ("Brands in motion", Zürich): brand kit in `schwung/brand/` (logo SVGs, social media assets, brand board), brand rules and profile texts in `schwung/BRAND.md`, studio one-pager `schwung/index.html` with SOLUM as the case study. Use its logo, colours (Ink #0D0D0C, Paper #F2EFE9, Schwung Blue #3D2BFF) and tone for anything about the studio.
+- `schwung/`: **schwung**, the owner's own design studio ("Brands in motion", Zürich): brand kit in `schwung/brand/` (logo SVGs, social media assets, brand board), brand rules and profile texts in `schwung/BRAND.md`, studio one-pager `schwung/index.html` with SOLUM as the case study. Use its logo, colours (Ink #0D0D0C, Paper #F2EFE9, Schwung Blue #2346FF, Blue Light #6F86FF for the accent word on dark) and tone for anything about the studio.
 - `aml-revisions/`: landing page for the owner's father's real company (AML Revisions AG, audit firm for asset managers). **Do not change it unless the owner explicitly asks for that page.** Never apply SOLUM work (animations, styles, promo) to it. Audience: older clients, so calm, text-first, large type, no flashy motion.
 - `waymark/`: earlier concept page.
 - `design-md/`: design reference library used by the `design-references` skill.
@@ -36,6 +36,15 @@ This repo holds website projects built for the owner. Read this before starting 
    - Everything respects `prefers-reduced-motion`, and only `transform`/`opacity` are animated.
 4. **Things must actually work:** no dead buttons. Bag (with subtotal), search, filters, colour pickers, forms with validation and a mobile menu should all function.
 5. **Content must always show.** The owner's preview viewer can pause animations. Keep failsafes: the intro is removed by a timer, content shows if transitions are frozen or scripts fail, and the full HTML content is present without JS (prefill anything JS would render).
+
+## No AI slop (the owner's top rule)
+
+Everything must look and read like a skilled human made it. Check every page, image and text against `design-taste-frontend` (sections 9 and 14) before delivering, and fix what fails:
+- **Copy:** plain, concrete, honest. No filler words (premium, ambitious, seamless, elevate), no cute antitheses ("AI for speed, taste for quality"), no fake numbers or fake social proof ("most picked", "0 templates", "2 slots a month"), no claims we cannot back. Zero em dashes and en dashes. Swiss number format (CHF 2’900).
+- **Layout:** no eyebrow label on every section (max 1 per 3 sections, no dots in front), no "big headline left, small paragraph right" section headers, no three identical cards in a row, no repeated section layouts, no decoration text strips or marquees used as filler, no locale strips ("Design studio · Zürich") everywhere, at most one middle dot per line.
+- **Visuals:** no glows, no AI purple, no hand-drawn clipart icons, real screenshots or photos instead of fake UI. One page theme with at most one deliberate switch between dark and light.
+- **Function:** no dead links or buttons (`href="#"`). If a real service is missing, make it work another way (e.g. a form that opens the email app) or leave the element out and tell the owner.
+- The owner's chosen style (Archivo condensed + one Instrument Serif italic word, pill buttons, motion list above) stays; everything else follows the rules here.
 
 ## Images
 

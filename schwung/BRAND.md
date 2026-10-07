@@ -2,7 +2,7 @@
 
 **Name:** schwung (immer klein geschrieben)
 **Claim:** Brands in motion.
-**Was wir sind:** Design-Studio aus Zürich für Websites, Markenauftritte und Launch-Pakete. Mit KI schnell, mit Geschmack gut.
+**Was wir sind:** Kleines Design-Studio in Zürich. Websites, Logos und Launch-Inhalte für kleine Marken, vom ersten Gespräch bis zur fertigen Website in etwa zehn Tagen.
 
 ## Warum "schwung"
 
@@ -41,8 +41,8 @@ Regeln: Logo nie verzerren, nicht umfärben (ausser Schwarz/Weiss), immer Abstan
 |---|---|---|
 | Ink | `#0D0D0C` | Hauptfläche, Text |
 | Paper | `#F2EFE9` | Helle Flächen (statt Weiss) |
-| Schwung Blue | `#3D2BFF` | Die eine Signalfarbe: Buttons, Kugel, Akzente. Sparsam! |
-| Blue Soft | `#8F84FF` | Akzentwort auf dunklem Grund |
+| Schwung Blue | `#2346FF` | Die eine Signalfarbe: Buttons, Kugel, Akzente. Sparsam! |
+| Blue Light | `#6F86FF` | Nur für das Akzentwort auf dunklem Grund (besser lesbar) |
 | Stone | `#E4DFD5` | Ruhige Zweitfläche |
 
 ## Schrift (gratis, Google Fonts)
@@ -70,39 +70,37 @@ Regeln: Logo nie verzerren, nicht umfärben (ausser Schwarz/Weiss), immer Abstan
 ## Texte für die Profile (zum Kopieren)
 
 **LinkedIn: Headline**
-> Founder @ schwung · Brands in motion · Design studio, Zürich
+> Founder of schwung, a design studio in Zürich. Brands in motion.
 
 **LinkedIn: Info / Unternehmensseite**
-> schwung is a design studio in Zürich. We build premium websites, brand looks and launch kits for ambitious small brands. AI helps us move fast; people with taste make it right. From idea to live in about ten days.
+> schwung is a small design studio in Zürich. We make websites, logos and launch content for small brands, usually from first call to live site in about ten days. We use AI for code and images and say so openly; every design decision is made by a person.
 
 **Instagram / TikTok: Bio** (max. 150 Zeichen)
-> Brands in motion ⚪︎
-> Design studio · Zürich
-> Brand + website in 10 days ↓
+> Brands in motion.
+> Design studio in Zürich.
+> Logo and website in about 10 days.
 
 **Behance: Über mich**
-> schwung: a Zürich design studio that puts brands in motion. Web design, brand looks, motion and AI product imagery.
+> schwung is a small design studio in Zürich. Websites, logos and launch content for small brands.
 
-**Name überall gleich:** `schwung` · Handle `@schwung.studio`
+**Name überall gleich:** `schwung`, Handle `@schwung.studio`
 
 ## E-Mail-Signatur
 
 ```html
 <table cellpadding="0" cellspacing="0" style="font-family:Arial,sans-serif;font-size:13px;color:#0d0d0c">
-  <tr><td style="padding-bottom:6px"><strong>Your Name</strong> · Founder</td></tr>
-  <tr><td style="padding-bottom:10px;color:#6f6a62">schwung · Brands in motion · Zürich</td></tr>
-  <tr><td><a href="https://yourdomain.ch" style="color:#3d2bff;text-decoration:none">yourdomain.ch</a></td></tr>
+  <tr><td style="padding-bottom:6px"><strong>Your Name</strong>, Founder</td></tr>
+  <tr><td style="padding-bottom:10px;color:#6f6a62">schwung, Zürich</td></tr>
+  <tr><td><a href="https://yourdomain.ch" style="color:#2346ff;text-decoration:none">yourdomain.ch</a></td></tr>
 </table>
 ```
 
 ## Website (`schwung/index.html`)
 
-Eine Seite mit: Hero, Arbeiten (SOLUM als Fallstudie), Leistungen, Ablauf in 10 Tagen, Preise, FAQ (inkl. ehrlicher Antwort zu KI), Kontaktformular.
+Eine Seite mit: Startbereich, SOLUM als Fallstudie, Leistungen, Ablauf in 10 Tagen, Preise, Fragen (inkl. ehrlicher Antwort zu KI), Kontaktformular. Das Formular öffnet das E-Mail-Programm des Besuchers mit der fertigen Nachricht, funktioniert also auch ohne Server.
 
 **Noch zu ersetzen, bevor sie live geht:**
-- `hello@yourdomain.ch` → deine echte E-Mail
-- Social-Links im Footer (`href="#"`) → deine Profile
-- Impressum und Datenschutz (in der Schweiz Pflicht) → eigene Seiten
-- Das Formular braucht einen Dienst zum Versenden, z. B. **Netlify Forms** (gratis): im `<form>` `name="contact" data-netlify="true"` ergänzen
+- `hello@yourdomain.ch` (5 Stellen in `index.html`) → deine echte E-Mail
+- Impressum und Datenschutz (in der Schweiz Pflicht) fehlen noch. Sobald du Firmenname und Adresse hast, baue ich die Seiten und verlinke sie im Footer. Social-Links kommen dazu, sobald die Profile existieren.
 - Die Preise sind Vorschläge für den Start. Passe sie an, wie du dich wohlfühlst.
-- Der Link zur SOLUM-Fallstudie zeigt auf `../solum/index.html`. Auf Netlify den richtigen Link eintragen.
+- Im ZIP für Netlify ist SOLUM schon enthalten (`/solum/`), der Link der Fallstudie funktioniert dort.
