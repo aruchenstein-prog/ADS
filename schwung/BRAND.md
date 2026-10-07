@@ -18,7 +18,7 @@ Ich konnte von hier aus nur im Web suchen, nicht in den offiziellen Registern. P
 
 1. **Firmenname:** [zefix.ch](https://www.zefix.ch) → nach "schwung" suchen.
 2. **Marke:** [swissreg.ch](https://www.swissreg.ch) (Schweiz) und [euipo.europa.eu](https://euipo.europa.eu) (EU) → Klasse 42 (Webdesign) und 35 (Werbung).
-3. **Domain:** z. B. bei hostpoint.ch: `schwung.ch` ist vermutlich vergeben. Gute Alternativen: `schwung.studio`, `schwungstudio.ch`, `studio-schwung.ch`.
+3. **Domain:** `schwung.ch` und `schwung.design` sind vergeben (sie haben schon eine Website). `schwungstudio.ch`, `schwung-studio.ch` und `schwung.studio` waren beim Test nicht belegt. Das ist ein gutes Zeichen, aber kein Beweis: vor dem Kauf beim Anbieter (z. B. hostpoint.ch) prüfen. Empfehlung: **schwungstudio.ch** (Schweizer Endung, ohne Bindestrich), E-Mail dann z. B. `andre@schwungstudio.ch`.
 4. **Social Handles:** `@schwung.studio` auf Instagram, TikTok, LinkedIn und Behance reservieren, bevor du postest.
 
 Ist der Name besetzt, hier meine Ersatz-Namen: **Hochform**, **Aufwind**, **Kinetik Studio**.
@@ -89,7 +89,7 @@ Regeln: Logo nie verzerren, nicht umfärben (ausser Schwarz/Weiss), immer Abstan
 
 ```html
 <table cellpadding="0" cellspacing="0" style="font-family:Arial,sans-serif;font-size:13px;color:#0d0d0c">
-  <tr><td style="padding-bottom:6px"><strong>Your Name</strong>, Founder</td></tr>
+  <tr><td style="padding-bottom:6px"><strong>André Ruchenstein</strong>, Founder</td></tr>
   <tr><td style="padding-bottom:10px;color:#6f6a62">schwung, Zürich</td></tr>
   <tr><td><a href="https://yourdomain.ch" style="color:#2346ff;text-decoration:none">yourdomain.ch</a></td></tr>
 </table>
@@ -100,7 +100,7 @@ Regeln: Logo nie verzerren, nicht umfärben (ausser Schwarz/Weiss), immer Abstan
 Eine Seite mit: Startbereich, SOLUM als Fallstudie, Leistungen, Ablauf in 10 Tagen, Preise, Fragen (inkl. ehrlicher Antwort zu KI), Kontaktformular. Das Formular öffnet das E-Mail-Programm des Besuchers mit der fertigen Nachricht, funktioniert also auch ohne Server.
 
 **Noch zu ersetzen, bevor sie live geht:**
-- `hello@yourdomain.ch` (5 Stellen in `index.html`) → deine echte E-Mail
+- `hello@yourdomain.ch` (auf Website, Visitenkarte und Signatur) → deine echte E-Mail, sobald die Domain steht
 - Impressum und Datenschutz (in der Schweiz Pflicht) fehlen noch. Sobald du Firmenname und Adresse hast, baue ich die Seiten und verlinke sie im Footer. Social-Links kommen dazu, sobald die Profile existieren.
 - Die Preise sind Vorschläge für den Start. Passe sie an, wie du dich wohlfühlst.
 - Im ZIP für Netlify ist SOLUM schon enthalten (`/solum/`), der Link der Fallstudie funktioniert dort.
