@@ -276,7 +276,7 @@ h2.title { font-size: clamp(48px, 7.4vw, 112px); }
 .chip[aria-pressed="true"] { background: var(--ink); color: var(--canvas); }
 
 /* product grid */
-.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 24px); }
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 24px); }
 .card { display: flex; flex-direction: column; gap: 16px; min-width: 0; transition: opacity .5s var(--ease), transform .7s var(--ease); }
 .card.dim { opacity: .18; transform: scale(.98); pointer-events: none; }
 .card .bezel { --r-xl: 30px; }
@@ -343,7 +343,7 @@ h2.title { font-size: clamp(48px, 7.4vw, 112px); }
 .round:active { transform: scale(.93); }
 .round svg { width: 16px; height: 16px; }
 .round.play[aria-pressed="true"] { background: var(--ink); color: var(--canvas); }
-.thumbs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.thumbs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
 .thumb {
   border: 0; cursor: pointer; padding: 4px; border-radius: 22px; background: rgba(21,20,18,.04); box-shadow: inset 0 0 0 1px var(--hair);
   display: flex; flex-direction: column; gap: 4px; transition: box-shadow .4s var(--ease);
@@ -565,6 +565,20 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
 .flyer.photo { border-radius: 18px; overflow: hidden; box-shadow: 0 20px 40px -18px rgba(0,0,0,.45); }
 .flyer.photo img { display: block; width: 100%; height: auto; }
 #toast-mini img { width: 64px; height: 44px; object-fit: cover; }
+
+/* ---------- generated product photos (cut-outs) ---------- */
+.hero-photo-box { aspect-ratio: 1.36; display: grid; place-items: center; position: relative; z-index: 1; }
+.hero-photo { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 28px 26px rgba(60,40,20,.20)); }
+.hero-stage .float { animation-name: floatPhoto; }
+@keyframes floatPhoto { from { transform: translateY(0); } to { transform: translateY(-14px); } }
+.card-stage.cutstage .prod-img.cut { position: absolute; z-index: 1; left: 9%; top: 14%; width: 82%; height: 72%; object-fit: contain;
+  filter: drop-shadow(0 22px 18px rgba(50,35,20,.22)); transform: rotate(-6deg); transition: transform 1s var(--ease); }
+.card:hover .card-stage.cutstage .prod-img.cut { transform: rotate(-11deg) translateY(-4%) scale(1.06); }
+.thumb-mini.cut img { object-fit: contain; padding: 6px; }
+.stage-photo { width: 100%; height: auto; display: block; filter: drop-shadow(0 26px 22px rgba(50,35,20,.22)); }
+.stage-photo[hidden], #stage-svg[hidden] { display: none; }
+.thumb .t-in img { width: 86%; height: auto; transition: transform .7s var(--ease); }
+.thumb:hover .t-in img { transform: scale(1.07); }
 
 /* ---------- motion layer ---------- */
 /* intro curtain: CSS-driven so it always clears, even if scripts fail */
@@ -1188,7 +1202,7 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
           <div class="float">
             <div class="swap shoe-wrap" id="hero-shoe">
               <div class="shoe-shadow"></div>
-              <svg class="shoe" viewBox="0 0 600 290" role="img" aria-label="SOLUM Aster 2 running shoe"><use href="#shoe"/></svg>
+              <div class="hero-photo-box"><img class="hero-photo" id="hero-img" src="img/cut-aster-bone.webp" width="662" height="477" alt="SOLUM Aster 2 running shoe in Bone / Ember" fetchpriority="high"></div>
             </div>
           </div>
         </div>
@@ -1206,7 +1220,6 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
               <div class="swatches" role="group" aria-label="Colour">
                 <button class="swatch" type="button" aria-pressed="true" aria-label="Bone / Ember" data-cw="bone" style="--c:linear-gradient(135deg,#ede6da 50%,#e8501f 50%)"></button>
                 <button class="swatch" type="button" aria-pressed="false" aria-label="Midnight / Volt" data-cw="midnight" style="--c:linear-gradient(135deg,#1f2330 50%,#d7f25c 50%)"></button>
-                <button class="swatch" type="button" aria-pressed="false" aria-label="Sage / Cream" data-cw="sage" style="--c:linear-gradient(135deg,#a3b39a 50%,#f4efe6 50%)"></button>
                 <button class="swatch" type="button" aria-pressed="false" aria-label="Cobalt / Coral" data-cw="cobalt" style="--c:linear-gradient(135deg,#2c4fd8 50%,#ffb19c 50%)"></button>
               </div>
             </div>
@@ -1253,16 +1266,43 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
       </div>
 
       <div class="grid" id="grid">
-        <article class="card reveal" data-cat="lifestyle" style="--d:0s">
-          <div class="bezel"><div class="core card-stage photo">
+        <article class="card reveal" data-cat="running" style="--d:0.00s">
+          <div class="bezel"><div class="core card-stage cutstage" style="--tint:#e9e1d4">
             <span class="card-tag">New</span>
+            <img class="prod-img cut" src="img/cut-aster-bone.webp" width="662" height="477" alt="SOLUM Aster 2 running shoe with cream knit upper and orange accent" loading="lazy" decoding="async">
+            <button class="quick" type="button" data-name="Aster 2" data-img="img/cut-aster-bone.webp" data-cut="1" data-tint="#e9e1d4">Quick add <svg><use href="#plus"/></svg></button>
+          </div></div>
+          <div class="card-info"><h3>Aster 2</h3><span class="price">CHF 189</span><p class="cat">Road running · Recycled knit</p>
+            <div class="dots"><i style="--c:#ede6da"></i><i style="--c:#1f2330"></i><i style="--c:#2c4fd8"></i></div></div>
+        </article>
+        <article class="card reveal" data-cat="running" style="--d:0.08s">
+          <div class="bezel"><div class="core card-stage cutstage" style="--tint:#e4e1db">
+            <span class="card-tag">New shape</span>
+            <img class="prod-img cut" src="img/cut-meridian.webp" width="680" height="395" alt="SOLUM Meridian chunky runner in grey, white and black with red heel pods" loading="lazy" decoding="async">
+            <button class="quick" type="button" data-name="Meridian" data-img="img/cut-meridian.webp" data-cut="1" data-tint="#e4e1db">Quick add <svg><use href="#plus"/></svg></button>
+          </div></div>
+          <div class="card-info"><h3>Meridian</h3><span class="price">CHF 179</span><p class="cat">Road running · Heel pods</p>
+            <div class="dots"><i style="--c:#6a6e75"></i><i style="--c:#cfd8dc"></i><i style="--c:#c8b59a"></i><i style="--c:#3b2f66"></i></div></div>
+        </article>
+        <article class="card reveal" data-cat="lifestyle" style="--d:0.16s">
+          <div class="bezel"><div class="core card-stage cutstage" style="--tint:#e1e7ea">
+            <span class="card-tag">New shape</span>
+            <img class="prod-img cut" src="img/cut-tide.webp" width="696" height="394" alt="SOLUM Tide sneaker with wavy blue layered side panels and a white sculpted sole" loading="lazy" decoding="async">
+            <button class="quick" type="button" data-name="Tide" data-img="img/cut-tide.webp" data-cut="1" data-tint="#e1e7ea">Quick add <svg><use href="#plus"/></svg></button>
+          </div></div>
+          <div class="card-info"><h3>Tide</h3><span class="price">CHF 199</span><p class="cat">Everyday · Cushion windows</p>
+            <div class="dots"><i style="--c:#2f4d63"></i><i style="--c:#2f4a3a"></i><i style="--c:#e8501f"></i><i style="--c:#2a2c31"></i></div></div>
+        </article>
+        <article class="card reveal" data-cat="lifestyle" style="--d:0.00s">
+          <div class="bezel"><div class="core card-stage photo">
+            <span class="card-tag">Lifestyle</span>
             <img class="prod-img" src="img/prod-prism.webp" width="900" height="1125" alt="Two multicolour chunky sneakers with red laces, one standing on a white cube" loading="lazy" decoding="async">
             <button class="quick" type="button" data-name="Prism" data-img="img/prod-prism.webp">Quick add <svg><use href="#plus"/></svg></button>
           </div></div>
           <div class="card-info"><h3>Prism</h3><span class="price">CHF 189</span><p class="cat">Lifestyle · Layered chunky sole</p>
             <div class="dots"><i style="--c:#e9e3d6"></i><i style="--c:#e85a3c"></i><i style="--c:#6ccfb5"></i><i style="--c:#5b3a8c"></i></div></div>
         </article>
-        <article class="card reveal" data-cat="leather" style="--d:.08s">
+        <article class="card reveal" data-cat="leather" style="--d:0.08s">
           <div class="bezel"><div class="core card-stage photo">
             <span class="card-tag">Leather</span>
             <img class="prod-img" src="img/prod-atelier.webp" width="900" height="1125" alt="A beige and white leather sneaker, a second one standing sole-up, on an orange backdrop" loading="lazy" decoding="async">
@@ -1271,16 +1311,7 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
           <div class="card-info"><h3>Atelier</h3><span class="price">CHF 179</span><p class="cat">Leather · Nubuck & smooth leather</p>
             <div class="dots"><i style="--c:#d4b896"></i><i style="--c:#f4f1ea"></i><i style="--c:#e8701f"></i></div></div>
         </article>
-        <article class="card reveal" data-cat="running" style="--d:.16s">
-          <div class="bezel"><div class="core card-stage photo">
-            <span class="card-tag sale">−20%</span>
-            <img class="prod-img" src="img/prod-knit.webp" width="900" height="1125" alt="Close-up of the heel of a black knit running shoe with a white textured sole" loading="lazy" decoding="async">
-            <button class="quick" type="button" data-name="Knit Runner" data-img="img/prod-knit.webp">Quick add <svg><use href="#plus"/></svg></button>
-          </div></div>
-          <div class="card-info"><h3>Knit Runner</h3><span class="price now">CHF 159</span><p class="cat">Running · Recycled knit upper</p><span class="was" aria-label="Was CHF 199">CHF 199</span>
-            <div class="dots"><i style="--c:#151412"></i><i style="--c:#f4f1ea"></i></div></div>
-        </article>
-        <article class="card reveal" data-cat="leather" style="--d:.24s">
+        <article class="card reveal" data-cat="leather" style="--d:0.16s">
           <div class="bezel"><div class="core card-stage photo">
             <span class="card-tag">Suede</span>
             <img class="prod-img" src="img/prod-marine.webp" width="900" height="1125" alt="A navy suede lace-up shoe with a white sole, worn on a wooden deck" loading="lazy" decoding="async">
@@ -1318,8 +1349,8 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
       <div class="studio" id="studio-viewer" style="--m-base:#6a6e75;--m-l1:#3a3d43;--m-l2:#d5d9de;--m-l3:#f4f5f6;--m-mid:#f6f5f2;--m-sole:#2a2b2e;--m-pop:#d9442b;--m-lace:#f4f4f2;--m-collar:#3a3d43;--tint:#e4e1db">
         <div class="viewer reveal">
           <div class="bezel"><div class="core stage" id="stage" style="--tint:#e4e1db" tabindex="0" aria-label="Shoe viewer. Use left and right arrow keys to change view.">
-            <span class="stage-label" aria-live="polite"><b id="view-name">Side</b><span id="view-idx">1 / 4</span></span>
-            <div class="stage-art" id="stage-art"><svg viewBox="0 0 620 300" role="img" aria-labelledby="view-alt"><title id="view-alt">Meridian, side view</title><use id="stage-use" href="#mer-side"/></svg></div>
+            <span class="stage-label" aria-live="polite"><b id="view-name">Photo</b><span id="view-idx">1 / 5</span></span>
+            <div class="stage-art" id="stage-art"><img class="stage-photo" id="stage-photo" src="img/cut-meridian.webp" width="680" height="395" alt="Meridian, photo, Steel / Signal"><svg viewBox="0 0 620 300" role="img" aria-labelledby="view-alt" id="stage-svg" hidden><title id="view-alt">Meridian, photo, Steel / Signal</title><use id="stage-use" href="#mer-side"/></svg></div>
             <div class="stage-ctrl">
               <button class="round play" type="button" id="play" aria-pressed="false" aria-label="Turntable: cycle through views">
                 <svg viewBox="0 0 16 16" aria-hidden="true"><path id="play-ic" d="M5 3.5v9l7-4.5z" fill="currentColor"/></svg>
@@ -1329,7 +1360,8 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
             </div>
           </div></div>
           <div class="thumbs" role="group" aria-label="Views">
-            <button class="thumb" type="button" data-view="side" aria-pressed="true"><span class="t-in"><svg viewBox="0 0 620 300" aria-hidden="true"><use href="#mer-side"/></svg></span><span>Side</span></button>
+            <button class="thumb" type="button" data-view="photo" aria-pressed="true"><span class="t-in"><img id="thumb-photo" src="img/cut-meridian.webp" width="680" height="395" alt=""></span><span>Photo</span></button>
+            <button class="thumb" type="button" data-view="side" aria-pressed="false"><span class="t-in"><svg viewBox="0 0 620 300" aria-hidden="true"><use href="#mer-side"/></svg></span><span>Side</span></button>
             <button class="thumb" type="button" data-view="top" aria-pressed="false"><span class="t-in"><svg viewBox="0 0 620 300" aria-hidden="true"><use href="#mer-top"/></svg></span><span>Top</span></button>
             <button class="thumb" type="button" data-view="sole" aria-pressed="false"><span class="t-in"><svg viewBox="0 0 620 300" aria-hidden="true"><use href="#mer-sole"/></svg></span><span>Sole</span></button>
             <button class="thumb" type="button" data-view="back" aria-pressed="false"><span class="t-in"><svg viewBox="0 0 620 300" aria-hidden="true"><use href="#mer-back"/></svg></span><span>Back</span></button>
@@ -1524,14 +1556,16 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
 
   /* ---- colourways (CSS custom properties consumed by the shoe symbol) ---- */
   const CW = {
-    bone:     { name: "Bone / Ember",    v: { upper:"#ede6da", over:"#ddd3c4", lining:"#c9bca8", mid:"#f8f4ee", sole:"#2a2724", accent:"#e8501f", lace:"#f8f4ee" } },
-    midnight: { name: "Midnight / Volt", v: { upper:"#1f2330", over:"#2b3142", lining:"#3a4157", mid:"#eeeae2", sole:"#0e0e0d", accent:"#d7f25c", lace:"#2b3142" } },
+    bone:     { name: "Bone / Ember",    img: "img/cut-aster-bone.webp", v: { upper:"#ede6da", over:"#ddd3c4", lining:"#c9bca8", mid:"#f8f4ee", sole:"#2a2724", accent:"#e8501f", lace:"#f8f4ee" } },
+    midnight: { name: "Midnight / Volt", img: "img/cut-aster-midnight.webp", v: { upper:"#1f2330", over:"#2b3142", lining:"#3a4157", mid:"#eeeae2", sole:"#0e0e0d", accent:"#d7f25c", lace:"#2b3142" } },
     sage:     { name: "Sage / Cream",    v: { upper:"#a3b39a", over:"#8a9c80", lining:"#6f8166", mid:"#f4efe6", sole:"#3b3a36", accent:"#f4efe6", lace:"#f4efe6" } },
-    cobalt:   { name: "Cobalt / Coral",  v: { upper:"#2c4fd8", over:"#1f3cae", lining:"#172e86", mid:"#f4f1ea", sole:"#151412", accent:"#ffb19c", lace:"#f4f1ea" } }
+    cobalt:   { name: "Cobalt / Coral",  img: "img/cut-aster-cobalt.webp", v: { upper:"#2c4fd8", over:"#1f3cae", lining:"#172e86", mid:"#f4f1ea", sole:"#151412", accent:"#ffb19c", lace:"#f4f1ea" } }
   };
   const apply = (el, v) => Object.entries(v).forEach(([k, c]) => el.style.setProperty("--s-" + k, c));
   const heroShoe = document.getElementById("hero-shoe");
-  apply(heroShoe, CW.bone.v);
+  const heroImg = document.getElementById("hero-img");
+  const setHero = (key) => { heroImg.src = CW[key].img; heroImg.alt = "SOLUM Aster 2 running shoe in " + CW[key].name; };
+  Object.values(CW).forEach((c) => { if (c.img) { const pre = new Image(); pre.src = c.img; } });
   apply(document.getElementById("toast-mini"), CW.bone.v);
   let currentCw = "bone";
 
@@ -1541,9 +1575,9 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
     currentCw = key;
     document.querySelectorAll(".swatch").forEach((s) => s.setAttribute("aria-pressed", String(s === b)));
     document.getElementById("cw-name").textContent = CW[key].name;
-    if (reduce) { apply(heroShoe, CW[key].v); return; }
+    if (reduce) { setHero(key); return; }
     heroShoe.classList.add("out");
-    setTimeout(() => { apply(heroShoe, CW[key].v); heroShoe.classList.remove("out"); }, 380);
+    setTimeout(() => { setHero(key); heroShoe.classList.remove("out"); }, 380);
   }));
 
   /* ---- sizes ---- */
@@ -1560,7 +1594,7 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
   const priceOf = (txt) => +String(txt).replace(/[^\d]/g, "");
   const styleStr = (vars) => !vars ? "" : typeof vars === "string" ? vars : Object.entries(vars).map(([k, c]) => "--s-" + k + ":" + c).join(";");
   const miniSvg = (it) => it.img
-    ? '<span class="thumb-mini"><img src="' + it.img + '" alt=""></span>'
+    ? '<span class="thumb-mini' + (it.cut ? " cut" : "") + '" style="' + (it.style || "") + '"><img src="' + it.img + '" alt=""></span>'
     : '<span class="thumb-mini" style="' + it.style + '"><svg viewBox="' + (it.sym ? "0 0 620 300" : "0 0 600 290") + '" aria-hidden="true"><use href="#' + (it.sym || "shoe") + '"/></svg></span>';
   const bagCount = document.getElementById("bag-count"), bagBtn = document.getElementById("bag-btn"), toast = document.getElementById("toast");
   let toastTimer;
@@ -1594,8 +1628,8 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
     const b = { left: br.left, width: br.width, height: br.height, top: br.top + (wasHidden ? navEl.offsetHeight * 1.4 + 16 : 0) };
     if (!a.width) return Promise.resolve();
     const f = document.createElement("div");
-    f.className = it.img ? "flyer photo" : "flyer"; f.setAttribute("style", it.style || "");
-    const w = Math.min(a.width, it.img ? 220 : 360), ratio = it.img ? 1.25 : .48;
+    f.className = it.img && !it.cut ? "flyer photo" : "flyer"; f.setAttribute("style", it.style || "");
+    const w = Math.min(a.width, it.img && !it.cut ? 220 : 360), ratio = it.cut ? .72 : it.img ? 1.25 : .48;
     f.style.width = w + "px";
     f.innerHTML = it.img ? '<img src="' + it.img + '" alt="">' : '<svg viewBox="' + (it.sym ? "0 0 620 300" : "0 0 600 290") + '"><use href="#' + (it.sym || "shoe") + '"/></svg>';
     document.body.appendChild(f);
@@ -1618,7 +1652,7 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
     });
     const tImg = document.getElementById("toast-img"), tSvg = document.getElementById("toast-svg");
     tImg.hidden = !it.img; tSvg.style.display = it.img ? "none" : "";
-    if (it.img) tImg.src = it.img;
+    if (it.img) { tImg.src = it.img; tImg.style.objectFit = it.cut ? "contain" : "cover"; }
     document.getElementById("toast-use").setAttribute("href", "#" + (it.sym || "shoe"));
     tSvg.setAttribute("viewBox", it.sym ? "0 0 620 300" : "0 0 600 290");
     document.getElementById("toast-mini").setAttribute("style", it.style || "");
@@ -1634,12 +1668,12 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
       document.querySelector(".size:not(:disabled)").focus();
       return;
     }
-    addToBag({ name: "Aster 2", sub: CW[currentCw].name + " · EU " + size, price: 189, vars: CW[currentCw].v, tint: "#e9e1d4", from: heroShoe.querySelector("svg") });
+    addToBag({ name: "Aster 2", sub: CW[currentCw].name + " · EU " + size, price: 189, img: CW[currentCw].img, cut: true, tint: "#e9e1d4", from: heroImg });
   });
   document.querySelectorAll(".quick").forEach((b) => b.addEventListener("click", () => {
     const card = b.closest(".card"), stage = b.closest(".card-stage");
     const price = priceOf((card.querySelector(".price.now") || card.querySelector(".price")).textContent);
-    if (b.dataset.img) { addToBag({ name: b.dataset.name, sub: "Size chosen at checkout", price, img: b.dataset.img, from: stage.querySelector(".prod-img") }); return; }
+    if (b.dataset.img) { addToBag({ name: b.dataset.name, sub: "Size chosen at checkout", price, img: b.dataset.img, cut: !!b.dataset.cut, tint: b.dataset.tint, from: stage.querySelector(".prod-img") }); return; }
     const from = stage.querySelector("svg.shoe");
     if (b.dataset.sym) { addToBag({ name: b.dataset.name, sub: "Size chosen at checkout", price, vars: stage.style.cssText, sym: b.dataset.sym, from }); return; }
     const cs = stage.style, v = {};
@@ -1684,7 +1718,7 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
     return {
       card: c, name: c.querySelector("h3").textContent, cat: c.querySelector(".cat").textContent,
       price: (c.querySelector(".price.now") || c.querySelector(".price")).textContent,
-      style: stage.style.cssText, sym: use === "shoe" ? null : use, img: photo ? photo.getAttribute("src") : null,
+      style: stage.style.cssText, sym: use === "shoe" ? null : use, img: photo ? photo.getAttribute("src") : null, cut: !!(photo && photo.classList.contains("cut")),
       hay: (c.querySelector("h3").textContent + " " + c.querySelector(".cat").textContent + " " + c.dataset.cat + " " + tag + (/new/i.test(tag) ? " new shapes" : "")).toLowerCase()
     };
   });
@@ -1715,7 +1749,7 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
   /* ---- studio: model viewer ---- */
   const MODELS = {
     mer: {
-      name: "Meridian", price: "CHF 179",
+      name: "Meridian", price: "CHF 179", photo: "img/cut-meridian.webp",
       copy: "A chunky 2000s mesh runner, rebuilt. Breathable open mesh, a layered cage that locks the midfoot, and three segmented heel pods that soften every landing.",
       specs: [["Weight", "312 g"], ["Drop", "10 mm"], ["Heel", "41 mm"]],
       cws: [
@@ -1726,7 +1760,7 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
       ]
     },
     tide: {
-      name: "Tide", price: "CHF 199",
+      name: "Tide", price: "CHF 199", photo: "img/cut-tide.webp",
       copy: "Layered panels that rise toward the toe like a coastline, and two clear cushioning windows you can see working. An everyday shoe with a runner's ride.",
       specs: [["Weight", "296 g"], ["Drop", "8 mm"], ["Heel", "36 mm"]],
       cws: [
@@ -1737,11 +1771,12 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
       ]
     }
   };
-  const VIEWS = ["side", "top", "sole", "back"], VIEW_NAMES = { side: "Side", top: "Top", sole: "Sole", back: "Back" };
+  const VIEWS = ["photo", "side", "top", "sole", "back"], VIEW_NAMES = { photo: "Photo", side: "Side", top: "Top", sole: "Sole", back: "Back" };
+  const NV = VIEWS.length, stagePhoto = document.getElementById("stage-photo"), stageSvg = document.getElementById("stage-svg"), thumbPhoto = document.getElementById("thumb-photo");
   const studio = document.getElementById("studio-viewer"), stageArt = document.getElementById("stage-art"), stageUse = document.getElementById("stage-use");
   const st = { model: "mer", cw: 0, view: 0 };
   const mStyle = (cw) => Object.entries(cw.v).map(([k, c]) => "--m-" + k + ":" + c).join(";") + ";--tint:" + cw.tint;
-  const altText = () => MODELS[st.model].name + ", " + VIEW_NAMES[VIEWS[st.view]].toLowerCase() + " view, " + MODELS[st.model].cws[st.cw].name;
+  const altText = () => MODELS[st.model].name + ", " + (VIEWS[st.view] === "photo" ? "photo" : VIEW_NAMES[VIEWS[st.view]].toLowerCase() + " view") + ", " + MODELS[st.model].cws[st.cw].name;
 
   function swapStage(fn) {
     if (reduce) { fn(); return; }
@@ -1749,17 +1784,20 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
     setTimeout(() => { fn(); requestAnimationFrame(() => stageArt.classList.remove("out")); }, 300);
   }
   function renderStage() {
-    const view = VIEWS[st.view];
-    stageUse.setAttribute("href", "#" + st.model + "-" + view);
+    const view = VIEWS[st.view], isPhoto = view === "photo";
+    if (isPhoto && st.cw !== 0) setCw(0);
+    stagePhoto.hidden = !isPhoto; stageSvg.hidden = isPhoto;
+    stagePhoto.src = MODELS[st.model].photo; stagePhoto.alt = altText(); thumbPhoto.src = MODELS[st.model].photo;
+    if (!isPhoto) stageUse.setAttribute("href", "#" + st.model + "-" + view);
     document.getElementById("view-alt").textContent = altText();
     document.getElementById("view-name").textContent = VIEW_NAMES[view];
-    document.getElementById("view-idx").textContent = (st.view + 1) + " / 4";
+    document.getElementById("view-idx").textContent = (st.view + 1) + " / " + NV;
     document.querySelectorAll(".thumb").forEach((t, i) => {
       t.setAttribute("aria-pressed", String(i === st.view));
-      t.querySelector("use").setAttribute("href", "#" + st.model + "-" + t.dataset.view);
+      const u = t.querySelector("use"); if (u) u.setAttribute("href", "#" + st.model + "-" + t.dataset.view);
     });
   }
-  function setView(i) { st.view = (i + 4) % 4; swapStage(renderStage); }
+  function setView(i) { st.view = (i + NV) % NV; swapStage(renderStage); }
   function setCw(i) {
     st.cw = i;
     const cw = MODELS[st.model].cws[i];
@@ -1767,6 +1805,8 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
     document.getElementById("m-cw-name").textContent = cw.name;
     document.querySelectorAll("#cw-list .cw").forEach((b, j) => b.setAttribute("aria-pressed", String(j === i)));
     document.getElementById("view-alt").textContent = altText();
+    // the photo only exists in the original colourway: switching colour moves to the drawn side view
+    if (i !== 0 && VIEWS[st.view] === "photo") { st.view = 1; swapStage(renderStage); }
   }
   const seg = document.querySelector(".seg"), segPill = seg.querySelector(".pill");
   function movePill() {
@@ -1822,7 +1862,8 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
   });
   document.getElementById("model-add").addEventListener("click", () => {
     const m = MODELS[st.model], cw = m.cws[st.cw];
-    addToBag({ name: m.name, sub: cw.name + " · size at checkout", price: priceOf(m.price), vars: mStyle(cw), sym: st.model + "-side", from: stageArt.querySelector("svg") });
+    if (st.cw === 0) { addToBag({ name: m.name, sub: cw.name + " · size at checkout", price: priceOf(m.price), img: m.photo, cut: true, tint: cw.tint, from: VIEWS[st.view] === "photo" ? stagePhoto : stageSvg }); return; }
+    addToBag({ name: m.name, sub: cw.name + " · size at checkout", price: priceOf(m.price), vars: mStyle(cw), sym: st.model + "-side", from: stageSvg });
   });
   setModel("mer", false);
   addEventListener("resize", movePill);
