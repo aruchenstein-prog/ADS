@@ -16,6 +16,7 @@ This repo holds website projects built for the owner. Read this before starting 
 - `solum/`: **SOLUM**, a fictional premium sneaker brand ("designed in Zürich"). Single-page storefront and the owner's **portfolio / demo ad**. The quality reference for all new work. See `solum/README.md`.
   - `solum/promo/`: LinkedIn kit (4:5 video, carousel PDF, post texts in `LINKEDIN.md`, reach plan in `REICHWEITE.md`).
   - `solum/img/neu/PROMPTS.md`: image prompts the owner runs in Perchance.
+- `schwung/`: **schwung**, the owner's own design studio ("Websites that move", Zürich): brand kit in `schwung/brand/` (logo SVGs, social media assets, brand board), brand rules and profile texts in `schwung/BRAND.md`, studio one-pager `schwung/index.html` with SOLUM as the case study. Use its logo, colours (Ink #0D0D0C, Paper #F2EFE9, Schwung Blue #3D2BFF) and tone for anything about the studio.
 - `aml-revisions/`: landing page for the owner's father's real company (AML Revisions AG, audit firm for asset managers). **Do not change it unless the owner explicitly asks for that page.** Never apply SOLUM work (animations, styles, promo) to it. Audience: older clients, so calm, text-first, large type, no flashy motion.
 - `waymark/`: earlier concept page.
 - `design-md/`: design reference library used by the `design-references` skill.

@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>schwung · Websites that move</title>
+<meta name="description" content="schwung is a design studio in Zürich. Premium websites, brand looks and launch kits, from idea to live in about ten days.">
+<meta name="theme-color" content="#0d0d0c">
+<link rel="icon" href="brand/logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Instrument+Serif:ital@0;1&display=swap">
+<script>
+  document.documentElement.classList.add('js');
+  // failsafe: whatever happens, show everything after 4.5 s
+  setTimeout(function(){var r=document.documentElement;r.classList.add('intro-over');if(!window.__sw)r.classList.add('show-all')},4500);
+</script>
+<style>
+:root{
+  --ink:#0d0d0c; --ink-2:#1a1a18; --ink-3:#262624;
+  --paper:#f2efe9; --stone:#e4dfd5; --mute:#6f6a62; --mute-d:#a39e95;
+  --blue:#3d2bff; --blue-soft:#8f84ff;
+  --r-card:28px; --pad:clamp(20px,4vw,56px);
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--ink);color:var(--paper);font-family:Archivo,system-ui,sans-serif;font-size:17px;line-height:1.55;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit}
+::selection{background:var(--blue);color:#fff}
+:focus-visible{outline:3px solid var(--blue-soft);outline-offset:3px;border-radius:8px}
+.skip{position:absolute;left:12px;top:-60px;z-index:200;background:var(--paper);color:var(--ink);padding:10px 16px;border-radius:999px;font-weight:600;text-decoration:none}
+.skip:focus{top:12px}
+.wrap{max-width:1360px;margin:0 auto;padding:0 var(--pad)}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:150;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* type */
+.display{font-weight:900;font-stretch:62%;text-transform:uppercase;line-height:.84;letter-spacing:-.01em;margin:0}
+.display em,.ital{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.02em;color:var(--blue-soft)}
+.light .display em,.light .ital{color:var(--blue)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:8px 14px 8px 11px;border-radius:999px;background:rgba(242,239,233,.07)}
+.light .eyebrow{background:rgba(13,13,12,.06)}
+.eyebrow:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.lede{font-size:clamp(18px,1.6vw,21px);color:var(--mute-d);max-width:56ch}
+.light .lede{color:var(--mute)}
+h2.display{font-size:clamp(56px,9vw,132px);margin-top:18px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:14px;min-height:56px;padding:6px 6px 6px 24px;border-radius:999px;font-weight:600;font-size:16px;text-decoration:none;border:0;cursor:pointer;transition:transform .5s var(--ease),background .3s}
+.btn .arr{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;transition:transform .5s var(--ease)}
+.btn:hover .arr{transform:translateX(3px) rotate(-45deg)}
+.btn-main{background:var(--paper);color:var(--ink)}
+.btn-main .arr{background:var(--blue);color:#fff}
+.btn-ghost{background:transparent;color:inherit;box-shadow:inset 0 0 0 1.5px rgba(242,239,233,.28)}
+.btn-ghost .arr{background:rgba(242,239,233,.1)}
+.light .btn-main{background:var(--ink);color:var(--paper)}
+.btn-blue{background:var(--blue);color:#fff}
+.btn-blue .arr{background:#fff;color:var(--blue)}
+
+/* nav */
+.nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:100;width:min(1100px,calc(100% - 24px));display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 8px 8px 20px;border-radius:999px;background:rgba(26,26,24,.72);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);box-shadow:0 0 0 1px rgba(242,239,233,.08),0 20px 40px -20px rgba(0,0,0,.6);transition:transform .5s var(--ease)}
+.nav.hide{transform:translate(-50%,-140%)}
+.nav .logo{display:flex;align-items:center;height:44px}
+.nav .logo svg{height:28px;width:auto}
+.nav ul{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+.nav ul a{display:block;padding:10px 14px;border-radius:999px;text-decoration:none;font-size:15px;font-weight:500;color:var(--mute-d);transition:color .2s,background .2s}
+.nav ul a:hover{color:var(--paper);background:rgba(242,239,233,.07)}
+.nav .btn{min-height:46px;font-size:15px;padding-left:18px}
+.nav .btn .arr{width:34px;height:34px}
+.burger{display:none;width:46px;height:46px;border-radius:50%;border:0;background:rgba(242,239,233,.1);cursor:pointer;position:relative}
+.burger i{position:absolute;left:14px;right:14px;height:2px;background:var(--paper);border-radius:2px;transition:transform .4s var(--ease),top .4s var(--ease)}
+.burger i:first-child{top:18px}.burger i:last-child{top:26px}
+.menu-open .burger i:first-child{top:22px;transform:rotate(45deg)}
+.menu-open .burger i:last-child{top:22px;transform:rotate(-45deg)}
+.mmenu{position:fixed;inset:0;z-index:90;background:var(--ink);padding:110px var(--pad) 40px;display:flex;flex-direction:column;justify-content:space-between;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
+.menu-open .mmenu{opacity:1;visibility:visible}
+.mmenu a.big{display:block;font-weight:900;font-stretch:62%;text-transform:uppercase;font-size:clamp(56px,16vw,96px);line-height:.95;text-decoration:none}
+@media (max-width:900px){.nav ul,.nav .btn{display:none}.burger{display:block}}
+
+/* progress */
+.progress{position:fixed;left:0;top:0;height:3px;width:100%;background:var(--blue);transform-origin:0 50%;transform:scaleX(0);z-index:120}
+
+/* intro */
+.intro{position:fixed;inset:0;z-index:300;background:var(--ink);display:grid;place-items:center;transition:opacity .6s var(--ease),visibility .6s}
+.intro svg{width:110px;height:110px}
+.intro .ball{animation:drop 1s var(--ease) both}
+.intro .ramp{animation:rise .8s var(--ease) both}
+@keyframes drop{0%{transform:translateY(-120px);opacity:0}60%{transform:translateY(6px);opacity:1}100%{transform:none}}
+@keyframes rise{from{transform:scaleY(0);transform-origin:50% 100%}to{transform:scaleY(1);transform-origin:50% 100%}}
+.intro-over .intro{opacity:0;visibility:hidden}
+.no-js .intro,html:not(.js) .intro{display:none}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:140px 0 56px;overflow:hidden}
+.hero-ramp{position:absolute;right:0;bottom:-1px;width:min(62vw,860px);aspect-ratio:1;pointer-events:none}
+.hero-ramp path{fill:var(--ink-2)}
+.hero-ball{position:absolute;z-index:0;width:clamp(56px,7vw,104px);aspect-ratio:1;border-radius:50%;background:var(--blue);right:16vw;top:17%;box-shadow:0 30px 80px -10px rgba(61,43,255,.55);will-change:transform}
+.hero h1{font-size:clamp(78px,15.5vw,236px)}
+.hero h1 .row{display:block}
+.hero-foot{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:end;margin-top:44px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.stat{padding:20px;border-radius:22px;background:rgba(242,239,233,.05);box-shadow:inset 0 0 0 1px rgba(242,239,233,.07)}
+.stat b{display:block;font-weight:900;font-stretch:62%;font-size:clamp(40px,4.4vw,60px);line-height:1}
+.stat>span{font-size:14px;color:var(--mute-d)}
+@media (max-width:900px){.hero-foot{grid-template-columns:1fr}.hero-ball{top:96px;right:6vw}}
+
+/* marquee */
+.marquee{border-top:1px solid rgba(242,239,233,.08);border-bottom:1px solid rgba(242,239,233,.08);overflow:hidden;padding:22px 0;white-space:nowrap}
+.marquee .track{display:inline-flex;gap:44px;animation:mq 30s linear infinite;padding-right:44px}
+.marquee span{font-weight:900;font-stretch:62%;font-size:clamp(28px,3.4vw,44px);text-transform:uppercase;display:inline-flex;align-items:center;gap:44px}
+.marquee span:after{content:"";width:12px;height:12px;border-radius:50%;background:var(--blue)}
+@keyframes mq{to{transform:translateX(-100%)}}
+
+section.block{padding:clamp(96px,12vw,170px) 0}
+.light{background:var(--paper);color:var(--ink)}
+.head{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:end;margin-bottom:56px}
+@media (max-width:900px){.head{grid-template-columns:1fr}}
+
+/* work */
+.case{position:relative;display:grid;grid-template-columns:1.6fr 1fr;gap:12px;padding:10px;border-radius:36px;background:rgba(13,13,12,.05);box-shadow:inset 0 0 0 1px rgba(13,13,12,.06);text-decoration:none;color:inherit;cursor:none}
+.case-shot{border-radius:28px;overflow:hidden;background:#e9e4dc;position:relative;align-self:start}
+.case-shot img{width:100%;height:auto;transition:transform 1.2s var(--ease)}
+.case:hover .case-shot img{transform:scale(1.03)}
+.case-side{display:grid}
+.case-info{border-radius:28px;height:100%;background:var(--ink);color:var(--paper);padding:32px;display:flex;flex-direction:column;gap:14px}
+.case-info h3{font-weight:900;font-stretch:62%;text-transform:uppercase;font-size:clamp(48px,5vw,72px);line-height:.9;margin:0}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;background:rgba(242,239,233,.08)}
+.case-phones{grid-column:1/-1;border-radius:28px;background:var(--blue);display:flex;align-items:flex-start;justify-content:center;gap:clamp(14px,4vw,60px);padding:40px 20px 0;overflow:hidden;height:clamp(260px,32vw,420px)}
+.case-phones img{width:clamp(130px,22vw,280px);border-radius:24px;box-shadow:0 30px 60px -20px rgba(0,0,0,.45)}
+.case-phones img:nth-child(2){transform:translateY(40px)}
+.cursor{position:fixed;left:0;top:0;z-index:140;pointer-events:none;padding:10px 16px;border-radius:999px;background:var(--blue);color:#fff;font-size:14px;font-weight:600;opacity:0;transform:translate(-50%,-50%) scale(.6);transition:opacity .25s,transform .25s var(--ease)}
+.cursor.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+@media (hover:none){.case{cursor:pointer}.cursor{display:none}}
+.next{margin-top:12px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding:26px 30px;border-radius:28px;border:1.5px dashed rgba(13,13,12,.2)}
+.next p{margin:0;font-size:20px}
+@media (max-width:900px){.case{grid-template-columns:1fr}}
+
+/* services */
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.svc article{padding:10px;border-radius:32px;background:rgba(242,239,233,.04);box-shadow:inset 0 0 0 1px rgba(242,239,233,.08);transition:transform .6s var(--ease)}
+.svc .inner{height:100%;border-radius:24px;background:var(--ink-2);padding:30px;display:flex;flex-direction:column;gap:14px}
+.svc .num{font-size:13px;font-weight:600;letter-spacing:.16em;color:var(--mute-d)}
+.svc h3{margin:0;font-weight:900;font-stretch:62%;text-transform:uppercase;font-size:44px;line-height:.92}
+.svc p{margin:0;color:var(--mute-d)}
+.svc ul{margin:auto 0 0;padding:18px 0 0;list-style:none;border-top:1px solid rgba(242,239,233,.08);display:grid;gap:8px;font-size:15px}
+.svc li{display:flex;gap:10px;align-items:center}
+.svc li:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--blue-soft)}
+.svc .ico{width:56px;height:56px;border-radius:18px;background:var(--blue);display:grid;place-items:center}
+@media (max-width:900px){.svc{grid-template-columns:1fr}}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:s}
+.step{position:relative;padding:28px;border-radius:28px;background:#fff;box-shadow:0 1px 0 rgba(13,13,12,.04),0 30px 60px -40px rgba(13,13,12,.3)}
+.step .day{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.step h3{margin:14px 0 8px;font-weight:900;font-stretch:62%;text-transform:uppercase;font-size:40px;line-height:.92}
+.step p{margin:0;color:var(--mute);font-size:16px}
+.timeline{height:6px;border-radius:6px;background:var(--stone);margin:0 0 28px;overflow:hidden}
+.timeline i{display:block;height:100%;width:100%;background:var(--blue);transform:scaleX(0);transform-origin:0 50%;transition:transform 2s var(--ease)}
+.timeline.in i{transform:scaleX(1)}
+@media (max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.steps{grid-template-columns:1fr}}
+
+/* pricing */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:stretch}
+.plan{padding:10px;border-radius:34px;background:rgba(13,13,12,.05);box-shadow:inset 0 0 0 1px rgba(13,13,12,.06)}
+.plan .inner{height:100%;border-radius:26px;background:#fff;padding:30px;display:flex;flex-direction:column;gap:16px}
+.plan.hot .inner{background:var(--ink);color:var(--paper)}
+.plan h3{margin:0;font-size:20px;font-weight:700}
+.price{font-weight:900;font-stretch:62%;font-size:68px;line-height:.9}
+.price small{font-family:Archivo;font-stretch:100%;font-size:15px;font-weight:500;color:var(--mute);display:block;margin-top:8px}
+.plan.hot .price small{color:var(--mute-d)}
+.plan ul{list-style:none;margin:0;padding:18px 0 0;border-top:1px solid rgba(13,13,12,.08);display:grid;gap:10px;font-size:15px}
+.plan.hot ul{border-color:rgba(242,239,233,.1)}
+.plan li{display:flex;gap:10px}
+.plan li:before{content:"";flex:none;margin-top:8px;width:7px;height:7px;border-radius:50%;background:var(--blue)}
+.plan .btn{margin-top:auto;align-self:flex-start}
+.badge{align-self:flex-start;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:6px 12px;border-radius:999px;background:var(--blue);color:#fff}
+@media (max-width:900px){.plans{grid-template-columns:1fr}}
+
+/* faq */
+.faq{max-width:900px}
+.faq details{border-bottom:1px solid rgba(242,239,233,.1)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;align-items:center;padding:26px 0;font-size:clamp(20px,2vw,24px);font-weight:600}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary i{flex:none;width:40px;height:40px;border-radius:50%;background:rgba(242,239,233,.08);position:relative;transition:transform .4s var(--ease),background .3s}
+.faq summary i:before,.faq summary i:after{content:"";position:absolute;left:13px;right:13px;top:19px;height:2px;background:currentColor;border-radius:2px}
+.faq summary i:after{transform:rotate(90deg)}
+.faq details[open] summary i{transform:rotate(45deg);background:var(--blue)}
+.faq details p{margin:0 0 26px;color:var(--mute-d);max-width:68ch}
+
+/* contact */
+.contact{display:grid;grid-template-columns:1fr 1.1fr;gap:56px}
+form{display:grid;gap:16px}
+.field label,.legend{display:block;font-size:14px;font-weight:600;margin-bottom:8px}
+.field input,.field textarea{width:100%;font:inherit;font-size:17px;color:var(--ink);background:#fff;border:1.5px solid transparent;border-radius:18px;padding:16px 18px;transition:border-color .2s,box-shadow .2s}
+.field textarea{min-height:140px;resize:vertical}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(61,43,255,.15)}
+.field.err input,.field.err textarea{border-color:#d22d1f}
+.msg{font-size:14px;color:#b3261e;margin-top:6px;min-height:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;border:0;margin:0;padding:0}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips label{padding:10px 16px;border-radius:999px;background:#fff;font-size:15px;font-weight:500;cursor:pointer;transition:background .2s,color .2s;margin:0}
+.chips input:checked+label{background:var(--ink);color:var(--paper)}
+.chips input:focus-visible+label{outline:3px solid var(--blue);outline-offset:2px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ok{display:none;padding:30px;border-radius:28px;background:var(--ink);color:var(--paper)}
+.ok h3{margin:0 0 8px;font-weight:900;font-stretch:62%;text-transform:uppercase;font-size:48px;line-height:.9}
+.sent form{display:none}.sent .ok{display:block}
+.direct{margin-top:30px;display:grid;gap:10px;font-size:18px}
+.direct a{text-decoration:none;border-bottom:1.5px solid rgba(13,13,12,.2)}
+@media (max-width:900px){.contact{grid-template-columns:1fr}.two{grid-template-columns:1fr}}
+
+/* footer */
+footer{padding:80px 0 40px;overflow:hidden}
+.foot-big svg{width:100%;height:auto;display:block}
+.foot-row{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:40px;font-size:15px;color:var(--mute-d)}
+.foot-row nav{display:flex;gap:18px;flex-wrap:wrap}
+.foot-row a{text-decoration:none}
+.foot-row a:hover{color:var(--paper)}
+
+/* reveals */
+.js .rv{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+.js .words .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em;margin-bottom:-.06em}
+.js .words .w>span{display:inline-block;transform:translateY(105%);transition:transform 1s var(--ease)}
+.js .words.in .w>span{transform:none}
+.show-all .rv,.show-all .words .w>span{opacity:1!important;transform:none!important}
+@media (prefers-reduced-motion:reduce){
+  .js .rv,.js .words .w>span{opacity:1;transform:none;transition:none}
+  .marquee .track{animation:none}
+  .intro{display:none}
+  .timeline i{transform:none;transition:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
+<div class="intro" aria-hidden="true"><svg viewBox="0 0 100 100"><path class="ramp" d="M18 82 A64 64 0 0 0 82 18 L82 82 Z" fill="#f2efe9"/><circle class="ball" cx="34" cy="26" r="13" fill="#3d2bff"/></svg></div>
+
+<header class="nav" id="nav">
+  <a class="logo" href="#top" aria-label="schwung, back to top"><svg viewBox="0 0 576.9 112" width="144" height="28" aria-hidden="true"><path d="M18 82 A64 64 0 0 0 82 18 L82 82 Z" fill="#f2efe9"/><circle cx="34" cy="26" r="13" fill="#3d2bff"/><path transform="translate(118,82)" d="M30.400000000000002 1.2000000000000002Q25.6 1.2000000000000002 20.85 0.25000000000000006Q16.1 -0.7000000000000001 12.150000000000002 -2.7500000000000004Q8.200000000000001 -4.800000000000001 5.800000000000001 -8.0Q3.4000000000000004 -11.200000000000001 3.4000000000000004 -15.8Q3.4000000000000004 -16.1 3.4000000000000004 -16.450000000000003Q3.4000000000000004 -16.8 3.5 -17.2H22.0Q21.900000000000002 -16.900000000000002 21.900000000000002 -16.6Q21.900000000000002 -16.3 21.900000000000002 -16.1Q22.0 -14.3 23.15 -13.100000000000001Q24.3 -11.9 26.200000000000003 -11.3Q28.1 -10.700000000000001 30.400000000000002 -10.700000000000001Q31.8 -10.700000000000001 33.75 -10.900000000000002Q35.7 -11.100000000000001 37.2 -11.900000000000002Q38.7 -12.700000000000001 38.7 -14.600000000000001Q38.7 -16.3 36.95 -17.15Q35.2 -18.0 32.35 -18.55Q29.5 -19.1 26.1 -19.700000000000003Q22.400000000000002 -20.3 18.650000000000002 -21.25Q14.9 -22.200000000000003 11.7 -23.950000000000003Q8.5 -25.700000000000003 6.550000000000001 -28.6Q4.6000000000000005 -31.5 4.6000000000000005 -36.1Q4.6000000000000005 -41.300000000000004 6.75 -44.800000000000004Q8.9 -48.300000000000004 12.650000000000002 -50.35000000000001Q16.400000000000002 -52.400000000000006 21.150000000000002 -53.25Q25.900000000000002 -54.1 31.1 -54.1Q35.6 -54.1 40.05 -53.25Q44.5 -52.400000000000006 48.2 -50.550000000000004Q51.900000000000006 -48.7 54.10000000000001 -45.7Q56.300000000000004 -42.7 56.300000000000004 -38.400000000000006Q56.300000000000004 -38.1 56.300000000000004 -37.650000000000006Q56.300000000000004 -37.2 56.2 -37.0H37.9V-37.800000000000004Q37.9 -39.300000000000004 36.85 -40.25Q35.800000000000004 -41.2 34.150000000000006 -41.650000000000006Q32.5 -42.1 30.8 -42.1Q30.200000000000003 -42.1 29.0 -42.05Q27.8 -42.0 26.55 -41.7Q25.3 -41.400000000000006 24.450000000000003 -40.7Q23.6 -40.0 23.6 -38.7Q23.6 -37.5 24.75 -36.75Q25.900000000000002 -36.0 27.85 -35.55Q29.8 -35.1 32.2 -34.6Q36.0 -33.9 40.400000000000006 -33.25Q44.800000000000004 -32.6 48.75 -31.05Q52.7 -29.5 55.2 -26.35Q57.7 -23.200000000000003 57.7 -17.5Q57.7 -12.100000000000001 55.5 -8.450000000000001Q53.300000000000004 -4.800000000000001 49.5 -2.7Q45.7 -0.6000000000000001 40.75 0.30000000000000004Q35.800000000000004 1.2000000000000002 30.400000000000002 1.2000000000000002Z M89.4 1.2000000000000002Q80.4 1.2000000000000002 73.75 -1.85Q67.1 -4.9 63.4 -11.05Q59.7 -17.2 59.7 -26.400000000000002Q59.7 -35.7 63.4 -41.85Q67.1 -48.0 73.75 -51.05Q80.4 -54.1 89.4 -54.1Q95.4 -54.1 100.7 -52.8Q106.0 -51.5 110.0 -48.8Q114.0 -46.1 116.25 -41.8Q118.5 -37.5 118.5 -31.5H99.2Q99.2 -34.6 98.05000000000001 -36.6Q96.9 -38.6 94.7 -39.55Q92.5 -40.5 89.4 -40.5Q85.9 -40.5 83.75 -39.150000000000006Q81.6 -37.800000000000004 80.6 -35.25Q79.6 -32.7 79.6 -29.200000000000003V-23.5Q79.6 -20.0 80.65 -17.5Q81.7 -15.0 83.95 -13.65Q86.2 -12.3 89.80000000000001 -12.3Q93.1 -12.3 95.35 -13.25Q97.6 -14.200000000000001 98.8 -16.25Q100.0 -18.3 100.0 -21.5H118.5Q118.5 -15.5 116.25 -11.15Q114.0 -6.800000000000001 110.0 -4.1000000000000005Q106.0 -1.4000000000000001 100.7 -0.09999999999999998Q95.4 1.2000000000000002 89.4 1.2000000000000002Z M123.80000000000001 0.0V-72.5H143.70000000000002V-47.300000000000004H144.4Q146.10000000000002 -49.5 148.70000000000002 -50.95Q151.3 -52.400000000000006 154.3 -53.2Q157.3 -54.0 160.20000000000002 -54.0Q166.5 -54.0 170.55 -51.650000000000006Q174.60000000000002 -49.300000000000004 176.60000000000002 -44.900000000000006Q178.60000000000002 -40.5 178.60000000000002 -34.2V0.0H158.70000000000002V-31.8Q158.70000000000002 -33.5 158.25 -34.85Q157.8 -36.2 157.0 -37.2Q156.20000000000002 -38.2 154.95000000000002 -38.75Q153.70000000000002 -39.300000000000004 152.0 -39.300000000000004Q149.5 -39.300000000000004 147.65 -38.150000000000006Q145.8 -37.0 144.75 -35.150000000000006Q143.70000000000002 -33.300000000000004 143.70000000000002 -31.0V0.0Z M198.8 0.0 179.5 -52.800000000000004H201.0L205.1 -36.7Q205.5 -35.4 206.15 -32.75Q206.8 -30.1 207.55 -27.1Q208.3 -24.1 208.9 -21.6H209.6Q210.3 -24.1 210.95 -26.6Q211.6 -29.1 212.3 -31.6Q213.0 -34.1 213.6 -36.6L217.9 -52.800000000000004H237.7L241.9 -36.5Q242.3 -35.1 242.95000000000002 -32.45Q243.60000000000002 -29.8 244.35000000000002 -26.9Q245.10000000000002 -24.0 245.7 -21.6H246.4Q246.9 -23.6 247.60000000000002 -26.3Q248.3 -29.0 249.0 -31.75Q249.7 -34.5 250.2 -36.5L254.5 -52.800000000000004H273.9L254.5 0.0H235.1L230.1 -17.8Q229.6 -19.5 229.0 -21.65Q228.4 -23.8 227.85000000000002 -25.85Q227.3 -27.900000000000002 226.9 -29.400000000000002H226.5Q226.2 -28.0 225.64999999999998 -26.0Q225.1 -24.0 224.5 -21.9Q223.9 -19.8 223.3 -17.900000000000002L218.2 0.0Z M293.09999999999997 1.2000000000000002Q283.7 1.2000000000000002 279.2 -4.0Q274.7 -9.200000000000001 274.7 -18.6V-52.800000000000004H294.59999999999997V-21.0Q294.59999999999997 -19.400000000000002 295.04999999999995 -18.0Q295.5 -16.6 296.29999999999995 -15.600000000000001Q297.09999999999997 -14.600000000000001 298.4 -14.05Q299.7 -13.5 301.29999999999995 -13.5Q303.79999999999995 -13.5 305.65 -14.65Q307.5 -15.8 308.54999999999995 -17.700000000000003Q309.59999999999997 -19.6 309.59999999999997 -21.8V-52.800000000000004H329.5V0.0H313.2L312.2 -8.0H311.5Q309.59999999999997 -5.1000000000000005 306.65 -3.0000000000000004Q303.7 -0.9 300.2 0.15000000000000008Q296.7 1.2000000000000002 293.09999999999997 1.2000000000000002Z M336.59999999999997 0.0V-52.800000000000004H352.9L354.2 -44.800000000000004H354.9Q356.99999999999994 -47.900000000000006 359.79999999999995 -49.95Q362.59999999999997 -52.0 366.0 -53.0Q369.4 -54.0 373.0 -54.0Q379.29999999999995 -54.0 383.34999999999997 -51.650000000000006Q387.4 -49.300000000000004 389.4 -44.900000000000006Q391.4 -40.5 391.4 -34.2V0.0H371.5V-31.8Q371.5 -33.5 371.04999999999995 -34.85Q370.59999999999997 -36.2 369.79999999999995 -37.2Q369.0 -38.2 367.75 -38.75Q366.49999999999994 -39.300000000000004 364.79999999999995 -39.300000000000004Q362.29999999999995 -39.300000000000004 360.44999999999993 -38.150000000000006Q358.59999999999997 -37.0 357.54999999999995 -35.150000000000006Q356.49999999999994 -33.300000000000004 356.49999999999994 -31.0V0.0Z M406.59999999999997 21.0Q402.99999999999994 21.0 399.94999999999993 19.3Q396.9 17.6 395.09999999999997 14.650000000000002Q393.29999999999995 11.700000000000001 393.29999999999995 8.1Q393.29999999999995 4.0 395.84999999999997 0.8999999999999999Q398.4 -2.2 401.69999999999993 -3.7Q399.29999999999995 -5.4 397.9 -7.800000000000001Q396.49999999999994 -10.200000000000001 396.49999999999994 -13.0Q396.49999999999994 -17.0 399.44999999999993 -20.15Q402.4 -23.3 406.59999999999997 -24.3Q402.99999999999994 -26.6 400.54999999999995 -29.85Q398.09999999999997 -33.1 398.09999999999997 -36.9Q398.09999999999997 -43.5 401.79999999999995 -47.2Q405.49999999999994 -50.900000000000006 411.69999999999993 -52.45Q417.9 -54.0 425.29999999999995 -54.0Q428.29999999999995 -54.0 430.34999999999997 -53.85Q432.4 -53.7 433.99999999999994 -53.400000000000006Q438.4 -56.1 440.09999999999997 -58.7Q441.79999999999995 -61.300000000000004 441.79999999999995 -62.7H458.19999999999993Q458.19999999999993 -58.400000000000006 456.74999999999994 -55.60000000000001Q455.29999999999995 -52.800000000000004 452.54999999999995 -51.10000000000001Q449.79999999999995 -49.400000000000006 445.99999999999994 -48.400000000000006Q448.9 -46.2 450.54999999999995 -43.25Q452.19999999999993 -40.300000000000004 452.19999999999993 -37.0Q452.19999999999993 -31.1 449.0999999999999 -27.35Q445.99999999999994 -23.6 440.94999999999993 -21.8Q435.9 -20.0 429.99999999999994 -20.0H422.4Q418.99999999999994 -20.0 417.54999999999995 -19.200000000000003Q416.09999999999997 -18.400000000000002 416.09999999999997 -17.1Q416.09999999999997 -15.8 417.34999999999997 -14.9Q418.59999999999997 -14.0 422.4 -14.0H440.4Q449.59999999999997 -14.0 453.9 -9.25Q458.19999999999993 -4.5 458.19999999999993 2.9000000000000004Q458.19999999999993 8.5 455.0999999999999 12.55Q451.99999999999994 16.6 446.94999999999993 18.8Q441.9 21.0 435.99999999999994 21.0ZM417.4 9.9H432.99999999999994Q434.49999999999994 9.9 435.69999999999993 9.3Q436.9 8.700000000000001 437.59999999999997 7.550000000000001Q438.29999999999995 6.4 438.29999999999995 4.9Q438.29999999999995 2.6 436.74999999999994 1.3Q435.19999999999993 0.0 432.99999999999994 0.0H417.4Q415.19999999999993 0.0 413.69999999999993 1.25Q412.19999999999993 2.5 412.19999999999993 4.800000000000001Q412.19999999999993 7.1000000000000005 413.69999999999993 8.5Q415.19999999999993 9.9 417.4 9.9ZM425.09999999999997 -30.400000000000002Q428.59999999999997 -30.400000000000002 430.69999999999993 -32.0Q432.79999999999995 -33.6 432.79999999999995 -37.0Q432.79999999999995 -40.400000000000006 430.69999999999993 -42.0Q428.59999999999997 -43.6 425.09999999999997 -43.6Q421.99999999999994 -43.6 419.79999999999995 -42.0Q417.59999999999997 -40.400000000000006 417.59999999999997 -37.0Q417.59999999999997 -34.800000000000004 418.5 -33.300000000000004Q419.4 -31.8 421.09999999999997 -31.1Q422.79999999999995 -30.400000000000002 425.09999999999997 -30.400000000000002Z" fill="#f2efe9"/></svg></a>
+  <ul>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a class="btn btn-main mag" href="#contact">Start a project <span class="arr" aria-hidden="true">→</span></a>
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><i></i><i></i></button>
+</header>
+<div class="mmenu" id="mmenu" aria-hidden="true">
+  <nav aria-label="Mobile">
+    <a class="big" href="#work">Work</a><a class="big" href="#services">Services</a><a class="big" href="#process">Process</a><a class="big" href="#pricing">Pricing</a><a class="big" href="#contact">Contact</a>
+  </nav>
+  <a class="btn btn-blue" href="#contact">Start a project <span class="arr" aria-hidden="true">→</span></a>
+</div>
+<div class="cursor" id="cursor" aria-hidden="true">View case</div>
+
+<main id="main">
+<section class="hero" id="top">
+  <svg class="hero-ramp" viewBox="0 0 100 100" aria-hidden="true"><path d="M18 82 A64 64 0 0 0 82 18 L82 82 Z"/></svg>
+  <div class="hero-ball" id="ball" aria-hidden="true"></div>
+  <div class="wrap" style="position:relative;z-index:1;width:100%">
+    <span class="eyebrow">Design studio · Zürich</span>
+    <h1 class="display words" style="margin-top:22px"><span class="row">Websites</span><span class="row">that <em>move</em></span></h1>
+    <div class="hero-foot">
+      <div>
+        <p class="lede rv">schwung builds premium websites, brand looks and launch kits for ambitious small brands. We use AI to move fast and taste to get it right, so you go from idea to live in about ten days.</p>
+        <div class="hero-cta rv">
+          <a class="btn btn-main mag" href="#contact">Start a project <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost mag" href="#work">See the work <span class="arr" aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <div class="stats rv">
+        <div class="stat"><b><span class="count" data-to="10">10</span></b><span>days, idea to live</span></div>
+        <div class="stat"><b><span class="count" data-to="0">0</span></b><span>templates used</span></div>
+        <div class="stat"><b><span class="count" data-to="100">100</span>%</b><span>mobile-first</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="track"><span>Websites</span><span>Online shops</span><span>Brand looks</span><span>Motion</span><span>Product imagery</span><span>Launch kits</span></div><div class="track"><span>Websites</span><span>Online shops</span><span>Brand looks</span><span>Motion</span><span>Product imagery</span><span>Launch kits</span></div></div>
+
+<section class="block light" id="work">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="eyebrow">Selected work</span><h2 class="display words">The proof is <em>live</em></h2></div>
+      <p class="lede rv">Our first showcase: a complete storefront for a sneaker brand from Zürich. Colour switch, product studio, bag and search, all working.</p>
+    </div>
+    <a class="case rv" href="../solum/index.html" id="case">
+      <div class="case-shot tilt"><img src="img/work-solum-hero.webp" alt="SOLUM storefront: hero with the Aster 2 sneaker and colour picker" width="1600" height="1000" loading="lazy"></div>
+      <div class="case-side">
+        <div class="case-info">
+          <span class="eyebrow" style="align-self:flex-start">Concept · E-commerce</span>
+          <h3>SOLUM</h3>
+          <p style="margin:0;color:var(--mute-d)">A sneaker shop that feels like the product. Brand look, AI product imagery and a fully working one-page store.</p>
+          <div class="tags"><span>Web design</span><span>Development</span><span>Motion</span><span>Imagery</span></div>
+        </div>
+      </div>
+      <div class="case-phones">
+          <img src="img/work-solum-phone.webp" alt="SOLUM on a phone: hero" width="600" height="1298" loading="lazy">
+          <img src="img/work-solum-phone-studio.webp" alt="SOLUM on a phone: product studio" width="600" height="1298" loading="lazy">
+      </div>
+    </a>
+    <div class="next rv">
+      <p><strong>Next case study:</strong> yours. We take on two new projects a month.</p>
+      <a class="btn btn-main mag" href="#contact">Book a slot <span class="arr" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="services">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="eyebrow">Services</span><h2 class="display words">Everything to <em>launch</em></h2></div>
+      <p class="lede rv">One studio for the look, the site and the first posts. No hand-offs between agencies, no template you'll recognise elsewhere.</p>
+    </div>
+    <div class="svc">
+      <article class="rv"><div class="inner">
+        <div class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18"/></svg></div>
+        <span class="num">01</span><h3>Websites &amp; shops</h3>
+        <p>Landing pages, portfolios and one-page stores that load fast and feel premium on every phone.</p>
+        <ul><li>Custom design, no templates</li><li>Motion that guides the eye</li><li>Forms, bag, search that work</li></ul>
+      </div></article>
+      <article class="rv"><div class="inner">
+        <div class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16"/></svg></div>
+        <span class="num">02</span><h3>Brand looks</h3>
+        <p>Name ideas, logo, colours and type: a small, clear system you can use everywhere from day one.</p>
+        <ul><li>Logo &amp; icon set</li><li>Colour and type system</li><li>Mini brand guide</li></ul>
+      </div></article>
+      <article class="rv"><div class="inner">
+        <div class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M5 19l7-14 7 14"/><path d="M8 13h8"/></svg></div>
+        <span class="num">03</span><h3>Launch kits</h3>
+        <p>The content to tell people you're live: product images, a launch video and social posts in your new look.</p>
+        <ul><li>AI product &amp; mood images</li><li>Launch video (4:5, 9:16)</li><li>LinkedIn &amp; Instagram posts</li></ul>
+      </div></article>
+    </div>
+  </div>
+</section>
+
+<section class="block light" id="process">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="eyebrow">Process</span><h2 class="display words">Ten days, <em>four</em> steps</h2></div>
+      <p class="lede rv">Short loops, real previews and your feedback every step. You always see the actual site, never just slides.</p>
+    </div>
+    <div class="timeline" id="timeline" aria-hidden="true"><i></i></div>
+    <div class="steps">
+      <div class="step rv"><span class="day">Day 1</span><h3>Talk</h3><p>A 30-minute call: your goals, your customers, what “great” looks like to you.</p></div>
+      <div class="step rv"><span class="day">Day 2–3</span><h3>Direction</h3><p>Two visual directions with real copy. You pick one, we sharpen it together.</p></div>
+      <div class="step rv"><span class="day">Day 4–8</span><h3>Build</h3><p>The full site, live preview link, two feedback rounds. Tested on every screen.</p></div>
+      <div class="step rv"><span class="day">Day 9–10</span><h3>Launch</h3><p>Domain, go-live and your launch kit. Plus a short handover so you can update it.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block light" id="pricing" style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="eyebrow">Pricing</span><h2 class="display words">Clear <em>prices</em></h2></div>
+      <p class="lede rv">Fixed packages, no hourly surprises. Prices in CHF, excluding hosting and domain.</p>
+    </div>
+    <div class="plans">
+      <div class="plan rv"><div class="inner">
+        <h3>Landing page</h3><div class="price">2,900<small>from CHF · about 7 days</small></div>
+        <ul><li>One page, custom design</li><li>Contact form &amp; basic SEO</li><li>Mobile-first, with motion</li><li>One feedback round</li></ul>
+        <a class="btn btn-main mag" href="#contact" data-plan="Landing page">Choose <span class="arr" aria-hidden="true">→</span></a>
+      </div></div>
+      <div class="plan hot rv"><div class="inner">
+        <span class="badge">Most picked</span>
+        <h3>Brand + website</h3><div class="price">6,900<small>from CHF · about 10 days</small></div>
+        <ul><li>Logo, colours and type</li><li>Website up to 5 sections or pages</li><li>Launch kit: images &amp; 3 posts</li><li>Two feedback rounds</li></ul>
+        <a class="btn btn-blue mag" href="#contact" data-plan="Brand + website">Choose <span class="arr" aria-hidden="true">→</span></a>
+      </div></div>
+      <div class="plan rv"><div class="inner">
+        <h3>Online shop</h3><div class="price">9,900<small>from CHF · about 3 weeks</small></div>
+        <ul><li>Shop with product pages</li><li>Product imagery for your range</li><li>Checkout via Shopify or Stripe</li><li>Launch video &amp; social kit</li></ul>
+        <a class="btn btn-main mag" href="#contact" data-plan="Online shop">Choose <span class="arr" aria-hidden="true">→</span></a>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="faq">
+  <div class="wrap">
+    <div class="head" style="margin-bottom:24px">
+      <div><span class="eyebrow">FAQ</span><h2 class="display words">Good <em>questions</em></h2></div>
+    </div>
+    <div class="faq">
+      <details><summary>Do you use AI? <i aria-hidden="true"></i></summary><p>Yes, openly. AI helps us build and create images fast, which keeps prices fair and timelines short. Every direction, every detail and every final decision is made by a person with taste, and checked on real devices.</p></details>
+      <details><summary>How fast can my site be live? <i aria-hidden="true"></i></summary><p>A landing page usually takes about a week, brand plus website about ten days. It depends mostly on how quickly we get your feedback and content.</p></details>
+      <details><summary>Who owns the website and the logo? <i aria-hidden="true"></i></summary><p>You do. After the final payment, all files and rights to the design we made for you are yours.</p></details>
+      <details><summary>Can I update the site myself? <i aria-hidden="true"></i></summary><p>Yes. We set it up so texts and images are easy to change, and show you how in a short handover. Bigger changes we're happy to do for you.</p></details>
+      <details><summary>What about hosting and domain? <i aria-hidden="true"></i></summary><p>We help you pick and set them up. Hosting for a site like this often costs between nothing and a few francs a month.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="block light" id="contact">
+  <div class="wrap contact">
+    <div>
+      <span class="eyebrow">Contact</span>
+      <h2 class="display words">Let's get <em>moving</em></h2>
+      <p class="lede rv" style="margin-top:24px">Tell us a little about your project. You'll get an answer within one working day, with a first idea and a fixed price.</p>
+      <div class="direct rv"><a href="mailto:hello@yourdomain.ch">hello@yourdomain.ch</a><span style="color:var(--mute)">Zürich, Switzerland</span></div>
+    </div>
+    <div id="formwrap">
+      <form id="form" novalidate>
+        <div class="two">
+          <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" required><div class="msg" id="m-name" aria-live="polite"></div></div>
+          <div class="field"><label for="f-mail">Email</label><input id="f-mail" name="email" type="email" autocomplete="email" required><div class="msg" id="m-mail" aria-live="polite"></div></div>
+        </div>
+        <fieldset class="chips"><legend class="legend">What do you need?</legend>
+          <input type="radio" name="type" id="t1" value="Landing page"><label for="t1">Landing page</label>
+          <input type="radio" name="type" id="t2" value="Brand + website" checked><label for="t2">Brand + website</label>
+          <input type="radio" name="type" id="t3" value="Online shop"><label for="t3">Online shop</label>
+          <input type="radio" name="type" id="t4" value="Something else"><label for="t4">Something else</label>
+        </fieldset>
+        <div class="field"><label for="f-msg">About your project</label><textarea id="f-msg" name="message" required placeholder="What you do, who it's for, and when you'd like to launch."></textarea><div class="msg" id="m-msg" aria-live="polite"></div></div>
+        <button class="btn btn-main mag" type="submit" style="justify-self:start">Send request <span class="arr" aria-hidden="true">→</span></button>
+      </form>
+      <div class="ok" role="status" tabindex="-1" id="ok"><h3>Thank you!</h3><p style="margin:0;color:var(--mute-d)">Your request is ready. We'll reply within one working day.</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-big" aria-hidden="true"><svg viewBox="0 -78 458.9 102" aria-hidden="true"><path d="M30.400000000000002 1.2000000000000002Q25.6 1.2000000000000002 20.85 0.25000000000000006Q16.1 -0.7000000000000001 12.150000000000002 -2.7500000000000004Q8.200000000000001 -4.800000000000001 5.800000000000001 -8.0Q3.4000000000000004 -11.200000000000001 3.4000000000000004 -15.8Q3.4000000000000004 -16.1 3.4000000000000004 -16.450000000000003Q3.4000000000000004 -16.8 3.5 -17.2H22.0Q21.900000000000002 -16.900000000000002 21.900000000000002 -16.6Q21.900000000000002 -16.3 21.900000000000002 -16.1Q22.0 -14.3 23.15 -13.100000000000001Q24.3 -11.9 26.200000000000003 -11.3Q28.1 -10.700000000000001 30.400000000000002 -10.700000000000001Q31.8 -10.700000000000001 33.75 -10.900000000000002Q35.7 -11.100000000000001 37.2 -11.900000000000002Q38.7 -12.700000000000001 38.7 -14.600000000000001Q38.7 -16.3 36.95 -17.15Q35.2 -18.0 32.35 -18.55Q29.5 -19.1 26.1 -19.700000000000003Q22.400000000000002 -20.3 18.650000000000002 -21.25Q14.9 -22.200000000000003 11.7 -23.950000000000003Q8.5 -25.700000000000003 6.550000000000001 -28.6Q4.6000000000000005 -31.5 4.6000000000000005 -36.1Q4.6000000000000005 -41.300000000000004 6.75 -44.800000000000004Q8.9 -48.300000000000004 12.650000000000002 -50.35000000000001Q16.400000000000002 -52.400000000000006 21.150000000000002 -53.25Q25.900000000000002 -54.1 31.1 -54.1Q35.6 -54.1 40.05 -53.25Q44.5 -52.400000000000006 48.2 -50.550000000000004Q51.900000000000006 -48.7 54.10000000000001 -45.7Q56.300000000000004 -42.7 56.300000000000004 -38.400000000000006Q56.300000000000004 -38.1 56.300000000000004 -37.650000000000006Q56.300000000000004 -37.2 56.2 -37.0H37.9V-37.800000000000004Q37.9 -39.300000000000004 36.85 -40.25Q35.800000000000004 -41.2 34.150000000000006 -41.650000000000006Q32.5 -42.1 30.8 -42.1Q30.200000000000003 -42.1 29.0 -42.05Q27.8 -42.0 26.55 -41.7Q25.3 -41.400000000000006 24.450000000000003 -40.7Q23.6 -40.0 23.6 -38.7Q23.6 -37.5 24.75 -36.75Q25.900000000000002 -36.0 27.85 -35.55Q29.8 -35.1 32.2 -34.6Q36.0 -33.9 40.400000000000006 -33.25Q44.800000000000004 -32.6 48.75 -31.05Q52.7 -29.5 55.2 -26.35Q57.7 -23.200000000000003 57.7 -17.5Q57.7 -12.100000000000001 55.5 -8.450000000000001Q53.300000000000004 -4.800000000000001 49.5 -2.7Q45.7 -0.6000000000000001 40.75 0.30000000000000004Q35.800000000000004 1.2000000000000002 30.400000000000002 1.2000000000000002Z M89.4 1.2000000000000002Q80.4 1.2000000000000002 73.75 -1.85Q67.1 -4.9 63.4 -11.05Q59.7 -17.2 59.7 -26.400000000000002Q59.7 -35.7 63.4 -41.85Q67.1 -48.0 73.75 -51.05Q80.4 -54.1 89.4 -54.1Q95.4 -54.1 100.7 -52.8Q106.0 -51.5 110.0 -48.8Q114.0 -46.1 116.25 -41.8Q118.5 -37.5 118.5 -31.5H99.2Q99.2 -34.6 98.05000000000001 -36.6Q96.9 -38.6 94.7 -39.55Q92.5 -40.5 89.4 -40.5Q85.9 -40.5 83.75 -39.150000000000006Q81.6 -37.800000000000004 80.6 -35.25Q79.6 -32.7 79.6 -29.200000000000003V-23.5Q79.6 -20.0 80.65 -17.5Q81.7 -15.0 83.95 -13.65Q86.2 -12.3 89.80000000000001 -12.3Q93.1 -12.3 95.35 -13.25Q97.6 -14.200000000000001 98.8 -16.25Q100.0 -18.3 100.0 -21.5H118.5Q118.5 -15.5 116.25 -11.15Q114.0 -6.800000000000001 110.0 -4.1000000000000005Q106.0 -1.4000000000000001 100.7 -0.09999999999999998Q95.4 1.2000000000000002 89.4 1.2000000000000002Z M123.80000000000001 0.0V-72.5H143.70000000000002V-47.300000000000004H144.4Q146.10000000000002 -49.5 148.70000000000002 -50.95Q151.3 -52.400000000000006 154.3 -53.2Q157.3 -54.0 160.20000000000002 -54.0Q166.5 -54.0 170.55 -51.650000000000006Q174.60000000000002 -49.300000000000004 176.60000000000002 -44.900000000000006Q178.60000000000002 -40.5 178.60000000000002 -34.2V0.0H158.70000000000002V-31.8Q158.70000000000002 -33.5 158.25 -34.85Q157.8 -36.2 157.0 -37.2Q156.20000000000002 -38.2 154.95000000000002 -38.75Q153.70000000000002 -39.300000000000004 152.0 -39.300000000000004Q149.5 -39.300000000000004 147.65 -38.150000000000006Q145.8 -37.0 144.75 -35.150000000000006Q143.70000000000002 -33.300000000000004 143.70000000000002 -31.0V0.0Z M198.8 0.0 179.5 -52.800000000000004H201.0L205.1 -36.7Q205.5 -35.4 206.15 -32.75Q206.8 -30.1 207.55 -27.1Q208.3 -24.1 208.9 -21.6H209.6Q210.3 -24.1 210.95 -26.6Q211.6 -29.1 212.3 -31.6Q213.0 -34.1 213.6 -36.6L217.9 -52.800000000000004H237.7L241.9 -36.5Q242.3 -35.1 242.95000000000002 -32.45Q243.60000000000002 -29.8 244.35000000000002 -26.9Q245.10000000000002 -24.0 245.7 -21.6H246.4Q246.9 -23.6 247.60000000000002 -26.3Q248.3 -29.0 249.0 -31.75Q249.7 -34.5 250.2 -36.5L254.5 -52.800000000000004H273.9L254.5 0.0H235.1L230.1 -17.8Q229.6 -19.5 229.0 -21.65Q228.4 -23.8 227.85000000000002 -25.85Q227.3 -27.900000000000002 226.9 -29.400000000000002H226.5Q226.2 -28.0 225.64999999999998 -26.0Q225.1 -24.0 224.5 -21.9Q223.9 -19.8 223.3 -17.900000000000002L218.2 0.0Z M293.09999999999997 1.2000000000000002Q283.7 1.2000000000000002 279.2 -4.0Q274.7 -9.200000000000001 274.7 -18.6V-52.800000000000004H294.59999999999997V-21.0Q294.59999999999997 -19.400000000000002 295.04999999999995 -18.0Q295.5 -16.6 296.29999999999995 -15.600000000000001Q297.09999999999997 -14.600000000000001 298.4 -14.05Q299.7 -13.5 301.29999999999995 -13.5Q303.79999999999995 -13.5 305.65 -14.65Q307.5 -15.8 308.54999999999995 -17.700000000000003Q309.59999999999997 -19.6 309.59999999999997 -21.8V-52.800000000000004H329.5V0.0H313.2L312.2 -8.0H311.5Q309.59999999999997 -5.1000000000000005 306.65 -3.0000000000000004Q303.7 -0.9 300.2 0.15000000000000008Q296.7 1.2000000000000002 293.09999999999997 1.2000000000000002Z M336.59999999999997 0.0V-52.800000000000004H352.9L354.2 -44.800000000000004H354.9Q356.99999999999994 -47.900000000000006 359.79999999999995 -49.95Q362.59999999999997 -52.0 366.0 -53.0Q369.4 -54.0 373.0 -54.0Q379.29999999999995 -54.0 383.34999999999997 -51.650000000000006Q387.4 -49.300000000000004 389.4 -44.900000000000006Q391.4 -40.5 391.4 -34.2V0.0H371.5V-31.8Q371.5 -33.5 371.04999999999995 -34.85Q370.59999999999997 -36.2 369.79999999999995 -37.2Q369.0 -38.2 367.75 -38.75Q366.49999999999994 -39.300000000000004 364.79999999999995 -39.300000000000004Q362.29999999999995 -39.300000000000004 360.44999999999993 -38.150000000000006Q358.59999999999997 -37.0 357.54999999999995 -35.150000000000006Q356.49999999999994 -33.300000000000004 356.49999999999994 -31.0V0.0Z M406.59999999999997 21.0Q402.99999999999994 21.0 399.94999999999993 19.3Q396.9 17.6 395.09999999999997 14.650000000000002Q393.29999999999995 11.700000000000001 393.29999999999995 8.1Q393.29999999999995 4.0 395.84999999999997 0.8999999999999999Q398.4 -2.2 401.69999999999993 -3.7Q399.29999999999995 -5.4 397.9 -7.800000000000001Q396.49999999999994 -10.200000000000001 396.49999999999994 -13.0Q396.49999999999994 -17.0 399.44999999999993 -20.15Q402.4 -23.3 406.59999999999997 -24.3Q402.99999999999994 -26.6 400.54999999999995 -29.85Q398.09999999999997 -33.1 398.09999999999997 -36.9Q398.09999999999997 -43.5 401.79999999999995 -47.2Q405.49999999999994 -50.900000000000006 411.69999999999993 -52.45Q417.9 -54.0 425.29999999999995 -54.0Q428.29999999999995 -54.0 430.34999999999997 -53.85Q432.4 -53.7 433.99999999999994 -53.400000000000006Q438.4 -56.1 440.09999999999997 -58.7Q441.79999999999995 -61.300000000000004 441.79999999999995 -62.7H458.19999999999993Q458.19999999999993 -58.400000000000006 456.74999999999994 -55.60000000000001Q455.29999999999995 -52.800000000000004 452.54999999999995 -51.10000000000001Q449.79999999999995 -49.400000000000006 445.99999999999994 -48.400000000000006Q448.9 -46.2 450.54999999999995 -43.25Q452.19999999999993 -40.300000000000004 452.19999999999993 -37.0Q452.19999999999993 -31.1 449.0999999999999 -27.35Q445.99999999999994 -23.6 440.94999999999993 -21.8Q435.9 -20.0 429.99999999999994 -20.0H422.4Q418.99999999999994 -20.0 417.54999999999995 -19.200000000000003Q416.09999999999997 -18.400000000000002 416.09999999999997 -17.1Q416.09999999999997 -15.8 417.34999999999997 -14.9Q418.59999999999997 -14.0 422.4 -14.0H440.4Q449.59999999999997 -14.0 453.9 -9.25Q458.19999999999993 -4.5 458.19999999999993 2.9000000000000004Q458.19999999999993 8.5 455.0999999999999 12.55Q451.99999999999994 16.6 446.94999999999993 18.8Q441.9 21.0 435.99999999999994 21.0ZM417.4 9.9H432.99999999999994Q434.49999999999994 9.9 435.69999999999993 9.3Q436.9 8.700000000000001 437.59999999999997 7.550000000000001Q438.29999999999995 6.4 438.29999999999995 4.9Q438.29999999999995 2.6 436.74999999999994 1.3Q435.19999999999993 0.0 432.99999999999994 0.0H417.4Q415.19999999999993 0.0 413.69999999999993 1.25Q412.19999999999993 2.5 412.19999999999993 4.800000000000001Q412.19999999999993 7.1000000000000005 413.69999999999993 8.5Q415.19999999999993 9.9 417.4 9.9ZM425.09999999999997 -30.400000000000002Q428.59999999999997 -30.400000000000002 430.69999999999993 -32.0Q432.79999999999995 -33.6 432.79999999999995 -37.0Q432.79999999999995 -40.400000000000006 430.69999999999993 -42.0Q428.59999999999997 -43.6 425.09999999999997 -43.6Q421.99999999999994 -43.6 419.79999999999995 -42.0Q417.59999999999997 -40.400000000000006 417.59999999999997 -37.0Q417.59999999999997 -34.800000000000004 418.5 -33.300000000000004Q419.4 -31.8 421.09999999999997 -31.1Q422.79999999999995 -30.400000000000002 425.09999999999997 -30.400000000000002Z" fill="#f2efe9"/></svg></div>
+    <div class="foot-row">
+      <span>© <span id="yr">2026</span> schwung · Design studio, Zürich</span>
+      <nav aria-label="Social"><a href="#">LinkedIn</a><a href="#">Instagram</a><a href="#">Behance</a><a href="#">TikTok</a></nav>
+      <nav aria-label="Legal"><a href="#">Imprint</a><a href="#">Privacy</a></nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  window.__sw=1;
+  var root=document.documentElement, reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // intro
+  setTimeout(function(){root.classList.add('intro-over')}, reduce?0:1300);
+  // frozen-transition failsafe: if transitions don't run, show content
+  setTimeout(function(){var t=document.querySelector('.rv.in');if(t&&getComputedStyle(t).opacity<.5)root.classList.add('show-all')},3000);
+
+  // word split
+  document.querySelectorAll('.words').forEach(function(h){
+    (function walk(n){Array.from(n.childNodes).forEach(function(c){
+      if(c.nodeType===3){var f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(function(p){if(!p)return;if(/^\s+$/.test(p)){f.appendChild(document.createTextNode(p));return}var w=document.createElement('span');w.className='w';var i=document.createElement('span');i.textContent=p;w.appendChild(i);f.appendChild(w)});c.replaceWith(f)}
+      else if(c.nodeType===1&&c.tagName==='EM'){var w=document.createElement('span');w.className='w';var i=document.createElement('span');c.replaceWith(w);i.appendChild(c);w.appendChild(i)}
+      else if(c.nodeType===1)walk(c)})})(h);
+    h.querySelectorAll('.w>span').forEach(function(s,i){s.style.transitionDelay=(i*70)+'ms'});
+  });
+  // reveals
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);if(e.target.id==='timeline')e.target.classList.add('in')}})},{threshold:.15,rootMargin:'0px 0px -5% 0px'});
+  document.querySelectorAll('.rv,.words,#timeline').forEach(function(el){io.observe(el)});
+  document.querySelectorAll('.hero .words,.hero .rv').forEach(function(el){setTimeout(function(){el.classList.add('in')},reduce?0:1350)});
+
+  // count-up
+  function count(el){var to=+el.dataset.to;if(reduce||to===0){el.textContent=to;return}var t0=null;el.textContent='0';function f(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/1400);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)}requestAnimationFrame(f)}
+  setTimeout(function(){document.querySelectorAll('.count').forEach(count)},reduce?0:1500);
+
+  // scroll: progress, nav hide, ball parallax
+  var nav=document.getElementById('nav'),bar=document.querySelector('.progress'),ball=document.getElementById('ball'),last=0;
+  function onScroll(){var y=scrollY,h=document.documentElement.scrollHeight-innerHeight;bar.style.transform='scaleX('+(h>0?y/h:0)+')';
+    if(!root.classList.contains('menu-open'))nav.classList.toggle('hide',y>last&&y>400);last=y;
+    if(!reduce){var c=Math.min(y,innerHeight*1.2);ball.style.transform='translate('+(-c*.18)+'px,'+(-c*.35)+'px)'}}
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  // mobile menu
+  var burger=document.getElementById('burger'),mm=document.getElementById('mmenu');
+  function setMenu(o){root.classList.toggle('menu-open',o);burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Close menu':'Open menu');mm.setAttribute('aria-hidden',!o);document.body.style.overflow=o?'hidden':''}
+  burger.addEventListener('click',function(){setMenu(!root.classList.contains('menu-open'))});
+  mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
+  addEventListener('keydown',function(e){if(e.key==='Escape'&&root.classList.contains('menu-open')){setMenu(false);burger.focus()}});
+
+  // magnetic buttons + tilt + cursor (fine pointers only)
+  if(!reduce&&matchMedia('(hover:hover) and (pointer:fine)').matches){
+    document.querySelectorAll('.mag').forEach(function(b){b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.18)+'px,'+((e.clientY-r.top-r.height/2)*.25)+'px)'});b.addEventListener('mouseleave',function(){b.style.transform=''})});
+    var cur=document.getElementById('cursor'),cs=document.getElementById('case');
+    cs.addEventListener('mousemove',function(e){cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';cur.classList.add('on')});
+    cs.addEventListener('mouseleave',function(){cur.classList.remove('on')});
+    document.querySelectorAll('.tilt').forEach(function(t){t.addEventListener('mousemove',function(e){var r=t.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;t.style.transform='perspective(1200px) rotateY('+(x*5)+'deg) rotateX('+(-y*5)+'deg)'});t.addEventListener('mouseleave',function(){t.style.transform=''})});
+  }
+
+  // plan buttons preselect type
+  document.querySelectorAll('[data-plan]').forEach(function(a){a.addEventListener('click',function(){var r=document.querySelector('.chips input[value="'+a.dataset.plan+'"]');if(r)r.checked=true})});
+
+  // form validation
+  var form=document.getElementById('form');
+  function setErr(id,mid,msg){var f=document.getElementById(id);f.parentNode.classList.toggle('err',!!msg);f.setAttribute('aria-invalid',!!msg);document.getElementById(mid).textContent=msg||''}
+  form.addEventListener('submit',function(e){e.preventDefault();
+    var el=form.elements,n=el.namedItem('name').value.trim(),m=el.namedItem('email').value.trim(),t=el.namedItem('message').value.trim(),ok=true,first=null;
+    setErr('f-name','m-name',n?'':'Please tell us your name.');if(!n){ok=false;first=first||'f-name'}
+    var mv=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m);setErr('f-mail','m-mail',mv?'':'Please enter a valid email address.');if(!mv){ok=false;first=first||'f-mail'}
+    setErr('f-msg','m-msg',t.length>=10?'':'A sentence or two about your project, please.');if(t.length<10){ok=false;first=first||'f-msg'}
+    if(!ok){document.getElementById(first).focus();return}
+    document.getElementById('formwrap').classList.add('sent');document.getElementById('ok').focus();
+  });
+  document.getElementById('yr').textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
