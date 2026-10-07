@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SOLUM Footwear</title>
-<meta name="description" content="SOLUM — sneakers designed in Zürich for the long way round. Shop the Aster 2, Vela Trail and Loam.">
+<meta name="description" content="SOLUM — sneakers designed in Zürich for the long way round. Shop the Aster 2, Meridian and Tide.">
 <meta name="theme-color" content="#efebe4">
 <meta property="og:type" content="website">
 <meta property="og:title" content="SOLUM Footwear: shoes for the long way round">
@@ -2006,10 +2006,9 @@ footer { padding-top: clamp(80px, 10vw, 140px); overflow: hidden; }
     const y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
     bar.style.transform = "scaleX(" + (max > 0 ? y / max : 0) + ")";
     if (reduce) return;
-    if (y < innerHeight * 1.4) {
-      heroH1.style.setProperty("--py", (y * .18).toFixed(1) + "px");
-      heroStage.style.setProperty("--py", (y * -.06).toFixed(1) + "px");
-    }
+    const hy = Math.min(y, innerHeight * 1.4); // clamp, so fast scrolling never leaves the headline shifted
+    heroH1.style.setProperty("--py", (hy * .18).toFixed(1) + "px");
+    heroStage.style.setProperty("--py", (hy * -.06).toFixed(1) + "px");
     const r = band.getBoundingClientRect();
     if (r.bottom > 0 && r.top < innerHeight) {
       const off = (r.top + r.height / 2 - innerHeight / 2) / innerHeight;
