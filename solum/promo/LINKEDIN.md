@@ -87,3 +87,16 @@ Links in Instagram-Texten sind nicht klickbar. Setz den Netlify-Link deshalb in 
 > #webdesign #webdesigner #zürich #onlineshop #ecommerce #uxdesign #kmu #portfolio
 
 **Titelbild (Cover):** das erste Bild des Videos. **Musik:** in Instagram einen ruhigen elektronischen Track ohne Gesang wählen. **Ort:** Zürich.
+
+## Instagram: video caption (English)
+
+> I built an online shop for a sneaker brand that doesn't exist.
+>
+> SOLUM is a concept project. The brand is made up, the shop works: switch colours, view the shoe from five sides, add it to the bag. On phones too.
+>
+> Design and build are mine, the product images are AI-generated.
+>
+> Click through: link in bio.
+> Need a website for your business? Send me a message.
+>
+> #webdesign #webdesigner #zurich #onlineshop #ecommerce #uxdesign #smallbusiness #portfolio
