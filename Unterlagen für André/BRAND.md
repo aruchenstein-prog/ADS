@@ -95,6 +95,5 @@ Aufgebaut wie die Website eines Designers, nicht wie eine Verkaufsseite: oben ei
 **Noch zu ersetzen oder zu ergänzen, bevor sie live geht:**
 - `hallo@deinedomain.ch` (Website, Posts, Visitenkarte) → deine echte Adresse, auf Wunsch auch Telefon
 - Ein Foto von dir und ein paar echte Sätze über dich für „Über mich“
-- AML Revisions als zweites Projekt, sobald dein Vater einverstanden ist
 - Impressum und Datenschutz (in der Schweiz Pflicht), sobald du Firmenname und Adresse hast
 - Die Preise sind Vorschläge für den Start. Passe sie an, wie du dich wohlfühlst.
