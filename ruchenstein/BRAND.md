@@ -90,10 +90,11 @@ Keine zusätzliche Akzentfarbe. Hervorgehoben wird mit Grösse und Schwarz, nich
 
 ## Website (`ruchenstein/index.html`)
 
-Eine Seite auf Deutsch: Start, SOLUM als Beispielarbeit, Angebot mit festen Preisen, Ablauf in zehn Tagen, Über mich, Fragen, Kontaktformular. Das Formular öffnet das E-Mail-Programm des Besuchers mit der fertigen Nachricht, funktioniert also ohne Server.
+Aufgebaut wie die Website eines Designers, nicht wie eine Verkaufsseite: oben ein paar Sätze in normaler Schrift, dann deine Arbeiten mit grossen Bildern, Über mich, wie du arbeitest mit den Preisen als einfache Liste, und Kontakt per E-Mail. Kein Formular, keine Preistabelle, keine riesigen Slogan-Titel.
 
-**Noch zu ersetzen, bevor sie live geht:**
-- `hallo@deinedomain.ch` (auf der Website, in den Posts und auf der Visitenkarte) → deine echte Adresse
-- Impressum und Datenschutz (in der Schweiz Pflicht) fehlen noch. Sobald du Firmenname und Adresse hast, baue ich die Seiten.
-- Ein Foto von dir würde „Über mich“ stärker machen. Schick mir eins, wenn du willst.
+**Noch zu ersetzen oder zu ergänzen, bevor sie live geht:**
+- `hallo@deinedomain.ch` (Website, Posts, Visitenkarte) → deine echte Adresse, auf Wunsch auch Telefon
+- Ein Foto von dir und ein paar echte Sätze über dich für „Über mich“
+- AML Revisions als zweites Projekt, sobald dein Vater einverstanden ist
+- Impressum und Datenschutz (in der Schweiz Pflicht), sobald du Firmenname und Adresse hast
 - Die Preise sind Vorschläge für den Start. Passe sie an, wie du dich wohlfühlst.
