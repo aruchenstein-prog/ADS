@@ -4,7 +4,7 @@ This repo holds website projects built for the owner. Read this before starting 
 
 ## The owner and how to talk to them
 
-- The owner is **André**, founder of the studio schwung. The folder `Unterlagen für André/` holds his own copies (currently the schwung brand kit).
+- The owner is **André Ruchenstein**. His own business is **Ruchenstein** (renamed from schwung in October 2026, because schwung.ch was taken). The folder `Unterlagen für André/` holds his own copies (currently the Ruchenstein brand kit).
 - Writes mostly in **German** (casual, sometimes English). **Reply in the language of their last message**, in short, plain language without jargon. Explain what was done and what they need to do, step by step.
 - Texts that go **on websites or social posts** are in **English** unless asked otherwise.
 - Wants work that is **client-ready**: polished, tested, nothing broken, nothing half-finished. "Make it very nice" means premium agency quality, not a template.
@@ -17,7 +17,7 @@ This repo holds website projects built for the owner. Read this before starting 
 - `solum/`: **SOLUM**, a fictional premium sneaker brand ("designed in Zürich"). Single-page storefront and the owner's **portfolio / demo ad**. The quality reference for all new work. See `solum/README.md`.
   - `solum/promo/`: LinkedIn kit (4:5 video, carousel PDF, post texts in `LINKEDIN.md`, reach plan in `REICHWEITE.md`).
   - `solum/img/neu/PROMPTS.md`: image prompts the owner runs in Perchance.
-- `schwung/`: **schwung**, the owner's own design studio ("Brands in motion", Zürich): brand kit in `schwung/brand/` (logo SVGs, social media assets, brand board), brand rules and profile texts in `schwung/BRAND.md`, studio one-pager `schwung/index.html` with SOLUM as the case study. Use its logo, colours (Ink #0D0D0C, Paper #F2EFE9, Schwung Blue #2346FF, Blue Light #6F86FF for the accent word on dark) and tone for anything about the studio.
+- `ruchenstein/`: **Ruchenstein**, the owner's own business ("Websites mit Fundament.", Zürich, solo, target: small local firms). Brand kit in `ruchenstein/brand/` (logo SVGs, social assets, brand board), rules and profile texts in `ruchenstein/BRAND.md`, one-pager `ruchenstein/index.html` (German, first person "ich", SOLUM as case study). Swiss poster style: Archivo Extra Condensed Black caps + Archivo text, black/white/stone (#111110, #FFFFFF, #E4E0D8, #F1EFEA), no accent colour, square corners. Brand device: a black block (the "stone") that fills the end of one headline line, at most once per page or image. Use this for anything about his business; do not reintroduce the serif accent word, pill buttons or blue.
 - `aml-revisions/`: landing page for the owner's father's real company (AML Revisions AG, audit firm for asset managers). **Do not change it unless the owner explicitly asks for that page.** Never apply SOLUM work (animations, styles, promo) to it. Audience: older clients, so calm, text-first, large type, no flashy motion.
 - `waymark/`: earlier concept page.
 - `design-md/`: design reference library used by the `design-references` skill.
@@ -25,7 +25,7 @@ This repo holds website projects built for the owner. Read this before starting 
 ## How the owner likes new pages built
 
 1. **Design process:** load the `design-references` skill, pick 2–3 fitting references from `design-md/INDEX.md`, and synthesize an original system. For premium or brand work, also follow `high-end-visual-design`. Finish with a `web-design-guidelines` review (accessibility, focus, forms).
-2. **Look and feel (SOLUM style):**
+2. **Look and feel (SOLUM style, for client work; Ruchenstein has its own system above):**
    - Warm canvas instead of white, one signal accent colour used sparingly.
    - Huge condensed display type (Archivo, `font-stretch: 62%`) mixed with an italic serif accent word (Instrument Serif).
    - Pill buttons with a nested arrow circle, framed ("double-bezel") cards, and a floating island nav.
@@ -45,7 +45,7 @@ Everything must look and read like a skilled human made it. Check every page, im
 - **Layout:** no eyebrow label on every section (max 1 per 3 sections, no dots in front), no "big headline left, small paragraph right" section headers, no three identical cards in a row, no repeated section layouts, no decoration text strips or marquees used as filler, no locale strips ("Design studio · Zürich") everywhere, at most one middle dot per line.
 - **Visuals:** no glows, no AI purple, no hand-drawn clipart icons, real screenshots or photos instead of fake UI. One page theme with at most one deliberate switch between dark and light.
 - **Function:** no dead links or buttons (`href="#"`). If a real service is missing, make it work another way (e.g. a form that opens the email app) or leave the element out and tell the owner.
-- The owner's chosen style (Archivo condensed + one Instrument Serif italic word, pill buttons, motion list above) stays; everything else follows the rules here.
+- The italic serif accent word is now treated as an AI-template tell; avoid it on new work unless the owner asks for it.
 
 ## Images
 

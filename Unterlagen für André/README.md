@@ -1,6 +1,6 @@
-# Unterlagen für André: schwung Brand-Kit
+# Unterlagen für André: Ruchenstein Brand-Kit
 
-schwung ist ein Design-Studio in Zürich. Claim: **Brands in motion.**
+Ruchenstein: Websites und Logos für kleine Firmen in Zürich. Slogan: **Websites mit Fundament.**
 
 | Was | Wo |
 |---|---|
@@ -9,7 +9,7 @@ schwung ist ein Design-Studio in Zürich. Claim: **Brands in motion.**
 | Logo in allen Varianten (SVG, beliebig skalierbar) | `logo/` |
 | Profilbilder, Banner, erste Posts, Visitenkarte | `social/` |
 
-**Farben:** Ink `#0D0D0C`, Paper `#F2EFE9`, Schwung Blue `#2346FF`, Blue Light `#6F86FF` (nur Akzentwort auf dunklem Grund).
-**Schriften (gratis bei Google Fonts):** Archivo (Headlines condensed, Stärke 900, Grossbuchstaben) und Instrument Serif Italic (ein Akzentwort).
+**Farben:** Ink `#111110`, Weiss `#FFFFFF`, Stein `#E4E0D8`, Stein hell `#F1EFEA`. Keine Akzentfarbe.
+**Schrift (gratis bei Google Fonts):** Archivo Extra Condensed Black in Grossbuchstaben für Titel, Archivo normal für Text.
 
-Logos: `schwung-logo.svg` auf hellem Grund, `schwung-logo-white.svg` auf dunklem Grund. Nicht verzerren, nicht umfärben.
+Logos: `ruchenstein.svg` auf hellem Grund, `ruchenstein-white.svg` auf dunklem Grund. Nicht verzerren, nur Schwarz oder Weiss.

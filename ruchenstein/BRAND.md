@@ -18,7 +18,7 @@
 2. **Domain:** zum Beispiel bei hostpoint.ch nach `ruchenstein.ch` suchen. Ist sie vergeben, sind `andreruchenstein.ch` oder `ruchenstein.studio` gute Alternativen. Ich konnte das von hier aus nicht prüfen.
 3. **Social Handles:** `@ruchenstein` auf Instagram, LinkedIn und Behance reservieren, bevor du postest.
 
-## Logo-Dateien (`logo/`)
+## Logo-Dateien (`brand/logo/`)
 
 | Datei | Wofür |
 |---|---|
@@ -46,7 +46,7 @@ Keine zusätzliche Akzentfarbe. Hervorgehoben wird mit Grösse und Schwarz, nich
 - **Archivo** normal für Fliesstext
 - Gestaltungsmittel: Ein Titel darf mit einem schwarzen Block enden, der die Zeile füllt (wie im Logo). Pro Seite oder Bild höchstens einmal.
 
-## Social-Media-Paket (`social/`)
+## Social-Media-Paket (`brand/social/`)
 
 | Datei | Plattform | Grösse |
 |---|---|---|
