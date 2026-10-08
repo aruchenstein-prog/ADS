@@ -47,7 +47,7 @@ Die Texte sind bewusst schlicht gehalten: keine Pfeil-Listen, keine Emojis, kein
 >
 > #Webdesign #Ecommerce #UXDesign #Zürich
 
-**Erster Kommentar:** "Hier zum Durchklicken: [dein Netlify-Link]"
+**Erster Kommentar:** "Hier zum Durchklicken: https://silver-sunburst-8f3310.netlify.app"
 
 ## Text B: Karussell-Post (Deutsch)
 
@@ -70,3 +70,20 @@ Die Texte sind bewusst schlicht gehalten: keine Pfeil-Listen, keine Emojis, kein
 > Planning a new website? Send me a message.
 >
 > #WebDesign #Ecommerce #UXDesign #Zurich
+
+## Instagram: Video als Reel oder Feed-Post (Deutsch)
+
+Links in Instagram-Texten sind nicht klickbar. Setz den Netlify-Link deshalb in dein Profil (Bio-Link) und verweise im Text darauf.
+
+> Ich habe einen Online-Shop für eine Sneaker-Marke gebaut, die es nicht gibt.
+>
+> SOLUM ist ein Konzeptprojekt. Die Marke ist erfunden, der Shop funktioniert: Farbe wechseln, den Schuh von fünf Seiten ansehen, in den Warenkorb legen. Auch auf dem Handy.
+>
+> Design und Umsetzung sind von mir, die Produktbilder sind KI-generiert.
+>
+> Zum Durchklicken: Link in der Bio.
+> Du brauchst eine Website für deine Firma? Schreib mir.
+>
+> #webdesign #webdesigner #zürich #onlineshop #ecommerce #uxdesign #kmu #portfolio
+
+**Titelbild (Cover):** das erste Bild des Videos. **Musik:** in Instagram einen ruhigen elektronischen Track ohne Gesang wählen. **Ort:** Zürich.
