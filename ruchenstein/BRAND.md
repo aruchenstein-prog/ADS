@@ -85,7 +85,7 @@ Keine zusätzliche Akzentfarbe. Hervorgehoben wird mit Grösse und Schwarz, nich
   <tr><td style="padding-bottom:4px"><strong>André Ruchenstein</strong></td></tr>
   <tr><td style="padding-bottom:10px;color:#5c5a55">Websites und Logos, Zürich</td></tr>
   <tr><td style="padding-bottom:4px"><a href="tel:+41765266431" style="color:#111110;text-decoration:none">+41 76 526 64 31</a></td></tr>
-  <tr><td><a href="https://deinedomain.ch" style="color:#111110">deinedomain.ch</a></td></tr>
+  <tr><td><a href="https://deinedomain.ch" style="color:#111110">deinedomain.ch</a> &nbsp; <a href="https://www.linkedin.com/in/andr%C3%A9-ruchenstein-19b561320/" style="color:#111110">LinkedIn</a></td></tr>
 </table>
 ```
 
@@ -95,7 +95,6 @@ Aufgebaut wie die Website eines Designers, nicht wie eine Verkaufsseite: oben ei
 
 **Noch zu ersetzen oder zu ergänzen, bevor sie live geht:**
 - `hallo@deinedomain.ch` (Website, Posts, Visitenkarte) → deine echte Adresse
-- Link zu deinem LinkedIn-Profil
 - Ein Foto von dir und ein paar echte Sätze über dich für „Über mich“
 - Impressum und Datenschutz (in der Schweiz Pflicht), sobald du Firmenname und Adresse hast
 - Die Preise sind Vorschläge für den Start. Passe sie an, wie du dich wohlfühlst.
